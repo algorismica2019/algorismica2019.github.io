@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .red { color: #fa0000; }
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 65%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+## Tema 1: 
+# **Què és un algorisme?**
+
+
+Jordi Vitrià, Mireia Ribera
+
+*Universitat de Barcelona*
+
+
+---
+
+## Què és un algorisme?
+
+Un algorisme és una seqüència finita, no ambigua i explícita, d’instruccions per a resoldre un problema. *(Wikipedia)*
+
+La definició d’aquesta assignatura: Un algorisme és qualsevol procediment computacional que pren un (o una sèrie) de valors com a entrada (input) i genera algun valor (o conjunt de valors) com a sortida (output).
+
++ Els algorismes són les idees que hi ha darrera els programes.
++ Els algorismes no depenen del llenguatge en que estan escrits (però sí que depenen de la representació de les dades).
++ Els algorismes interessants són els que resolen problemes generals. Els problemes específics es resolen reduint-los a problemes generals!
+
+---
+
+### Exemple computacional (arrel quadrada)
+
+Input:  Un nombre `a`
+
+Output: Un nombre `b` tal que `b*b=a`
+
+Observació: Volem una solució correcte i eficient!
+
+Heró d’Alexandria (10 dC-70 dC) va proposar el següent algorisme:
+
++ Comencem amb un nombre qualsevol `g`.
++ Si `g*g` s’assembla prou a `a`, ens aturem i donem la resposta.
++ Sinó, calculem un nou candidat `(g+a/g)/2`.
++ Anem repetint aquest procés fins que ens aturem.
+
+Codificació en Python:
+
+```python
+def hero(a,error):
+    import math
+    g = 1.0
+    while math.fabs(g*g - a) > error:
+        g = 1/2*(g+a/g)
+        print(g)
+    return
+```
+
+Si executem `hero(49,0.0001)` dona `7.000000141269659`.
+
+---
+
+## Correcció i Eficiència Algorísmica
+
+Un algorisme es **correcte** si podem demostrar que retorna la sortida desitjada per a qualsevol entrada legal (per al problema de l’arrel quadrada, això vol dir nombres positius o 0!). 
+
+És eficient si es fa amb el mínim nombre de recursos (cicles de càlcul = temps, memòria=espai) possible.
+
+Demostrar la *correcció* és fàcil per alguns algorismes, difícil per la majoria i fins i tot impossible per alguns.
+
+
+## Algorismes i ordinadors
+
+Un ordinador fa només dues coses (però molt ben fetes!): calcular (fer operacions entre dades) i emmagatzemar (llegir/escriure) els resultats del càlcul.
+
+Un ordinador convencional fa més de 1.000.000.000 de càlculs per segon i pot emmagatzemar més de 1.000.000.000.000 de bits.
+
+
+
+---
+
+## Exemple: el problema del viatjant de comerç (TSP).
+
+Aquest cartell correspon al concurs promogut per Procter & Gamble l’any 1962 per recorrer 33 ciutats dels EEUU:
+
+
+<center><img src="images/tsp.png" width="350"></center>
+
+
+---
+
+### Estratègies possibles
+
+Suposem que hem de passar per cada un d’aquests punts i volem minimitzar la distància recorreguda.
+
+<center><img src="images/recorregut.jpg" width="650"></center>
+
+
+---
+
+
+**Solució I**: Escollim un punt aleatori, i anem seleccionant el veí més proper per continuar.
+
+
+<center><img src="images/recorregut2.jpg" width="650"></center>
+
+
+> És correcte?
+
+**Solució II**: Considerem tots el possibles passos parcials entre dues ciutats i anem afegint repetidament el més petit sempre i quan no generi un cicle o una doble sortida per un punt.
+
+> És correcte?
+
+**Solució III**: Considerem totes les possibles ordenacions dels punts i seleccionem la més curta.
+
+> És correcte?
+
+---
+
+### Solucions correctes i eficients!
+
+La solució anterior és correcta però no és eficient.
+
+
+---
+
+## Com expressem els algorismes?
+
+Amb **llenguatges de programació**.
+
+Un llenguatge de programació es defineix per unes **primitives** (símbols), una **sintaxi** (regles de combinació de símbols), una **semàntica estàtica** (combinacions de símbols amb significat) i una **semàntica** (el significat que nosaltres volem donar a l’algorisme).
+
+Fins ara hem usat el pseudocodi, però també podem usar un llenguatge d’alt nivell, Python, molt proper al pseudocodi, que ens permetrà executar els algorismes!
+
+El preu que hem de pagar és que haurem d’especificar una mica més les coses. 
+
+Els avantatges: 
++ aprenem un llenguatge útil
++ som més formals en les especificacions
++ podem fer simulacions
+
+---
+
+## Llenguatges
+
+
++ Sintaxi: `3.2 + 4.5` vs `3.2 a 2.3`
+
++ Semàntica estàtica: `3.2/’abc’` és sintàcticament correcte perquè l’expressió (`<literal><operador><literal>`) ho és, però no ho és des del punt de vista de la semàntica estàtica.
+
+
+Els errors més perillosos quan programem no són els sintàctics, atès que la majoria es poden detectar automàticament o són fàcils de veure!
+
+Alguns llenguatges detecten casi tots els errors de semàntica estàtica, però Python només alguns!
+
+Si no hi ha errors semàntics el programa farà alguna cosa (no necessàriament la que volem!)
+
+---
+
+## Llenguatges
+
+Si un programa té un error:
+1. Pot acabar bruscament la seva execució i generar un error. La majoria de vegades no afecta a la resta de programes de l’ordinador, però...
+2. Pot ser que mai s’aturi.
+3. Pot executar-se i generar una resposta que pot ser, o no, correcte.
+
+---
+
+# Python
+
+Si volem executar una seqüència d’instruccions podem **crear/definir** una **funció** (que en aquest cas s’anomena `hola`): 
+
+```python
+def hola():
+    print("Hola!")
+```
+
+Un cop la tenim definida la poden **cridar/invocar**: 
+
+```python
+hola()
+> Hola!
+```
+
+Les funcions poden tenir **paràmetres** (que van entre els parèntesi):
+
+```python
+def hola(persona):
+    print("Hola", persona)
+```
+
+Que quan es criden han de prendre un valor:
+
+```python
+hola("Jordi")
+> Hola Jordi
+```
+
+---
+
+## Un programa en Python
+
+En aquest programa podem veure diversos elements del llenguatge: 
++ comentaris, 
++ variables, 
++ assignacions, 
++ iteracions, 
++ entrada de dades des del teclat, 
++ crida de la funció, 
++ etc.
+
+```python
+def main():
+    '''
+    Comportament caòtic
+    '''
+    print("Aquest programa implementa un comportament caòtic")
+    x = input("Entra un nombre entre 0 i 1")
+    x = float(x)
+    for i in range(10):
+        x = 3.9 * x * (1-x)
+        print(x)
+
+main()
+```
+
+---
+
+## Un programa en Python
+
+
+Els elements més importants que tenim per a construir un programa Python són:
+
++ **Noms**. Els fem servir per anomenar les funcions i les variables. 
+  + Tècnicament s’anomenen identificadors.  Han de començar per lletra o `_`  que pot ser seguit per qualsevol seqüència de lletres, dígits o subratllats (no espais!). 
+  + Són sensibles a majúscules i minúscules. 
+  + Hi ha noms reservats (`and`, `for`, `def`, etc.). 
++ **Expressions**: Són la part de codi que calcula o produeix nous valors de les dades. 
+  + L’expressió més simple s’anomena literal, i s’usa per especificar un valor.  Hem vist literals numèrics. Un identificador simple també pot ser una expressió (el nom d’una variable). 
+  + Podem crear expressions combinant expressions més simples amb operadors: `3.9 + x * (1-x)`
+  + Els operadors matemàtics segueixen les precedències estàndard.  
+
+---
+## Un programa en Python
+
++ **Sortides**. Hi ha la funció `print`, amb els següents arguments:  
+
+    `print(value1, value2,..., sep=' ', end='\n')`
+
++ **Assignacions**. 
+  + Assignacions simples: `x = 3 + x * (1-x)` 
+  + Assignacions d’entrada: `x = input("Entra un valor: ")`. 
+
+    A més a més de nombres, podem entrar qualsevol expressió i avaluar-la: 
+
+```python
+a = eval(input("Entrada: "))
+a
+
+> Entrada: 3+4+5
+> 12
+```
+
+---
+
+## Un programa en Python
+
++ Assignacions simultànies, com per exemple:
+
+    `sum, diff = x+y, x-y`
+
+  Aquest tipus d’assignació pot ser molt útil, com per exemple per intercanviar els valors de dues variables. 
+
+  Això no funciona!:
+
+  ```python
+  x = 3
+  y = 4
+  x = y
+  y = x
+  print(x,y)
+
+  > 4 4
+  ```
+---
+
+## Un programa en Python
+
+Iteracions (loops) definides. Es fa un nombre definit de vegades, i són el tipus més simple d’iteració.
+
+  ```python
+  for i in range(10):
+      print(i, end=" ")
+
+  > 0 1 2 3 4 5 6 7 8 9 
+  
+  for j in [0,1,2,3]:
+      print(i*i, end=" ")
+
+  > 0 1 4 9
+  ```
+---
+
+## Els nombres i Python
+
+Les dades  que un programa pot manipular i emmagatzemar són de diferents tipus. El tipus de la dada determina quins valors pot tenir i quines operacions es poden fer. 
+
+  ```python
+  type(3), type(3.14)
+
+  > (int, float) 
+  
+  x = -32
+  type(x)
+
+  > int
+
+  print(3+4, 3+4.0)
+
+  > 7 7.0
+
+  print(10.0/3, 10/3)
+
+  > 3.3333333333335  3.3333333333335
+  ```
+
+Els operadors bàsics són: `+`, `-`, `*`, `/`, `**`, `%`, `abs()`. 
+
+---
+
+## Els nombres i Python
+
+Python també ens dona funcions matemàtiques dins d’una biblioteca (*library*) especial anomenada `math`. Una biblioteca no és res més que un mòdul que conté definicions útils de funcions. 
+
+  ```python
+  import math
+  def main(a,b,c):
+      x = (-b+math.sqrt(b**2-4*a*c))/2*a
+      print(x)
+  ```
+
+  Quan treballem amb nombres, la funció `range` pot ser molt útil. La seva sintàxi és `range(start, stop,step)`.
+
+  ```python
+  list(range(10))
+  > [0,1,2,3,4,5,6,7,8,9]
+
+  list(range(0,10,3))
+  > [0,3,6,9]
+
+  list(range(0,-4,-1))
+  > [0,-1,-2,-3]
+  ```
+
+---
+
+### Exemple: el factorial d'un nombre.
+
+  ```python
+  def factorial(num):
+      factorial = 1
+      if num < 0:
+          print("Entra un enter positiu! ")
+      elif num == 0:
+          print("El factorial de 0 és 1")
+      else:
+          for i in range(1,num+1):
+              factorial *= i
+      print("El factorial de ", num, "és", factorial)
+  ```
+
+---
+
+  ## Python Help
+
+  + [Lloc Web de Python](https://www.python.org/)
+  + [Documentació](https://docs.python.org/3/)
+  
+
+    </textarea>
+    <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+  highlightLanguage: 'python'
+});
+
+      // Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
