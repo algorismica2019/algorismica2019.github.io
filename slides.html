@@ -1076,7 +1076,9 @@ Suposem que volem calcular la **mitja** i la **desviació estàndard** d'un conj
 
 $$ m = \frac{1}{n} \sum_{i=1}^n x_i $$
 
-$$ ds = \sqrt{\frac{\sum_{i=1}^n (x_i - m)^2}{n-1}}
+$$ ds = \sqrt{\frac{\sum_{i=1}^n (x_i - m)^2}{n-1}} $$
+
+`\( x = 2^2 \)`
 
 Quin problema tenim?
 
@@ -3121,7 +3123,19 @@ browser window.</p>
       }());
     </script>
 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+
+      // Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
+    </script>
   
 
 </body></html>
