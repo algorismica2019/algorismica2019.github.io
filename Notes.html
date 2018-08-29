@@ -18,8 +18,111 @@
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code, 
+      .remark-inline-code { font-family: 'Ubuntu Mono'; }
       .red { color: #fa0000; }
+      .green { color: #00fa77; }
+      .blue { color: #0000fa; }
+      .light { color: #aaaaaa; }
+      .bold { font-family: 'Yanone Kaffeesatz'; font-size: 1.5em;
+              line-height: 0.9em;}
+      .code {font-family: 'Ubuntu Mono';}
+      .footnote {
+        bottom: 12px;
+        left: 20px;
+        font-size: 0.75em;
+        line-height: 0.4em;
+      }
+
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, 
+      .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+            .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+        font-size: 0.6em;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
     </style>
   </head>
   <body>
@@ -28,33 +131,56 @@
 
 class: center, middle
 
+<center><img src="images/ub.png" width="150"></center>
+
+
 # **ALGORÍSMICA**
 
-## Presentació de l’assignatura
+## Apunts de l’assignatura
+
+
+Jordi Vitrià
+
+.blue[jordi.vitria@ub.edu] |  .blue[http://algorismica.github.io]
 
 
 
-Jordi Vitrià, Mireia Ribera
+---
+class: center, middle, inverse
 
-*Universitat de Barcelona*
+
+## http://algorismica.github.io
 
 
 
 ---
 
+# Índex
 
-## Contactes
++ [Presentació de l'assignatura](#tema0)
++ Tema 1: [Què és un algorisme?](#tema1)
++ Tema 2: 
+	+ [Python I](#tema21)
+	+ [Python II](#tema22)
+	+ [Python III](#tema23)
++ Tema 3: Algorismes Numèrics
+	+ [Aritmètica Bàsica](#tema3)
+	+ [Aritmètica Modular](#modular)
++ Tema 4: [Algorismes per Text](#tema4)
++ Tema 5: [Algorismes i Força Bruta](#tema5)
++ Tema 6: [Dividir i vèncer](#tema6)
++ Tema 7: [Algorismes de Cerca](#tema7)
++ Tema 8: [Hashing i Cerca](#tema8)
 
-+ Professors de Teoria: 
-  + Jordi Vitrià, <jordi.vitria@ub.edu>
-  + Mireia Ribera, <ribera@ub.edu>
- 
-+ Professors de Pràctiques: 
-
-+ Auxiliar docent: 
 
 ---
+name:tema0
 
+class: center, middle, inverse
+
+## Presentació de l'assignatura
+
+---
 
 ## Què és aquesta assignatura?
 
@@ -154,47 +280,51 @@ La segona prova i la reavalaució es faran durant el mes de gener.
 
 ---
 
-class: center, middle
+class: center, middle, inverse
+name:tema1
 
 # Tema 1: **Què és un algorisme?**
 
-
-Jordi Vitrià, Mireia Ribera
-
-*Universitat de Barcelona*
 
 
 ---
 
 ## Què és un algorisme?
 
-*Wikipedia*: Un algorisme és una seqüència finita, no ambigua i explícita, d’instruccions per a resoldre un problema. 
+> Definició de la *Wikipedia*: Un algorisme és una seqüència finita, no ambigua i
+explícita, d’instruccions per a resoldre un problema. 
 
-*La definició d’aquesta assignatura*: Un algorisme és qualsevol procediment computacional que pren un (o una sèrie) de valors com a entrada (*input*) i genera algun valor (o conjunt de valors) com a sortida (*output*).
+La definició d’aquesta assignatura: 
 
-+ Els algorismes són les idees que hi ha darrera els programes.
-+ Els algorismes no depenen del llenguatge en que estan escrits (però sí que depenen de la representació de les dades).
-+ Els algorismes interessants són els que resolen problemes generals. Els problemes específics es resolen reduïnt-los a problemes generals!
+.bold[Un algorisme és qualsevol procediment computacional que pren un (o una sèrie) de dades/valors com a *entrada* i genera alguna dada/valor (o sèrie de dades/valors) com a *sortida*.]
+
++ Els algorismes són les **idees/estratègies** que hi ha darrera els programes per resoldre un determinat problema.
++ Els algorismes són independents del llenguatge en que estan escrits (però sí que depenen de la representació de les dades). El mateix algorisme escrit en dos llenguatges diferents pot tenir una aparença superficial molt diferent.
++ Els algorismes interessants són els que resolen problemes generals. Els problemes específics es resolen reduïnt-los a problemes generals.
 
 ---
 
 ### Exemple computacional (arrel quadrada)
 
-Input:  Un nombre `a`
+Problema a resoldre mitjançant un algorisme:
 
-Output: Un nombre `b` tal que `b*b=a`
+> Entrada:	Un nombre `a`
 
-Observació: Volem una solució **correcta i eficient**!
+> Sortida:	Un nombre `b` tal que `b*b=a`
+
+> Requeriment: Volem una solució **correcta i eficient**!
+
 --
 
-
-Heró d’Alexandria (10 dC-70 dC) va proposar el següent algorisme:
+Hi ha diversos algorismes per calcular aquest valor. El que s'explica a l'escola és un d'ells. Heró d’Alexandria (10 dC-70 dC) ja en va proposar un altre:
 
 + Comencem amb un nombre qualsevol `g`.
-+ Si `g*g` s’assembla prou a `a`, ens aturem i donem la resposta.
-+ Sinó, calculem un nou candidat `(g+a/g)/2`.
-+ Anem repetint aquest procés fins que ens aturem.
---
++ Mentre `g*g` no s’assembli prou a `a`: 
+	+ Calculem un nou candidat `(g+a/g)/2`.
++ Donem com a resultat l'últim valor de `g`.
+---
+
+### Exemple computacional (arrel quadrada)
 
 
 Codificació en Python:
@@ -208,38 +338,47 @@ def hero(a,error):
     return g
 ```
 
-Si executem `hero(49,0.0001)` dona `7.000000141269659`.
+Si executem `hero(49,0.0001)`, l'ordinador retorna `7.000000141269659`.
 
 ---
 
 ## Correcció i Eficiència Algorísmica
 
-Un algorisme es **correcte** si podem demostrar que retorna la sortida desitjada per a qualsevol entrada legal (per al problema de l’arrel quadrada, això vol dir nombres positius o 0!). 
+Un algorisme és **correcte** si podem demostrar que retorna la sortida desitjada per a qualsevol entrada legal (per al problema de l’arrel quadrada, això vol dir nombres positius o 0). 
 
-És **eficient** si es fa amb el mínim nombre de recursos (cicles de càlcul = temps, memòria = espai) possible.
+> Demostrar la *correcció* és fàcil per alguns algorismes, difícil per la majoria i fins i tot impossible per alguns.
 
-Demostrar la *correcció* és fàcil per alguns algorismes, difícil per la majoria i fins i tot impossible per alguns.
-
-Fer servir algorismes eficients és una necessitat!
 --
+
+Un algorisme és  **eficient** si es fa amb el mínim nombre de recursos (cicles de càlcul / temps, memòria / espai) possible.
+
+> Fer servir algorismes eficients és sempre convenient i moltes vegades una necessitat!
+---
 
 
 ## Algorismes i ordinadors
 
-Un ordinador fa només dues coses (però molt ben fetes!): calcular (combinar dades per obtenir altres dades) i emmagatzemar (llegir/escriure a una memòria) els resultats del càlcul.
+Un ordinador fa només dues coses (però molt ben fetes!): 
++ calcular (combinar dades per obtenir altres dades); 
++ emmagatzemar (llegir/escriure a una memòria) els resultats del càlcul.
 
 Un ordinador convencional fa més de 1.000.000.000 de càlculs per segon i pot emmagatzemar més de 1.000.000.000.000 de bits.
 
+Els algorismes que veurem en aquest curs són procediments per a resoldre problemes que estan basats en el càlcul i emmagatzament de dades en un ordinador convencional. 
 
+No veurem algorismes:
+
++ basats en càlcul paral·lel ni distribuït entre diversos ordinadors;
++ basats en arquitectures no convencionals (p.e. quàntica).
 
 ---
 
 ## Exemple: el problema del viatjant de comerç (TSP).
 
-Aquest cartell correspon al concurs promogut per Procter and Gamble l’any 1962 per recorrer 33 ciutats dels EEUU:
+Aquest cartell correspon al concurs promogut per *Procter & Gamble* l’any 1962 per recorrer 33 ciutats dels EEUU:
 
 
-<center><img src="images/tsp.png" width="350"></center>
+<center><img src="images/tsp.png" width="300"></center>
 
 Anem a proposar algorismes per solucionar-ho!
 
@@ -249,21 +388,26 @@ Anem a proposar algorismes per solucionar-ho!
 
 Suposem que hem de passar per un conjunt de punts definits i volem minimitzar la distància recorreguda.
 
-A la dreta veiem els punts i a l'esquerra la millor solució, la que voldriem trobar amb un algorisme que acceptés com entrada qualsevol conjunt de punts.
+A la figura de la dreta tenim una possible instància del problema. A l'esquerra hi ha la millor solució d'aquesta instància, **la que voldriem trobar amb un algorisme que acceptés com entrada qualsevol conjunt de punts**.red[*].
 
 <center><img src="images/recorregut.jpg" width="650"></center>
 
+.footnote[.red[*] En la majoria dels casos que resoldrem en aquest curs o tindrem accés a la solució correcte del problema o podrem fer un programa molt simple que, donada una solució, comprovi que és correcte. En el cas del problema del viatjant de comerç, no tindrem ni una cosa ni l'altra!]
 
 ---
 
 ### Propostes
 
 
-**Solució I**: Escollim un punt aleatori, i anem seleccionant el veí més proper per continuar.
+**Solució I**: Escollim un punt aleatori per començar, i anem creant un recorregut seleccionant el *veí més proper* a cada pas.
 
 <center><img src="images/recorregut2.jpg" width="650"></center>
 
 És correcte?
+
+--
+
+> Sabem que **no ho és** perquè tenim accés a un *oracle* que ens diu quina és la solució correcte. Més endavant veurem quines opcions tenim si no tenim accés a l'oracle.
 
 ---
 
@@ -272,7 +416,11 @@ A la dreta veiem els punts i a l'esquerra la millor solució, la que voldriem tr
 
 **Solució II**: 
 
-Considerem **tots el possibles passos parcials entre dues ciutats** i anem afegint repetidament el més petit sempre i quan no generi un cicle o una doble sortida per un punt.
++ Considerem el conjunt format per **tots el possibles passos parcials entre dues ciutats** i calculem la seva longitud.
++ Mentre ens quedin passos parcials al conjunt:
+	+ Busquem al conjunt el pas parcial més petit `p`.
+	+ Afegim `p` al recorregut final sempre i quan no generi un cicle o una doble sortida per un punt.
+	+ Eliminem `p` del conjunt de passos parcials.
 
 És correcte?
 --
@@ -280,18 +428,20 @@ Considerem **tots el possibles passos parcials entre dues ciutats** i anem afegi
 
 **Solució III**: 
 
-Considerem **totes les possibles ordenacions** dels punts i seleccionem la més curta.
+Considerem **totes les possibles ordenacions** dels punts, calculem la distància de cada un dels recorreguts i seleccionem la més curta.
 
 És correcte?
---
+---
 
 ### Solucions correctes i eficients!
 
-La solució anterior és correcta però no és eficient.
+La solució anterior **és correcta** però **no és eficient**.
 
-El nombre de possibles ordenacions d'un conjunt de `n` elements ve donat pel concepte de factorial: `n!` 
+> No cal demostrar que és correcte: és trivial!
 
-El factorial d'un nombre `n` creix molt ràpidament quan `n` es fa gran!
+> El nombre de possibles ordenacions d'un conjunt de `n` elements ve donat pel concepte de factorial: `n! = n x (n-1) x (n-2) x ... x 1`. 
+
+> El factorial d'un nombre `n` creix molt ràpidament quan `n` es fa gran. Aquest pot ser un nombre molt gran fins i tot pels ordinadors.
 
 
 ---
@@ -304,30 +454,43 @@ Un llenguatge de programació es defineix per unes **primitives** (símbols), un
 --
 
 
-Fins ara hem usat el pseudocodi, però també podem usar un llenguatge d’alt nivell, Python, molt proper al pseudocodi, que ens permetrà executar els algorismes!
+Fins ara hem usat *paraules* o pseudocodi, però també podem usar un llenguatge d’alt nivell, **Python**, molt proper al pseudocodi.
 
-El preu que hem de pagar és que haurem d’especificar una mica més les coses. 
+El preu que hem de pagar és que haurem d’**especificar** una mica més les coses. 
 
 Els avantatges: 
-+ aprenem un llenguatge útil
-+ som més formals en les especificacions
-+ podem fer simulacions
++ aprenem un llenguatge útil;
++ som més formals en les especificacions;
++ podem executar-los i fer simulacions.
+
+---
+
+## Llenguatges
+
++ **Símbols**: Són la forma d'escriure variables, instruccions, etc. Hi ha una sèrie de regles que els defineixen. 
+
++ **Sintaxi**: Són les regles que defineixen les combinacions vàlides de símbols: `3.2 + 4.5` és vàlida, però  `3.2 a 2.3` no ho és.
+
++ **Semàntica estàtica**: `3.2/’abc’` és sintàcticament correcte perquè l’expressió (`<literal><operador><literal>`) ho és, però no ho és des del punt de vista de la semàntica estàtica.
+
+
+> Els errors més perillosos quan programem no són els sintàctics, atès que la majoria es poden detectar automàticament o són fàcils de veure!
+
+> Alguns llenguatges detecten casi tots els errors de semàntica estàtica, però Python només alguns!
+
++ **Semàntica**: Es refereix a "què" fa el programa (p.e. aquest programa calcula l'arrel quadrada?) i per tant depèn totalment del programador. 
+
 
 ---
 
 ## Llenguatges
 
 
-+ Sintaxi: `3.2 + 4.5` vs `3.2 a 2.3`
+Si no hi ha errors sintàctics ni de semàntica estàtica el programa s'executarà i farà alguna cosa, però no necessàriament la que volem.
 
-+ Semàntica estàtica: `3.2/’abc’` és sintàcticament correcte perquè l’expressió (`<literal><operador><literal>`) ho és, però no ho és des del punt de vista de la semàntica estàtica.
+Els *entorns de programació* (IDE) ens podem ajudar a detectar els errors sintàctics i alguns errors de semàntica estàtica, però no els semàntics.
 
-
-Els errors més perillosos quan programem no són els sintàctics, atès que la majoria es poden detectar automàticament o són fàcils de veure!
-
-Alguns llenguatges detecten casi tots els errors de semàntica estàtica, però Python només alguns!
-
-Si no hi ha errors semàntics el programa farà alguna cosa (no necessàriament la que volem!)
+Aquest programa no donarà mai cap error:
 
 ```python
 def suma(a,b):
@@ -337,22 +500,25 @@ def suma(a,b):
   return a - b
 ```
 
+Els únics que podem determinar que no és correcte sóm nosaltres.
+
 ---
 
 ## Llenguatges
 
-Si un programa té un error:
-1. Pot acabar inesperadament la seva execució i generar un error. La majoria de vegades no afecta a la resta de programes de l’ordinador, però hi ha errors que poden causar un error fatal a l'ordinador i aturar-lo [1].
-2. Pot ser que mai s’aturi i per tant no generi la resposta.
-3. Pot aturar-se i generar una resposta que pot ser incorrecta.
+Si un programa té un error que no ha estat detectat:
+1. Pot acabar inesperadament la seva execució i generar un error. La majoria de vegades no afecta a la resta de programes de l’ordinador, però hi ha errors que poden causar un error fatal a l'ordinador i aturar-lo.red[*]. En aquest cas, la majoria d'errors són errors de sintaxi o de semàntica estàtica no detectats per l'IDE. 
+2. Pot ser que mai s’aturi i per tant no generi la resposta. En aquest cas normalment estem davant d'un problema semàntic.
+3. Pot aturar-se i generar una resposta que pot ser incorrecta. En aquest cas normalment estem davant d'un problema semàntic.
 
 
-.footnote[[1]: Pot ser que els errors només es manifestin per alguna combinació específica dels valors d'entrada i normalment no podem provar totes les possibilitats!]
+.footnote[.red[*]Pot ser que els errors només es manifestin per alguna combinació específica dels valors d'entrada i per tant no es detectin sense fer moltes proves. Normalment no podem provar totes les possibilitats!]
 ---
 
-class: center, middle
+class: center, middle, inverse
+name:tema21
 
-# Tema 2:  **Python (1)**
+# Tema 2:  **Python**
 
 ---
 
@@ -372,6 +538,13 @@ hola()
 > Hola!
 ```
 
+El símbol `>` indica una resposta de l'ordinador a través de la pantalla.
+
+---
+## Un programa en Python
+
+
+
 Les funcions poden tenir **paràmetres** (que van entre els parèntesi):
 
 ```python
@@ -385,6 +558,8 @@ Que quan es criden han de prendre un valor:
 hola("Jordi")
 > Hola Jordi
 ```
+
+.code[Consola Python: [Exec](https://www.python.org/shell/)]
 
 ---
 
@@ -405,7 +580,7 @@ def main():
     Comportament caòtic
     '''
     print("Aquest programa implementa un comportament caòtic")
-    x = input("Entra un nombre entre 0 i 1")
+    x = input("Entra un nombre entre 0 i 1: ")
     x = float(x)
     for i in range(10):
         x = 3.9 * x * (1-x)
@@ -413,6 +588,8 @@ def main():
 
 main()
 ```
+
+.code[Consola Python: [Exec](https://www.python.org/shell/)]
 
 ---
 
@@ -476,7 +653,7 @@ a
 
 ## Un programa en Python
 
-Iteracions (*loops*) definides. Es fa un nombre definit de vegades, i són el tipus més simple d’iteració.
++ Iteracions (*loops*) definides. Es fa un nombre definit de vegades, i són el tipus més simple d’iteració.
 
   ```python
   for i in range(10):
@@ -547,18 +724,18 @@ Python també ens dona funcions matemàtiques dins d’una biblioteca (*library*
 
 ### Exemple: el factorial d'un nombre.
 
-  ```python
-  def factorial(num):
-      factorial = 1
-      if num < 0:
-          print("Entra un enter positiu! ")
-      elif num == 0:
-          print("El factorial de 0 és 1")
-      else:
-          for i in range(1,num+1):
-              factorial *= i
-      print("El factorial de ", num, "és", factorial)
-  ```
+```python
+def factorial(num):
+	factorial = 1
+	if num < 0:
+	  print("Entra un enter positiu! ")
+	elif num == 0:
+	  print("El factorial de 0 és 1")
+	else:
+	  for i in range(1,num+1):
+	      factorial *= i
+	print("El factorial de ", num, "és", factorial)
+```
 
 ---
 
@@ -569,9 +746,10 @@ Python també ens dona funcions matemàtiques dins d’una biblioteca (*library*
   
 ---
 
-class: center, middle
+class: center, middle, inverse
+name:tema22
 
-# Tema 3:  **Python (2)**
+# **Python (2)**
 
 ---
 
@@ -613,7 +791,7 @@ Per accedir a una cadena de caràcters hem de veure com Python els idexa:
 
 H | o | l | a |   | o | l | a 
 - | - | - | - 
-0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+.code[0] | .code[1] | .code[2] | .code[3] | .code[4] | .code[5] | .code[6] | .code[7]
 
 Llavors podem accedir als valors de cada element de la seqüència o fins i tot a subseqüències: 
 
@@ -629,9 +807,9 @@ caràcters:
 
 ```python
 print(s[0:3], s[5:9], s[:3], s[3:], s[:])
-> 'Hel', ' Bob', 'Hel', 'lo Bob', 'Hello Bob'
+> Hel,  Bob, Hel, lo Bob, Hello Bob
 ```
-
+.footnote[Nota: Davant de 'Bob' hi ha imprès un espai en blanc.]
 ---
 
 ## Cadenes de caràcters (*strings*)
@@ -640,7 +818,7 @@ També podem concatenar (`+`) i repetir (`*`) subcadenes:
 
 ```python
 print("Bread" + " & " * 3 + "Breakfast")
-> "Bread &  &  & Breakfast"
+> Bread &  &  & Breakfast
 
 len("Bread" + " & " * 3 + "Breakfast")
 > 23
@@ -676,7 +854,7 @@ ord('a')
 > 97
 
 chr(97)
->'a'
+> a
 ```
 ---
 
@@ -685,7 +863,7 @@ class: center
 ## Taula ASCII
 
 
-<center><img src="images/ascii.png" width="750"></center>
+<center><img src="images/ascii.png" width="650"></center>
 
 ---
 
@@ -755,7 +933,7 @@ b = a*2
 c = sum(a,b)
 c
 
->9
+> 9
 ```
 
 ---
@@ -804,7 +982,7 @@ a = 3
 b = 3
 print(sumdif(a,b))
 
->6 0
+> 6 0
 ```
 
 ---
@@ -849,7 +1027,7 @@ print(a or (not b) and c)
 
 `or`: és veritat si al menys un dels dos operands ho és.
 
-Quin és el resultat de cada expressió?
+> Quin és el resultat de cada expressió?
 
 
 ---
@@ -958,9 +1136,10 @@ def mitja():
 ---
 
 
-class: center, middle
+class: center, middle, inverse
+name: tema23
 
-# Tema 3: **Python (3)**
+# **Python (3)**
 
 ---
 
@@ -980,9 +1159,9 @@ Python ens dona suport per a la manipulació d’aquest tipus de dades.
 
 Suposem que volem calcular la **mitja** i la **desviació estàndard** d'un conjunt de `n` nombres.
 
-$$ m = \frac{1}{n} \sum_{i=1}^n x_i $$
+$$ \mu = \frac{1}{n} \sum_{i=1}^n x_i $$
 
-$$ ds = \sqrt{\frac{\sum_{i=1}^n (x_i - m)^2}{n-1}}
+$$ \sigma = \sqrt{\frac{\sum_{i=1}^n (x_i - \mu)^2}{n-1}} $$
 
 Quin problema tenim?
 
@@ -990,7 +1169,7 @@ Quin problema tenim?
 
 ## Col·lecions de dades
 
-El que necessitem és emmagatzemar una col·lecció de coses (a priori no sabem quantes) en un “objecte”.
+El que necessitem és enmagatzemar una col·lecció de coses (a priori no sabem quantes) en un “objecte”.
 
 De fet, aquest tipus d’”objecte” ja l’hem fet servir, i es diu llista:
 
@@ -1087,9 +1266,7 @@ def stdDev(nums, mean):
     return math.sqrt(sumDev/len(nums)-1)
 
 data = getNumbers()
-m = mean(data)
-print("Mitja: ", m)
-print("Desviació: ", stdDev(data, m))
+print("Mitja: ", mean(data), " | Desviació: ", stdDev(data, mean(data)))
 ```
 
 ---
@@ -1251,8 +1428,6 @@ Python ens proporciona un altre tipus de col·lecció molt útil: els **dicciona
 
 La raó de la seva existència és que no sempre serà possible accedir a una dada pel seu índex, sinó per exemple, per algun valor que el defineix (p.e. pel DNI d’un conjunt d’empleats). És a dir, volem accedir a un valor per una **clau**. 
 
-Una col·lecció que ens permet això es diu un “mapping” (altres llenguatges ho anomenen taules hash o vectors associatius).
-
 Python les crea així:
 
 ```python
@@ -1339,7 +1514,7 @@ Les operacions són les mateixes que per les llistes (tenint en compte que són 
 
 ---
 
-## Exemple: Estadística de les paraules que hi ha a un document?
+## Exemple: Estadística de les paraules d'un document?
 
 ```python
 def numW():
@@ -1371,9 +1546,10 @@ def numW():
 ---
 
 
-class: center, middle
+class: center, middle, inverse
+name:tema3
 
-# Tema 4:  **Algorísmes Numèrics**
+# Tema 3:  **Algorísmes Numèrics**
 
 ---
 
@@ -1381,15 +1557,14 @@ class: center, middle
 
 Cap a l’any 600, a l'Índia, es va inventar el sistema decimal de numeració.
 
+> Un sistema de numeració és un conjunt de símbols i regles de generació que permeten construir tots els nombres vàlids en el sistema. 
 
 El seu principal avantatge sobre els que es coneixien a Europa, com el romà, és la seva **base posicional** i la **simplicitat de les operacions** (algorismes) aritmètiques.
 
-Un sistema de numeració és un conjunt de símbols i regles de generació que permeten construir tots els nombres vàlids en el sistema. 
-
 Un sistema de numeració ve definit doncs per:
 
- + el conjunt S dels símbols permesos en el sistema.  En el cas del sistema decimal són {0,1...9}; en el binari són {0,1}; en l'octal són {0,1,...7}; en l'hexadecimal són {0,1,...9,A,B,C,D,E,F} 
- + el conjunt R de les regles de generació que ens indiquen quins nombres són vàlids i quins no són vàlids en el sistema.
+ + el conjunt `S` dels símbols permesos en el sistema.  En el cas del sistema decimal són `{0,1...9}`; en el binari són `{0,1}`; en l'octal són `{0,1,...7}`; en l'hexadecimal són `{0,1,...9,A,B,C,D,E,F}`. 
+ + el conjunt `R` de les regles de generació que ens indiquen quins nombres són vàlids i quins no són vàlids en el sistema.
 
 Els sistemes de numeració romans i egipcis no són estrictament posicionals. Per això, és molt complex dissenyar algoritmes d'ús general (per exemple, per a sumar, restar, multiplicar o dividir). 
 
@@ -1403,20 +1578,19 @@ Quantes  “unitats” hi ha a 642? Depèn de la base en que està escrit! La **
 
 La fòrmula que ens permet entendre una base és:
 
-$$ d_n \times R^{n-1} +  d_{n-1} \times R^{n-2} + \dots +
-   d_2 \times  R + d_1 $$
+$$ d_n \times R^{n-1} +  \dots + d_2 \times  R + d_1 $$
 
-on `R` és la base del nombre i d_i és el dígit a la posició ièssima del nombre. 
+on `R` és la base del nombre i `d_i` és el dígit a la posició i-èssima del nombre. 
 
 $$ 642 = 6_3 \times 10^2 + 4_2 \times 10 + 2_1 $$
 
-DECIMAL és base 10 i té 10 dígits: 0,1,2,3,4,5,6,7,8,9
 
-BINARI és base 2 i té 2 dígits: 0,1
+DECIMAL és base 10 i té 10 dígits: `0,1,2,3,4,5,6,7,8,9`
 
-HEXADECIMAL és base 16 i té 16 dígits: 0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F
+BINARI és base 2 i té 2 dígits: `0,1`
 
-Per què un nombre existeixi en un sistema de numeració, el sistema ha d’incloure els seus dígits. Per exemple, el nombre 284 només existeix en base 9 i superiors.
+HEXADECIMAL és base 16 i té 16 dígits: `0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F`
+
 
 ---
 
@@ -1427,7 +1601,6 @@ El sistema decimal de numeració va trigar molts anys en arribar a Europa.
 El medi de transmissió més important va ser un manual, escrit en àrab durant el segle IX a Bagdad, obra de Al Khwarizmi, en el que especificava els procediments per sumar, multiplicar i dividir nombres escrits en base deu.
 
 Els procediments eren precisos, no ambigus, mecànics, eficients i correctes.
-
 És a dir, eren algorismes (per a ser implementats sobre paper i no amb un ordinador!)
 
 Una de les persones que més van valorar aquesta aportació va ser Leonardo Fibonacci.
@@ -1443,27 +1616,24 @@ Fibonacci és avui conegut sobre tot per la seva seqüència:
 
 `0,1,1,2,3,5,8,13,21,34...`
 
-La seqüència es pot calcular amb la següent regla:
+La seqüència es pot definir amb la següent regla:
 
 <center><img src="images/seqfib.png" width="350"></center>
 
-
-
-
-Això encara no és un algorisme. A les següents pàgines veurem diferents algorismes per implementar aquesta definició.
+Això encara **no és un algorisme**. A les següents pàgines veurem diferents algorismes per implementar computacionalment aquesta definició.
 
 ---
 ## Una mica d'història
 
-La seqüència creix molt ràpid i es pot demostrar que 
+La seqüència creix molt ràpid i es pot demostrar que el terme `n`-èssim de la seqüència té aproximadament aquest valor: 
 
 $$  F_n \approx 2^{0.694n}  $$
 
 
-Però per calcular un terme concret necessitem un algorisme!
+Però per calcular **exactament** un terme concret necessitem un algorisme!
 
 
-Una primera possibilitat és aquesta (algorisme recursiu):
+Una primera possibilitat és aquesta (*algorisme recursiu*).red[*]:
 
 ```python
 def fib1(n):
@@ -1474,9 +1644,11 @@ def fib1(n):
     return fib1(n-1) + fib1(n-2)
 
 fib1(10)
->55
+> 55
 
 ```
+
+.footnote[.red[*]Un algorisme recursiu és un algorisme que es crida a si mateix.]
 
 ---
 
@@ -1488,10 +1660,10 @@ fib1(10)
 
 ## Algorisme recursiu de Fibonacci
 
-Com per a qualsevol algorisme, ens podem fer tres preguntes (les tres preguntes bàsiques de l'algorísmica!):
+Com per a qualsevol algorisme, ens podem fer tres preguntes (**les tres preguntes bàsiques de l'algorísmica**):
 
 + És correcte? 
-+ Quant trigarà, en funció de n?
++ Quant trigarà, en funció de `n`?
 + Hi ha alguna manera millor de fer-ho?
 --
 
@@ -1499,8 +1671,8 @@ Com per a qualsevol algorisme, ens podem fer tres preguntes (les tres preguntes 
 I les respostes són:
 
 + En aquest cas és evident que si, atès que segueix exactament la definició!
-+ Es pot demostrar que el nombre de passos computacionals que fa és de l'ordre de $F_n$. Per calcular el terme 200 hauria de fer de l'ordre de $2^138$ passos. A l’ordinador més ràpid del món, que pot executar al voltant de 40.000.000.000.000 passos per segon,  necessitaríem més temps que el necessari pel col·lapse del Sol! A la velocitat que els ordinadors augmenten la seva capacitat de càlcul, cada any que passa podríem calcular un nombre de Fibonacci més que l’any anterior!
-+ Si!
++ Es pot demostrar que el nombre de passos computacionals que fa és de l'ordre de `F_n`. Per calcular el terme 200 hauria de fer de l'ordre de `2^138` passos. A l’ordinador més ràpid del món, que pot executar al voltant de 40.000.000.000.000 passos per segon,  necessitaríem més temps que el necessari pel col·lapse del Sol! A la velocitat que els ordinadors augmenten la seva capacitat de càlcul, cada any que passa podríem calcular un nombre de Fibonacci més que l’any anterior!
++ Sí.
 
 Per què és tant lent?
 
@@ -1508,7 +1680,7 @@ Per què és tant lent?
 
 ## Algorisme recursiu de Fibonacci
 
-<center><img src="images/fib2.png" width="450"></center>
+<center><img src="images/fib2.png" width="550"></center>
 
 Hi ha molts càlculs que es repeteixen! 
 Perquè no guardar-los?
@@ -1534,7 +1706,9 @@ def fib2(n):
 + Només executa `(n-1)` vegades la iteració.
 
 Direm que `fib2(n)` és lineal (o polinòmic) respecte `n`. 
-Ara podem calcular fins i tot F(100.000.000)!
+Ara podem calcular fins i tot `fib(100.000.000)`.
+
+--
 
 Però encara ho podem fer millor!
 
@@ -1588,14 +1762,14 @@ Aquesta notació és una convenció per no ser ni massa ni massa poc precisos a 
 
 La regla principal és **comptar el nombre de passos computacionals aproximats en funció de la mida de la entrada**.
 
-Fem la següent aproximació:  enlloc de dir que pren `5n3+4n+3` direm que pren `O(n3)`
+Fem la següent aproximació:  enlloc de dir que pren `5n3+4n+3` direm que pren `O(n^3)`
 
 En general utilitzarem aquestes convencions:
 
-+ Ometrem les constants multiplicatives: `14n^2 és n^2`
-+ `n^a` domina sobre `n^b` si `a>b`: `n^2` domina sobre `n`
-+ Qualsevol exponencial domina sobre un polinomi: `3^n` domina sobre `n^5` (i també sobre `2^n`)
-+ Qualsevol polinomi domina sobre un logaritme: `n` domina sobre `(log n)^3` i `n^2` domina sobre `(n log n)` 
++ Ometrem les constants multiplicatives: `14n^2 és n^2`.
++ `n^a` domina sobre `n^b` si `a>b`: `n^2` domina sobre `n`.
++ Qualsevol exponencial domina sobre un polinomi: `3^n` domina sobre `n^5` (i també sobre `2^n`).
++ Qualsevol polinomi domina sobre un logaritme: `n` domina sobre `log(n)^3` i `n^2` domina sobre `nlog(n)`.
 
 ---
 
@@ -1613,8 +1787,8 @@ Observacions:
 + Qualsevol algorisme amb `n!` és inútil a partir de `n`=20
 + Els algorismes amb `2^n` són inútils a partir de `n`=40
 + Els algorismes quadràtics, `n^2` comencen a ser costosos a partir de `n`=10.000 i a ser inútils a partir de `n`=1.000.000
-+ Els algorismes lineals i els `nlogn` poden arribar fins a `n`=1.000.000.000
-+ Els algorismes sublineals, `logn`, són útils per qualsevol `n`. 
++ Els algorismes lineals i els `nlog(n)` poden arribar fins a `n`=1.000.000.000
++ Els algorismes sublineals, `log(n)`, són útils per qualsevol `n`. 
 
 ---
 ## La notació Gran O
@@ -1623,9 +1797,9 @@ Observacions:
 Les famílies més importants d’algorismes són les que tenen un ordre:
 
 + Constant, `O(n) = 1`, com `f(n) = min(n,1)`, que no depenen de `n`.
-+ Logarítmic, `O(n) = log n`. 
++ Logarítmic, `O(n) = log(n)`. 
 + Lineals, `O(n) = n`. 
-+ Super-lineals, `O(n) = n log n`.
++ Super-lineals, `O(n) = nlog(n)`.
 + Quadràtics, `O(n) = n^2`.
 + Cúbics, `O(n) = n^3`.
 + Exponencials, `O(n) = c^n` per `c`>1.
@@ -1648,13 +1822,11 @@ Quan fem un canvi de base la mida del nombre només es veu afectada per un facto
 
 Hi ha una propietat, que ens serà molt útil, dels nombres decimals:
 
-+ La suma de tres nombres d’un sol dígit qualsevol  té com a màxim dos dígits. 
-
-Aquesta regla és compleix per totes les bases `b >= 2`!
++ La suma de tres nombres d’un sol dígit qualsevol  té com a màxim dos dígits. Aquesta regla és compleix per totes les bases `b >= 2`.
 
 Aquesta regla ens permet definir una regla general per sumar dos nombres en qualsevol base: la que hem après a l’escola!
 
-<center><img src="images/suma.png" width="450"></center>
+<center><img src="images/suma.png" width="350"></center>
 --
 
 
@@ -1674,9 +1846,7 @@ Es pot fer millor?
 --
 
 
-No! 
-
-Per sumar `n` bits com a mínim s’han de poder llegir i escriure, i això ja són `2n` passos!
+No! Per sumar `n` bits com a mínim s’han de poder llegir i escriure, i això ja són `2n` passos!
 
 ---
 
@@ -1684,10 +1854,10 @@ Per sumar `n` bits com a mínim s’han de poder llegir i escriure, i això ja s
 
 La multiplicació o producte que ens han ensenyat a l’escola és:
 
-<center><img src="images/mult.png" width="650"></center>
+<center><img src="images/mult.png" width="550"></center>
 
 
-Tenim (`n` multiplicacions de complexitat `n` (un bit per `n` bits) + una suma de complexitat `2n`) = `n^2 + 2n` = la complexitat total és `O(n^2)`.
+Tenim `n` multiplicacions de complexitat `n` (un bit per `n` bits) + aproximadament `2n` sumes de complexitat `2n`, que és un total de `(n^2 + 4n^2) = 5n^2` i per tant la **complexitat total de la multiplicació és `O(n^2)`**.
 
 ---
 
@@ -1721,13 +1891,19 @@ def mult(x,y):
         return x+2*z
 ```
 
-L’algorisme s'acaba després de `n` crides recursives (anem dividint per 2) i a cada crida fem `O(n)` operacions. Per tant és `O(n^2)`. 
+L’algorisme s'acaba després de `n` crides recursives.red[*] i a cada crida fem `O(n)` operacions. Per tant és `O(n^2)`. 
+
+.footnote[.red[*]Si cada vegada que cridem la funció recursivament anem dividint per `2` el paràmetre `y` al cap de `n` crides el paràmetre ja valdrà `0`. Per exemple, si `y=16`, que necessita 5 bits (`n`= 5) per representar-se, llavors arribem a `0` en `5` crides:  `16, 8, 4, 2, 0`].
 
 ---
 
 ## Aritmètica Bàsica: Divisió
 
-La divisió `x/y` consisteix en trobar un quocient `q` i una resta `r` de manera que `x = y x q + r`  i   `r < y`.
+La divisió `x/y` consisteix en trobar un quocient `q` i una resta `r` de manera que:
+
+$$ x = y \times q + r $$
+
+i   `r < y`.
 
 La seva versió recursiva és: 
 
@@ -1748,11 +1924,12 @@ def div(x,y):
 La seva complexitat és `O(n^2)`.
 
 ---
-class: center, middle
+class: center, middle, inverse
+name:modular
 
 ## Aritmètica Modular
 
-o com en Bob envia un missatge secret `M` a  l‘Alice sense que l’Eve ho pugui llegir.
+o com en `Bob` envia un missatge secret `M` a  l‘`Alice` sense que l’`Eve` ho pugui llegir.
 
 ---
 
@@ -1775,10 +1952,10 @@ o com en Bob envia un missatge secret `M` a  l‘Alice sense que l’Eve ho pu
 
 Aquest esquema té sentit si:
 
-+ Factoritzar `n = pq` és impossible. 
++ Factoritzar `n = p*q` és impossible. 
 + Trobar `(p,q)` “grans” es basa en un mètode eficient.
-+ Calcular `xy % n` es es basa en un mètode eficient.
-+ Calcular `ed%(p-1)(q-1)=1` es basa en un mètode eficient.
++ Calcular `x*y % n` es es basa en un mètode eficient.
++ Calcular `e*d % (p-1)*(q-1) = 1` es basa en un mètode eficient.
 
 ---
 
@@ -1787,11 +1964,11 @@ Aquest esquema té sentit si:
 En certs aspectes de la informàtica (per exemple, la criptografia) és important una variació de l'aritmètica sobre els nombres enters: l’**aritmètica modular**.
 
 
-Definim `x mòdul N`, `x%N`,  com la resta de dividir `x` per `N`, és a dir, si `x=qN+r`  amb `0 < =r < N`, llavors el `x mòdul N` és `r` (*).
+Definim `x mòdul N`, `x%N`,  com la resta de dividir `x` per `N`, és a dir, si `x = qN+r`  amb `0 < =r < N`, llavors el `x mòdul N` és `r`.red[*].
 
-Això permet definir una equivalència (congruència) entre nombres (inclosos els negatius!): Direm que `x` és congruent amb `y`, `mod N`, si i només si `N` divideix `(x - y)`.
+Això permet definir una equivalència (congruència) entre nombres (inclosos els negatius!): Direm que `x` és congruent amb `y`, `mod N`, si i només si `N` divideix `(x-y)`.
 
-.footnote[(*) La complexitat és `O(n^2)`]
+.footnote[.red[*]La complexitat és `O(n^2)`]
 
 ---
 
@@ -1801,28 +1978,43 @@ La suma i la multiplicació no són gaire complexes d’analitzar.
 
 **Suma**: Si dos nombres estan el rang `[0, N-1]` la seva suma ho està en el `[0, 2(N-1)]` (que només és un bit més).
 
-Si el resultat passa de `N-1` el que hem de fer és simplement restar del resultat `N`.  És evident que la complexitat és lineal `O(n)`, on `n = log N`, la mida de `N`. (*)
+> Si el resultat passa de `N-1` el que hem de fer és simplement restar del resultat `N`.  Sinó, no hem de fer res.
 
-.footnote[(*) Recordem que necessitem `log_b N` dígits per escriure `N` en base `b`.]
+Per tant, **la complexitat de la suma modular és lineal `O(n)`**, on `n = log(N)`, la mida de `N`.red[*]. 
+
+> .footnote[.red[*] Recordem que necessitem `log_b(N)` dígits per escriure `N` en base `b`.]
 --
 
 
 **Multiplicació**: De forma semblant, fem la multiplicació normal i transformem al rang `[0,N-1]`, si és que ens hem passat.
 
-El producte pot ser fins `(N-1)^2` però això es pot representar amb `2n` bits. Per transformar el resultat hem de dividir per `N` (amb complexitat `O(n^2)`). Per tant, la complexitat és `O(n2)`
+>El producte pot ser fins `(N-1)^2` però això es pot representar amb `2n` bits. Per transformar el resultat hem de dividir per `N` (amb complexitat `O(n^2)`). 
+
+Per tant, **la complexitat de la multiplicació modular és `O(n^2)`**.
 
 ---
 
 ## Aritmètica Modular
 
-**Divisió**: Aquesta operació no és tant simple (no està definida per tots els nombres) i té una complexitat `O(n^3)`. 
+**Divisió**: Aquesta operació no és tant simple (no està definida per tots els nombres) i té una **complexitat `O(n^3)`**. 
 
 **Exponenciació**: Ara imaginem que volem calcular expressions com aquesta amb nombres molt grans (centenars de bits): 
 
-$$ x^y mod N $$
+$$ x^y \mbox{ mod } N $$
 
-+ El resultat intermig d'aquesta operació pot necessitar molts bits per ser representat. Si els operadors tenen 20 bits, necessitem 10 milions de bits!
-+ El resultat final necessita `n = log N` bits.
++ El resultat intermig d'aquesta operació pot necessitar molts bits per ser representat, tot i que el resultat final necessita només `n = log(N)` bits. Si els operadors tenen 20 bits, necessitem 10 milions de bits!
+
+> `>>> (155 ** 245)
+4278248942979368837154163038105593721699158763295276283468486026116
+9025354605588426871017056479154792093687113327363980603003491151040
+0847598847975741337732142515770352938597064824736760699623574403668
+3421242310488568163645289958899783211413312609389907455116209927510
+1005664223266097322826018487453164194926459159037800946544634252898
+1341951429642759537873516202755230036214044808536307148121446731580
+4333849233319516087345366409004055624880988958445804402097403640767
+6150744628499884906823013796389743035319952468853443861007690429687
+5`
+
 
 ---
 
@@ -1851,7 +2043,7 @@ Observem que es pot calcular `x` elevat a `y`, si `y` és una potència de 2, el
 
 
 Cada potència pren un temps proporcional a `O(log^2 N)` i hi ha             
-`log y` multiplicacions: l’algorisme és polinòmic `O(n^2)`  respecte la mida de `N` i lineal `O(m)` respecte la mida de `y`!
+`log y` multiplicacions: l’algorisme és polinòmic `O(n^2)`  respecte la mida de `N` i lineal `O(m)` respecte la mida de `y`.
 
 Per un valor qualsevol de `y` (que no sigui potència de 2) només hem multiplicar les potències de 2 que corresponen a la representació binaria de `y`:
 
@@ -1875,15 +2067,13 @@ def modexp(x,y,N):
         return (x*z**2)%N
 ```
 
-La complexitat és `O(n^3)`: `n` crides recursives en les que fa una multiplicació mòdul `N`.
+La complexitat és `O(n^3)`: `n` crides recursives i per cada una d'elles una multiplicació mòdul `N`.
 
 ---
 
 ## Algorisme d'Euclides
 
-La forma més obvia de trobar el **màxim comú divisor** de dos nombres és trobar els factors dels dos nombres i multiplicar llavors els seus factors comuns.
-
-> Exemple pel mcd de `1035` i `759`:
+La forma més obvia de trobar el **màxim comú divisor** de dos nombres és trobar els factors dels dos nombres i multiplicar llavors els seus factors comuns. Per exemple, el mcd de `1035` i `759`:
 
 > `1035 = 32*5*23`  i  `759 = 3*11*23`, per tant `mcd = 3*23 = 69`
  
@@ -1950,7 +2140,7 @@ Per fer-ho, ens basarem en un teorema de 1640...
 
 > Si `p` és primer, llavors per a qualsevol enter `a`, `1 <= a < p`, es compleix que `a^(p-1)` és congruent amb `1`, mòdul `p`.
 
-Això ens suggereix un test directe per comprovar si un nombre és primer... Però cal anar en compte….
+Això ens suggereix un test directe per comprovar si un nombre és primer. Però cal anar en compte….
 
 ---
 
@@ -2002,7 +2192,7 @@ I per tant el comportament de l’algorisme proposat és:
 
 ## Nombres primers: Algorisme de test de primalitat
 
-Si repetim l’algorisme `k` vegades per nombres `a` escollits aleatòriament, llavors **la probabilitat de que retorni sempre `True` quan `N` no és primer és menor que `1/2^k`. 
+Si repetim l’algorisme `k` vegades per nombres `a` escollits aleatòriament, llavors **la probabilitat de que retorni sempre `True` quan `N` no és primer és menor que `1/(2^k)`**. 
 
 Si `k=100`, la probabilitat és menor que `2^(-100)`.
 
@@ -2037,10 +2227,10 @@ Pel cas `n=1000`, generarem al voltant de `1000` nombres aleatoris per trobar un
 
 Abans hem dit que l'esquema de comunicació secreta té sentit si:
 
-+ Factoritzar `n = pq` és pràcticament impossible. 
++ Factoritzar `n = p*q` és pràcticament impossible. 
 + Trobar `(p,q)` “grans” es basa en un mètode eficient.
-+ Calcular `xy % n` es es basa en un mètode eficient.
-+ Calcular `ed%(p-1)(q-1)=1` es basa en un mètode eficient.
++ Calcular `x*y % n` es es basa en un mètode eficient.
++ Calcular `e*d%((p-1)(q-1))=1` es basa en un mètode eficient.
 
 Només ens falta solucionar el darrer punt!
 --
@@ -2051,13 +2241,14 @@ La solució del darrer punt és:
 + Definim  `e=3`.
 + Llavors `d` és el que s’anomena invers de `e` mòdul `(p-1)(q-1)` i aquest nombre es pot calcular amb una petita variació de l’algorisme d’Euclides!
 
-### Per tant, els algorísmes de més alta complexitat en un procés criptogràfic tenen `O(N^3)`. 
+.bold[Per tant, els algorísmes de més alta complexitat en un procés criptogràfic tenen `O(n^3)`]. 
 
 ---
 
-class: center, middle
+class: center, middle, inverse
+name:tema4
 
-# Tema 5: **Algorismes per text**
+# Tema 4: **Algorismes per text**
 
 ---
 
@@ -2089,13 +2280,13 @@ Per exemple:
 
 `T: 10010101101001100101111010`
 
-
+--
 
 `P: happy`
 
 `T: It is never too late to have a happy childhood.`
 
-
+--
 
 `P: GATTCAC`
 
@@ -2122,7 +2313,7 @@ En una primera instància, podríem comparar tot el string amb cada possible pos
 
 + Alineem el patró al principi del text.
 + Ens movem d’esquerra a dreta, comparant cada caràcter del patró amb el caràcter corresponent del text fins que tots els caràcters fan correspondència o trobem una diferència.
-+ Mentre hi hagi diferències i no haguem recorregut tot el text, re-alineem una posició més a la dreta i repetim el pas 2. 
++ Mentre hi hagi diferències i no haguem recorregut tot el text, realiniem una posició més a la dreta i repetim el pas 2. 
 --
 
 
@@ -2146,7 +2337,7 @@ La complexitat de l’algorisme es pot analitzar en tres situacions:
 
 + En moltes ocasions, fem una comparació i movem. Aquest és el millor cas, i la complexitat si per tots els moviments féssim això seria `O(n)`. Aquest seria el cas, per exemple, de tenir una patró que comença per una lletra que no apareix al text.
 
-+ En d’altres, fem totes les comparacions. Aquest és el pitjor cas, i la complexitat si per tots els moviments féssim això seria `O(nm)`.
++ En d’altres, fem totes les comparacions. Aquest és el pitjor cas, i la complexitat si per tots els moviments féssim això seria `O(n*m)`.
 
 + Quan parlem de llenguatge natural, la complexitat mitja s’acosta més a `O(n+m)=O(n)`(calculada de forma empírica).
 
@@ -2194,9 +2385,13 @@ $$
 \sum_{i = 1}^n i = \frac{n(n+1)}{2}
 $$ 
 
-que és una complexitat `O(n^2)`
+que és una complexitat `O(n^2)`.
 
-Un algorisme basat en la força bruta per fer cerca aproximada de strings tindria una complexitat `O(n^3m)`, atès que (com veurem) el càlcul de la distància d’edició té `O(nm)`.
+---
+
+## Cerca aproximada de strings.
+
+Un algorisme basat en la força bruta per fer cerca aproximada de strings tindria una complexitat `O(n^3 * m)`, atès que (com veurem) el càlcul de la distància d’edició té `O(n*m)`.
 
 Hi ha algorismes més òptims per fer-ho?
 
@@ -2204,7 +2399,7 @@ Hi ha algorismes més òptims per fer-ho?
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 Abans de veure com cercar un patró (curt) en un text (llarg), anem a veure com calcular la “distància” `d` entre dos strings (curts).
 
@@ -2214,14 +2409,14 @@ Això es fa amb l’algorisme de Levenshtein:
 
 > В.И. Левенштейн (1965). "Двоичные коды с исправлением выпадений, вставок и замещений символов". Доклады Академий Наук СCCP163 (4): 845–8. 
 
-<center><img src="images/lev.png" width="150"></center>
+<center><img src="images/lev.png" width="100"></center>
 
 
-> Traduït a l'anglès: Levenshtein VI (1966). “Binary codes capable of correcting deletions, insertions, and reversals".Soviet Physics Doklady 10: 707–10.
+.footnote[Traduït a l'anglès: Levenshtein VI (1966). “Binary codes capable of correcting deletions, insertions, and reversals".Soviet Physics Doklady 10: 707–10.]
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 
 Aquest algorisme (també anomenat *distància d’edició*) calcula el nombre mínim d’operacions d’edició que són necessàries per modificar un string `P` i obtenir-ne un altre `T`. 
@@ -2236,7 +2431,7 @@ També es podria considerar la transposició: canviar `cost` per `cots`.
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 Per fer-ho, va omplint una matriu d de manera que la posició `[m,n]` representa la distància d’edició entre el prefix de `m` caràcters d’un patró i el prefix de `n` caràcters d’un text.
 
@@ -2248,14 +2443,14 @@ Per fer-ho, va omplint una matriu d de manera que la posició `[m,n]` representa
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 <center><img src="images/lev3.png" width="650"></center>
 
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 
 Suposem que ja tenim una alineació òptima entre els prefixos `p[0,i-1]` i `t[0,j-1]`.  Què podem fer amb `p[i]` i `t[j]` i com calculem `d[i,j]`? 
@@ -2264,25 +2459,25 @@ Suposem que ja tenim una alineació òptima entre els prefixos `p[0,i-1]` i `t[0
 
 Només podem fer tres coses!
 
-1. Fem que `p[i]` i `t[j]` facin correspondència. Si `p[i]=t[j]` llavors `d[i,j]=d[i-1,j-1]`. Sinó, `d[i,j]=d[i-1,j-1]+1`.
++ Fem que `p[i]` i `t[j]` facin correspondència. Si `p[i]=t[j]` llavors `d[i,j]=d[i-1,j-1]`. Sinó, `d[i,j]=d[i-1,j-1]+1`.
 
 <center><img src="images/lev5.png" width="350"></center>
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
-2. Decidim que hi ha un forat al patró, i per tant `d[i,j]=d[i-1,j]+1`
++ Decidim que hi ha un forat al patró, i per tant `d[i,j]=d[i-1,j]+1`
 
 <center><img src="images/lev6.png" width="350"></center>
 
 
-3. Decidim que hi ha un forat al text, i per tant `d[i,j]=d[i,j-1]+1`
++ Decidim que hi ha un forat al text, i per tant `d[i,j]=d[i,j-1]+1`
 
 <center><img src="images/lev7.png" width="350"></center>
 
 ---
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 
 Observació:
@@ -2294,7 +2489,7 @@ Això és podria resoldre amb una crida recursiva, atès que nosaltres volem `d[
 Podem seguir la mateixa estratègia que vam fer servir per la seqüència de Fibonacci.
 
 ---
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 
 Observació:
@@ -2304,14 +2499,14 @@ Observació:
 <center><img src="images/lev8.png" width="650"></center>
 
 ---
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 
 <center><img src="images/lev9.png" width="550"></center>
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 La matriu es pot omplir seqüencialment:
 
@@ -2325,11 +2520,11 @@ Per cada caràcter de s (i des de 1 fins n):
                       d[i-1,j-1] + cost)
 ```
 
-Això té una complexitat `O(mn)` equivalent a calcular tots els elements de la matriu.
+Això té una complexitat `O(m*n)` equivalent a calcular tots els elements de la matriu.
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 El nombre que queda a la **cantonada de baix a la dreta** de la matriu és la distància de Levenshtein, o d’edició, entre les dues paraules.
 
@@ -2339,7 +2534,7 @@ Si volem saber les operacions d’edició efectuades, hem de buscar el **camí m
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 Pot haver-hi diversos possibles passos de cost mínim:
 
@@ -2347,13 +2542,13 @@ Pot haver-hi diversos possibles passos de cost mínim:
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 <center><img src="images/lev12.png" width="400"></center>
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 ```python
 def levenshtein_distance(first, second):
@@ -2382,7 +2577,7 @@ def levenshtein_distance(first, second):
 ```
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 ```python
 def levenshtein_distance(first, second):
@@ -2406,7 +2601,7 @@ for x in range(first_length):
 
 ---
 
-## Càlcul de la distancia d'edició: Algorisme de Levenshtein
+## Càlcul de la distancia d'edició: Levenshtein
 
 ```python
       ...
@@ -2460,9 +2655,10 @@ Trobem tres respostes a distància 1: `cas`, `cass`, `cassa`
 
 ---
 
-class: center, middle
+class: center, middle, inverse
+name:tema5
 
-# Tema 6: **Algorismes i força bruta **
+# Tema 5: **Algorismes i força bruta **
 
 ---
 
@@ -2470,7 +2666,7 @@ class: center, middle
 
 Diem que un algorisme està basat en la força bruta si implementa la solució a un problema basant-se directament en la definició del problema i en la definició dels conceptes involucrats.
 
-+ Calcular `a^n mod m` (`a > 0`, `n >= 0`).
++ Calcular `a^n mod m`, per (`a > 0`, `n >= 0`).
 +  Calcular `n!`
 +  Multiplicar dues matrius `A` i `B`.
 +  Buscar el valor mínim en els valors d’una funció.
@@ -2551,7 +2747,7 @@ Evidentment l’algorisme és quadràtic, tot i que només fem `O(n)` intercanvi
 
 L’ordenació per selecció no és un bon mètode d’ordenació perquè hi ha altres algorismes de complexitat `O(n log n)`!
 
-### No useu mai un algorisme `O(n^2)` per ordenar (bubble sort, insertion sort, ... )!
+.bold[**Avís**: No useu mai un algorisme `O(n^2)` per ordenar (bubble sort, insertion sort, ...).]
 
 ---
 
@@ -2621,7 +2817,7 @@ L'objectiu és trobar la ruta més curta possible.
 
 Generar totes les possibles rutes és el mateix que generar **totes les possibles permutacions** dels vèrtexs del mig. 
 
-<center><img src="images/cerca2.png" width="300"></center>
+<center><img src="images/cerca2.png" width="200"></center>
 
 <center><img src="images/cerca3.png" width="500"></center>
 
@@ -2660,16 +2856,16 @@ Entrada: una llista d’enters.
 Sortida: una llista amb totes les permutacions.
 
 ```
-1. Inicialitza la primera permutació amb tots els elements `1,2,...,n mòbils: 
+1. Inicialitza la primera permutació amb tots els elements 1,2,...,n mòbils: 
     tots amb una fletxa mirant a l'esquerra.
 2. Mentre hi hagi un element mòbil:
-    2.1 Troba l’enter mòbil `k` més gran
-    2.2 Intercanvia `k` i l’element adjacent al qual assenyala
-3. Inverteix la direcció de tots els elements que són més grans que `k`
+    2.1 Troba l’enter mòbil k més gran
+    2.2 Intercanvia k i l’element adjacent al qual assenyala
+3. Inverteix la direcció de tots els elements que són més grans que k
 4. Afegeix la permutació a la llista.
 ```
 
-<center><img src="images/trotter2.png" width="600"></center>
+<center><img src="images/trotter2.png" width="500"></center>
 
 ---
 ## Cerca exhaustiva: TSP o el problema del viatjant de comerç.
@@ -2684,7 +2880,7 @@ Hi ha algorismes que troben solucions probablement bones, tot i que no podem est
 ---
 ## Cerca exhaustiva: El problema de la motxilla.
 
-El problema de la motxilla, altrament dit KP (en anglès, *Knapsack Problem*) és un problema d'optimització combinatòria.
+El **problema de la motxilla**, altrament dit KP (en anglès, *Knapsack Problem*) és un problema d'optimització combinatòria.
 
 Modelitza una situació anàloga al fet d'omplir una motxilla, en la que no es pot posar més d'un cert pes, amb tot o una part d'un conjunt d'objectes. Aquests objectes tenen un pes i un valor determinat. 
 Els objectes que es posen dins la motxilla han de maximitzar el valor total sense sobrepassar el pes màxim.
@@ -2696,24 +2892,1784 @@ Els objectes que es posen dins la motxilla han de maximitzar el valor total se
 
 
 Com es generen les possibles solucions?
+
 --
 
-
-Generar les possibles solucions d’aquest problema és el mateix que generar tots els possibles subconjunts d’un conjunt (`O(2n)`).
+Generar les possibles solucions d’aquest problema és el mateix que generar tots els possibles subconjunts d’un conjunt (`O(2^n)`).
 
 Després podríem seleccionar les que “caben” a la motxilla, i per últim, entre les que hi caben, quina és la més valuosa.
 
+---
+## Cerca exhaustiva: El problema de la motxilla.
+
+És útil per modelar:
+
++ sistemes de suport a la gestió del portafolis : per equilibrar la selecció i la diversificació amb l'objectiu de trobar el millor equilibri entre el rendiment i el risc d'un capital col·locat en diferents actius financers (accions...);
+
++ en la càrrega d'un vaixell o d'un avió: tot l'equipatge que es pot portar sense sobrepès;
+
++ en el tall dels materials: per minimitzar les pèrdues degudes als talls (de diferents mides) realitzats en barres de ferro;
++ en el problema de *bin packing*.
+
+---
+## Cerca exhaustiva: El problema de la motxilla.
+
+
+**Com generem els subconjunts d’un conjunt?**
+
+Ens basarem en fer una correspondència entre els `2^n` subconjunts d’un conjunt `A={a_1,...,a_n}` de `n` elements i els `2^n` strings de bits de longitud `n`, `b_1,...,b_n`.
+
+> El nombre de subconjunts d'un conjunt és `2^n`: cada un dels subconjunts es defineix pel fet que un determinat elements hi pertany o no, i per tant es pot representar com un nombre binari de `n` elements. 
+
+> Per exemple, si `n=3`, el string `000` representa el conjunt buit, el `111` correspon al conjunt sencer, i `101` és el subconjunt format pel primer i el tercer element. 
+
+---
+
+## Cerca exhaustiva: El problema de la motxilla.
+
+
+**Com generem els subconjunts d’un conjunt?**
+
+Feta aquesta associació, podem generar tots els subconjunts d’un conjunt de `n` elements generant de forma successiva els nombres binaris des de `0` fins a `2^(n-1)`, posant els `0`’s que siguin necessaris al davant:
+
+> `000  001  010  011  100  101  110  111`
+
+--
+
+El problema de la motxilla **no té una solució exacta més eficient que la cerca exhaustiva**: no es coneix cap algorisme exacte en temps polinòmic.
+
+D’això en diem problemes NP-hard.
+
+
+---
+
+class: center, middle, inverse
+name:tema6
+
+# Tema 6: **Dividir i vèncer**
+
+---
+
+## Algorismes de dividir i vèncer
+
+Dividir i vèncer és una **estratègia de resolució de problemes** consistent en:
+
++  Dividir un problema en subproblemes que són instàncies del més petites (des del punt de vista de la mida de l'entrada) del mateix problema.
+
++  Resoldre recursivament aquests subproblemes.
+
++  Combinar adequadament les solucions dels subproblemes per trobar la solució del problema original.
+
+--
+
+Les **qüestions a resoldre** són tres:
+
++  Com anem dividint el problema en subproblemes de forma recursiva?
+
++  Com aturem la recursió i donem una solució al darrer subproblema?
+
++  Com combinem les solucions recursives per assolir la solució del problema complet?
+
+---
+
+## Què és la recursió?
+
+---
+
+## Exemple: el problema de les torres de Hanoi
+
+
+<center><img src="images/hanoi.png" width="350"></center>
+
+There is a legend about an Indian temple which contains a large room with three time-worn posts in it surrounded by 64 golden disks. Brahmin priests, acting out the command of an ancient prophecy, have been moving these disks, in accordance with the rules of the puzzle, since that time. The puzzle is therefore also known as the Tower of Brahma puzzle. According to the legend, when the last move of the puzzle is completed, the world will end.
+
+If the legend were true, and if the priests were able to move disks at a rate of one per second, using the smallest number of moves, it would take them 
+`2^(64−1)` seconds or roughly 585 billion years; it would take 18,446,744,073,709,551,615 turns to finish.
+
+---
+
+## Exemple: el problema de les torres de Hanoi
+
+
+Les torres de Hanoi és un joc usat típicament com a exemple de recursivitat. 
+
+A l'inici estan col·locats de més gran a més petit en la primera vareta. El joc consisteix en passar tots els discs a la tercera vareta tenint en compte que només es pot canviar de vareta un disc cada vegada i que mai no podem tenir un disc col·locat sobre un que sigui més petit.
+
+La idea bàsica per resoldre-ho amb un algorisme recursiu és que:
+
++ Per poder passar la peça grossa de `A` a `C` cal passar les que estan a sobre de `A` a `B` amb l’ajut de `C`.
++ Llavors puc passar la peça que queda a `A` a `C` i oblidar-me d’ella, ja està ben col·locada!
++ Ara tinc la pila a `B`.  Per tant el que queda és passar les peces de `B` a `C` amb l’ajuda de `A` i ja hauré acabat.
+
+Aquesta idea bàsica es pot repetir recursivament!
+
+---
+
+## Exemple: el problema de les torres de Hanoi
+
+```python
+def moveTower(height,fromPole, toPole, withPole):
+    if height >= 1:
+        moveTower(height-1,fromPole,withPole,toPole)
+        moveDisk(fromPole,toPole)
+        moveTower(height-1,withPole,toPole,fromPole)
+
+def moveDisk(fp,tp):
+    print("moving disk from",fp,"to",tp)
+
+moveTower(3,"A","B","C")
+```
 
 
 
+```python
+moving disk from A to B
+moving disk from A to C
+moving disk from B to C
+moving disk from A to B
+moving disk from C to A
+moving disk from C to B
+moving disk from A to B
+```
 
+La complexitat és exponencial `O(2^n)`
+
+
+---
+
+## Exemple: el problema de les torres de Hanoi
+
+Les crides recursives generen aquest arbre:
+
+
+<center><img src="images/hanoi1.png" width="650"></center>
+
+---
+
+## Exemple: el problema de les torres de Hanoi
+
+L'order de generació de la solució és:
+
+
+<center><img src="images/hanoi2.png" width="650"></center>
+
+---
+
+## Exemple: el problema de les torres de Hanoi
+
++ Què passaria amb l'arbre si enlloc de 3 peces en tenim 4?
+
+--
+
+> *Que tindria un nivell més amb el doble de fulles.*
+
+--
+
++ Quantes vegades es crida recursivament la funció (quantes fulles i nodes te l'arbre) si tenim `n` peces?
+
+--
+
+> `1`+ `2` + `4` + `8` + `...` + `2^n` = `2^(n+1) - 1`
+
+--
+
++ Quina és la complexitat de l'algorisme?
+
+--
+
+> *Si fa `(2^(n+1)-1)` crides i cada una de les crides com a màxim
+executa instruccions de cost `O(1)`, el cost és `O(2^(n+1))`.*
+
+
+---
+
+## Exemple: Suma (recursiva) dels elements d'una llista.
+
+```python
+def sum(l):
+   if len(l) == 1:
+        return l[0]
+   else:
+        return l[0] + sum(l[1:])
+         
+a =[5,7,3,8,10]
+
+```
+
++ Quina complexitat té aquest algorisme?
+
+--
+
+> `O(n)` 
+
+<center><img src="images/suma recursiva.png" width="300"></center>
+
+
+---
+
+## Algorismes de dividir i vèncer: relacions de recurrència.
+
+L’esquema general d’aquests algorismes és: tenim un problema de mida `n`, que reformulem mitjançant la solució d’`a` problemes de mida `n/b` i llavors combinem les respostes en un temps `O(n^d)`. 
+
+La seva complexitat serà per tant `T(n)=aT(n/b)+O(n^d)`
+
+Aquesta recurrència té una solució tancada, que està enunciada al **Teorema Master**.
+
+--
+
+### Teorema Master
+
+Si `T(n)=aT(n/b)+O(n^d)` per algunes constants `a>0`, `b>1`, i `d>=0`, llavors:
+
++ `T(n) = O(n^d) ` si `d > log_b a`  
++ `T(n) = O(n^d log n) ` si `d = log_b a `
++ `T(n) = O(n^(log_b a))` si `d < log_b a`
+
+---
+
+## Algorismes de dividir i vèncer: relacions de recurrència.
+
+** Exemple:**
+
+Si tenim un determinat problema que es pot  dividir en 2 subproblemes (`a = 2`), cada un dels quals processa unes dades que són `1/2` de les originals (`b = 2`), i la reconstrucció de la solució en costa `O(n^2)`...
+
+--
+
+... podem aplicar el cas (1) del teorema Master, perquè `2>log_2=1` ...
+
+--
+
+i per tant resulta `O(n^2)`.
+
+---
+
+## Algorismes de dividir-i-vèncer: **mergesort**
+
+L’ordenació d’una llista es pot plantejar d’aquesta manera:
+
+Suposem que tenim dos conjunts de cartes, amb `n` elements cada un, que estan ordenats de menor a major (quan les posem de cara la més petita està al davant).
+
+1. Comparem les dues cartes de sobre de tot de cada conjunt i escollim la més petita, que posem a un nou conjunt de cartes ordenades (pel darrera, si n’hi ha alguna).
+2. Repetim 1 fins que un dels conjunts estigui buit, i l’altre l’afegim per darrera al conjunt de cartes ordenades.
+
+El resultat és un conjunt de cartes ordenades!
+
+
+
+---
+
+## Algorismes de dividir-i-vèncer: **mergesort**
+
+<center><img src="images/merge1.png" width="650"></center>
+
+
+---
+
+## Algorismes de dividir-i-vèncer: **mergesort**
+
+<center><img src="images/merge2.png" width="650"></center>
+
+
+---
+
+## Algorismes de dividir-i-vèncer: **mergesort**
+
+Però en el cas general no partim de dos conjunts de cartes ordenades!
+
+El que podem fer és descomposar el problema en subproblemes més petits fins que arribem als casos que sabem resoldre!
+
+Això ho podem expressar recursivament:
+
+```python
+def mergesort(list):
+    if len(list) < 2:
+        return list
+    else:
+        middle = len(list) // 2
+        left = mergesort(list[:middle])
+        right = mergesort(list[middle:])
+        return merge(left, right)
+```
+
+La correcció d’aquest algorisme és evident, sempre i quan definim bé la funció `merge`. 
+
+---
+
+## Algorismes de dividir-i-vèncer: **mergesort**
+
+La funció merge també la podem definir recursivament:
+
+```python
+def merge(x,y):
+    if len(x) < 1:
+        return y
+    if len(y) < 1:
+        return x
+    if x[0] <= y[0]:
+        return [x[0]] + merge(x[1:],y)
+    else:
+        return [y[0]] + merge(x,y[1:])
+
+```
+
+> Aquesta funció es pot definir també de forma NO recursiva, i és simplement anar comparant i copiant de forma ordenada els dos vectors en un nou vector.
+
+---
+
+## Algorismes de dividir-i-vèncer: **mergesort**
+
+<center><img src="images/merge3.png" width="650"></center>
+
+---
+
+## Algorismes de dividir-i-vèncer: **mergesort**
+
+La versió no recursiva de `merge` seria aquesta:
+
+```python
+def merge(left, right):
+    result = []
+    i ,j = 0, 0
+    while(i < len(left) and j < len(right)):
+        if (left[i] <= right[j]):
+            result.append(left[i])
+            i = i + 1
+        else:
+            result.append(right[j])
+            j = j + 1
+
+    result += left[i:]
+    result += right[j:]
+    return result
+
+```
+---
+
+## Algorismes de dividir-i-vèncer: **mergesort**
+
+La funció `merge` té una complexitat per cada crida recursiva `O(n)` (en el pitjor dels casos). Per tant `d=1`.
+
+Quan dividim creem 2 problemes, de mida `n/2`. Per tant, com que `a=2` i `b=2`
+`mergesort` té una complexitat `T(n)=2T(n/2)+O(n)`.
+
+O el que és el mateix, `O(n log n)`.
+
+> La funció mergesort es pot implementar iterativament, però per fer-ho necessitem una estructura que encara no coneixem: la cua.
+
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+
+**Quicksort** és un altre algorisme d’ordenació basat en l’estratègia de dividir i vèncer.
+
+Aquest algorisme divideix el vector basant-se en els valors: reordena els valors de `A[0:n-1]` per aconseguir una partició, una situació en la que tots els elements anteriors a una posició `s` siguin menors o iguals que `A[s]` i els de després més grans o iguals:
+
+`A[0] ... A[s-1] <= A[s] <=  A[s+1] ... A[n-1]`
+
+`A[s]` s'anomena **pivot**. 
+
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+Òbviament, si tenim aquesta situació `A[s]` ja està al seu lloc i no s’haurà de moure, i podem passar a ordenar el que hi ha a ambdues bandes:
+
+```python
+
+def quick_sort(A):
+    quick_sort_r(A, 0, len(A) - 1)
+
+def quick_sort_r(A , first, last):
+    if last > first:
+        pivot = partition(A, first, last)
+        quick_sort_r(A, first, pivot - 1)
+        quick_sort_r(A, pivot + 1, last)
+``` 
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+
+Com calculem la partició d’una llista `A`?
+
+Primer seleccionem un element, respecte del qual dividirem la subllista, que anomenarem el pivot. Per exemple, escollim `pivot=A[first]`.
+
+Després hem de reordenar per aconseguir una partició.  Això ho podem fer amb dues passades (d’esquerra a dreta i de dreta a esquerra) de la llista.
+
++ La passada d’esquerra a dreta `(i)` comença pel segon element `i`  no s’atura fins trobar un element més gran o igual que el pivot `(p)`. 
+
++ La passada de dreta a esquerra `(j)` comença per l’últim element i s’atura quan troba un element més petit o igual que el pivot.
+
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+Quan les dues passades s’aturen, ens podem trobar en tres situacions:
+
+<center><img src="images/quicksort1.png" width="650"></center>
+
+
+---
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+
+```python
+def partition(A, first, last):
+    mid = (first + last)//2  #ordenem A[first],A[mid],A[last]
+    if A[first] > A [mid]: A[first], A[mid] = A[mid], A[first]
+    if A[first] > A [last]: A[first], A[last] = A[last], A[first]
+    if A[mid] > A[last]:   A[mid], A[last] = A[last], A[mid]  
+    A[mid], A[first] = A[first], A[mid] #valor mig a l’inici
+    pivot = first
+    i = first + 1
+    j = last
+  
+    while True:
+        while i <= last and A[i] <= A[pivot]: i += 1
+        while j >= first and A[j] > A[pivot]: j -= 1
+        if i >= j: break
+        else:
+            A[i], A[j] = A[j], A[i] #intercanviem, fem avançar i j
+    A[j], A[pivot] = A[pivot], A[j] #vector partit, pivot=j
+    return j
+
+A = [3,7,2,4,1,80]
+quick_sort(A)
+A
+>>> [1,2,3,4,7,80]
+
+```
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+
+<center><img src="images/quicksort2.png" width="550"></center>
+
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+
+<center><img src="images/quicksort3.png" width="550"></center>
+
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+
+<center><img src="images/quicksort4.png" width="550"></center>
+
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+
+<center><img src="images/quicksort5.png" width="550"></center>
+
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+
+<center><img src="images/quicksort6.png" width="550"></center>
+
+Quicksort és l’algorisme que fa servir Linux/Unix per ordenar amb la seva instrucció `sort`.  
+
+---
+
+## Algorismes de dividir-i-vèncer: **quicksort**
+
+Quina és l’eficiència del quicksort?
+
+> Observació: el nombre de comparacions que fa abans d’una partició són `n+1` si els índexs es creuen i `n` si coincideixen.
+
+Si totes les particions passen al mig del vector tenim **el millor cas**, i el nombre de comparacions serà `C(n) = 2C(n/2) + n`.
+
+I segons el teorema Master això és `O(n log n)`.
+
+En **el pitjor cas** (p.e. [4,3,2,1,0]), totes les particions són als extrems (alguna de les subllistes estarà buida), llavors el nombre de comparacions serà `C(n) = O(n^2)`. 
+> Sempre podem desordenar la llista al principi i aquest cas no existirà! 
+
+
+En el **cas promig** el nombre de comparacions serà `O(1,38 n log_2 n)`, és a dir, un 38% més de comparacions que en el millor cas.
+
+---
+
+## Algorismes de dividir-i-vèncer: multiplicació de matrius
+
+<center><img src="images/matmul.png" width="650"></center>
+
+És evident que la implementació directa de la multiplicació de matrius és `O(n^3)`: s’han de calcular `n^2` elements, i cada càlcul és `O(n)`.
+
+Fins a 1969 es pensava que no es podia fer d’una altra manera!
+
+
+---
+
+## Algorismes de dividir-i-vèncer: multiplicació de matrius
+
+Però a 1969, el Dr. Volker Strassen va trobar una manera més òptima:
+
+Es va basar en que el producte de dues matrius `(n x n)` es pot calcular a partir de la seva descomposició en blocs `(n/2 x n/2)`:
+
+<center><img src="images/matmul2.png" width="550"></center>
+
+---
+## Algorismes de dividir-i-vèncer: multiplicació de matrius
+
+
+I que aquesta descomposició es pot expressar recursivament.  La recurrència consisteix en passar d’una matriu `(n x n)` a 8 matrius `(n/2 x n/2)`, i per tant la seva complexitat és `T(n) = 8 T(n/2) + O(n^2)`. 
+
+Que resulta en una complexitat de `O(n^3)`...
+
+--
+
+Però Strassen es va adonar que aquestes operacions es podien agrupar així:
+
+<center><img src="images/matmul3.png" width="550"></center>
+
+---
+
+## Algorismes de dividir-i-vèncer: multiplicació de matrius
+
+
+La complexitat ara és `T(n) = 7 T(n/2) + O(n^2)`, que resulta en una complexitat de `O(n log_2 7)`, que és aproximadament `O(n^(2.81))`.
+
+```python
+1000000**3
+>>> 1000000000000000000
+
+1000000**2.81
+>>> 72443596007499056
+```
+---
+
+## Algorismes de dividir-i-vèncer: càlcul de la mediana
+
+La mediana de `[45,1,10,30,25]` és `25`, perquè es defineix com l’element que queda al mig del vector si els ordenem. Per tant, la seva implementació directa és `O(n log n)`.
+
+> **Ho podem fer lineal?**
+
+Considerem el següent problema (que subsumeix el problema de la mediana): 
+
+>Entrada: Una llista de nombres `S`; un enter `k`. 
+
+>Sortida: El `k`-èssim element més petit de `S`.
+
+Per exemple, si `k=1`, és el valor mínim de `S`.
+
+
+---
+## Algorismes de dividir-i-vèncer: càlcul de la mediana
+
+
+Anem a plantejar una solució de dividir i vèncer.
+
+Suposem un  nombre qualsevol `v` i que dividim la llista segons aquest nombre (per exemple, `v=5`):
+
+
+<center><img src="images/mediana1.png" width="650"></center>
+
+
+---
+
+## Algorismes de dividir-i-vèncer: càlcul de la mediana
+
+
+Ara la cerca es podria limitar a una de les tres subllistes: si busquéssim el 8è element, ha de ser el tercer element més petit de `S_R` atès que els elements de `S_L` i `S_V` són 5.
+
+En general:
+
+<center><img src="images/mediana2.png" width="650"></center>
+
+
+Aquestes subllistes es podem calcular en temps lineal!
+
+---
+
+## Algorismes de dividir-i-vèncer: càlcul de la mediana
+
+
+Ja tenim l’algorisme recursiu definit, excepte com definir `v`. 
+
+L’ideal seria que `v` partís les llistes per la meitat. Aleshores la complexitat seria `T(n) = T(n/2) + O(n)`, que és una complexitat lineal!!
+
+--
+
+
+La solució és triar-lo de forma aleatòria cada vegada!
+
++ En el pitjor cas farem: ` n + (n-1) + (n-2) + ... n/2 = O(n^2)`. 
+
++ En el millor cas farem `O(n)`. 
+
++ En el cas promig es pot demostrar que és `O(n)`.  
+
+
+---
+
+
+```python
+import random
+def kSelect(A,k,length):
+
+        # escollim una posició r de forma aleatòria entre 1 i length(A)
+        n = length-1
+        r = random.randint(0, length-1)
+        A1 = []
+        A2 = []
+        pivot = A[r]
+
+        # construim la llista més petita i la més gran
+        for i in range ( 0 , n+1):
+                if A[i] < pivot :  A1.append(A[i])
+                if A[i] > pivot :  A2.append(A[i])
+
+        if k <= len(A1):
+                # cerquem a la llista dels elements mes petits
+                return kSelect(A1, k ,len(A1))
+
+        if k > len(A) - len(A2):
+                # cerquem a la llista dels elements mes grans
+                return kSelect(A2, k-(len(A)-len(A2)),len(A2))
+
+        else :  return pivot
+
+```
+---
+
+class: center, middle, inverse
+name:tema7
+
+# Tema 7: **Algorismes de Cerca**
+
+---
+
+## Algorismes de cerca
+
+El concepte de cerca inclou diferents idees:
+
++ Cerca d’un determinat element en una llista (màx, x=“a”, el que compleix una certa condició, etc.).
++  Cerca d’un determinat element en una llista ordenada.
++ Cerca en un arbre.
++ Cerca en un graf.
++ Satisfacció de restriccions.
++ Etc.
+
+Ens centrarem en la **cerca en llistes**.
+
+---
+
+## Algorismes de cerca: cerca lineal
+
+
+L’algorisme que implementa amb una estratègia de força bruta la cerca d’un element en una llista es diu **cerca seqüencial o lineal**
+
+```python
+def linsearch(list,ele):
+	i=0
+	while i < len(list) and list[i] != ele:
+		i += 1
+	if i < len(list): return i
+	else: return -1
+
+
+``` 
+
+La complexitat de l’algorisme és `O(n)` en el pitjor cas!
+
+--
+
+Podem fer una petita millora si afegim l’element que busquem al final de la llista:
+
+```python
+def linsearch(list,ele):
+	list.append(ele)
+	i=0
+	while list[i] != ele:
+		i += 1
+	if i < len(list)-1: return i
+	else: return -1
+
+``` 
+
+---
+
+## Algorismes de cerca: cerca binària
+
+I si la llista està ordenada (un diccionari, els nombres de la loteria, etc.) ho podem fer millor?
+
+
+<center><img src="images/cerca11.png" width="550"></center>
+
+
+---
+
+## Algorismes de cerca: cerca binària
+
+
+La **cerca binària** ho fa comparant l’element cercat `K` a l’element central de la llista: si hi ha correspondència ja l’hem trobat, sinó, busquem a la subllista (de la dreta o de l'esquerra) que correspon. 
+
+<center><img src="images/cerca12.png" width="550"></center>
+
+
+---
+## Algorismes de cerca: cerca binària
+
+
+<center><img src="images/cerca13.png" width="650"></center>
+
+> Com acaba l’algorisme si `J` no hi és?
+
+---
+## Algorismes de cerca: cerca binària
+
+Anem a veure com funcionaria per `K=70`.
+
+<center><img src="images/cerca14.png" width="650"></center>
+
+---
+## Algorismes de cerca: cerca binària
+
+
+Per analitzar la seva complexitat calcularem el nombre de vegades que la clau de la cerca, `K`, es compara amb un element de la llista.
+
+En el pitjor dels casos (quan l’element no hi és), tenim aquesta relació de recurrència: `C(n) = C(n/2) + 1`.
+
+
+Segons el teorema Màster això és `O(log_2 n)`: per una llista de 1.000.000 elements són 20 comparacions!
+
+Evidentment és un algorisme recursiu, però és pot implementar fàcilment de forma no recursiva.
+
+---
+## Algorismes de cerca: cerca binària
+
+```python
+def binsearch(nums, K):
+    low = 0
+    high = len(nums)-1
+    while low <= high:                     
+        mid = (low + high) / 2            
+        if nums[mid] > K: high = mid - 1
+        elif nums[mid] < K: low = mid + 1
+        else: return mid                           
+    return -1 
+```
+
+El cas promig és més difícil d’analitzar, però es pot demostrar que és només una mica millor que el pitjor cas (tot i que del mateix ordre).
+
+> Observació: *Si tenim una llista desordenada de mida n i només hem de buscar un element (o pocs), apliquem una cerca exhaustiva.  Però si hem de fer moltes cerques (de l’ordre de n), val la pena ordenar-la primer i fer cerca binària dels elements després!*
+
+---
+
+##  Cerca dels extrems d'una funció.
+
+Imaginem ara que tenim un vector no ordenat, com pot ser el corresponent als valors discrets d’una funció multimodal.  
+
+Com busquem el màxim? Quin tipus de cerca hi podem aplicar?
+
+<center><img src="images/fun1.png" width="450"></center>
+
+---
+##  Cerca dels extrems d'una funció.
+
+
+Podem aplicar-hi cerca exhaustiva:
+
+```python
+def func1d(x): #funció multimodal de la que buscarem max
+    import math
+    y = x * math.sin(10*math.pi*(x))+1.0
+    return y
+
+def frange(start, stop, step):
+    current = start
+    while current < stop:
+        yield current
+        current += step
+
+def linsearchfunc1d():
+    x=0.0      #punt x que dóna valor max
+    maxim=0.0  #func1d(x)
+    for i in frange(-1.0,2.0,0.01):
+        if func1d(i)>maxim: 
+            maxim=func1d(i)
+            x=i
+    print maxim
+
+```
+
+---
+
+##  Cerca dels extrems d'una funció.
+
+Si el nombre de punts a mostrejar és molt gran tenim un problema!
+
+<center><img src="images/fun2.png" width="350"></center>
+
+En aquest cas, amb precisió `0.01` analitzaríem `300x300` punts.
+
+Si necessitéssim una precisió `0.000001` analitzaríem `3000000x3000000` punts. 
+
+No podem fer cerca exhaustiva!
+---
+##  Cerca dels extrems d'una funció.
+
+Té sentit fer una cerca aleatòria? (= anar generant nombres de forma aleatòria dins del rang de les variables  i quedar-se el màxim).
+
+<center><img src="images/fun4.png" width="450"></center>
+
+---
+##  Cerca dels extrems d'una funció.
+
+La cerca aleatòria és:
+
+```python
+def rsearchfunc1d():
+    import random
+    x=0.0
+    maxim=0.0
+    for i in range(1000):
+	xtemp = (random.random()*3.0)-1.0
+	if func1d(xtemp)>maxim: 
+	    maxim=func1d(xtemp)
+           x=xtemp
+    return maxim	  
+```
+
+En general, la cerca totalment aleatòria **no** és una bona solució: tenim el cost de la cerca afitat, però depèn molt de l’aleatorietat i té un resultat molt semblant, si no equivalent, a la cerca lineal, per força bruta. 
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+Anem a veure una tipus d’algorisme aproximat que ens fa una cerca, amb un cert component aleatori més intel·ligent, de l’espai de solucions: la cerca basada en **algorismes genètics**.
+
+
+El terme algorismes genètics s’utilitza per a referir-se a una família bastant àmplia de models computacionals de càlcul basats en els mecanismes d’evolució biològica.
+
+La idea de selecció natural va ser introduïda per Charles Darwin el 1859 dins del seu llibre “L’Origen de Les Espècies”.
+
+Aquesta idea pot servir d’analogia per a construir mètodes de cerca en problemes d’optimització combinatòria i mètodes d’aprenentatge.
+
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+Darwin va assentar les bases del principi d'evolució per selecció natural amb les següents idees:
+
++ Cada individu tendeix a passar els seus trets característics a la seva descendència. 
+
++ Tot i així, la natura produeix individus amb trets diferents. 
+
++ Els individus més adaptats tendeixen a tenir més descendència, i a la llarga, la població tendeix a ser "millor".
+
++ Sobre grans períodes, l'acumulació de canvis pot produir  espècies totalment noves, adaptades al seu entorn.
+
+--
+
+A més a més la natura disposa d'una sèrie de mecanismes reguladors externs a aquest procés però igualment interessants: el mecanisme de diversitat, els paràsits, les organitzacions socials, etc.
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+Els mecanismes biològics que fan possible l’evolució són avui coneguts. 
+
+A la natura, podem veure com la transmissió de la informació genètica (genoma) es fa a través de la reproducció sexual. Aquest procediment permet als descendents ser diferents dels seus antecessors, tot i que conservant la majoria de trets. 
+
+El mecanisme sobre el que està basat això es troba a nivell molecular, i consisteix en l'aparellament de cromosomes (lloc on trobem el genoma), l'intercanvi d'informació, i la posterior partició. D'això n'hi direm creuament. 
+
+La probabilitat de que dos individus es creuin depèn de la seva adaptació al medi.
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+Per inspiració d’aquests mecanismes usarem terminologia de biologia per als nostre problemes:
++ Gens
++ Genoma
++ Cromosomes
++ Creuaments i mutacions.
++ Funció d’adaptació.
++ Mecanismes  correctors/moduladors: diversitat, parasitisme, organització social, etc.
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+El **cicle** normal d'un algorisme genètic és:
+
++ avaluar l'adaptació de tots els individus de la població (amb la funció d’adaptació). Aquesta funció incorpora l’objectiu del problema.
+
++ crear una nova població mitjançant reproducció fent servir: 
+	+ creuament 
+	+ mutació dels cromosomes dels individus + descartar la població antiga (hem d’assegurar que el resultat d’aplicar els operadors genera possibles solucions al problema.)
+
++ iterar sobre la nova població.
+
+Cada una de les iteracions d'aquest cicle es coneix com  **generació**. 
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+Quan dissenyem un algorisme genètic per resoldre un problema caldrà decidir algunes qüestions:
+
++ Quina és la funció d'adaptació?
++ Com representarem els individus/solucions?
++ Com seleccionarem els individus per reproduir-se?
++ Com creuarem i mutarem els individus?
++ Quina és la probabilitat de mutació?
++ Necessitem mecanismes moduladors (p.e. diversitat)?
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+La **funció d’adaptació** és pròpia de cada problema que volem resoldre.
+
+En el problema que hem posat com a exemple, la funció d’adaptació és el valor de `f(x): (math.sin(10*math.pi*(x))+1.0)`. 
+
+> Per tant, la màxima adaptació correspon al màxim d’aquesta funció multimodal. 
+
+--
+
+El problema del viatjant de comerç també és un problema candidat a ser resolt amb algorismes genètics.
+
+> La funció d’adaptació seria `1/d`, on `d` és la distància recorreguda (i així un valor de la funció alt és una bona solució).
+
+> Un cromosoma representaria un circuit que és potencialment solució del problema. 
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+Normalment es considera que la millor **representació** dels cromosomes possible és la binària.
+
+El creuament, la mutació, i d'altres operacions que es poden utilitzar, són aleshores simples operacions a nivell de bit. 
+
+Suposem doncs que tenim una població inicial de quatre individus amb les següents característiques:
+
+<center><img src="images/gen1.png" width="450"></center>
+
+I suposem que definim la probabilitat de selecció com 
+
+`f_i = q_i / (sum_j q_j) `. 
+
+Com els seleccionem i els creuem?
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+Una primera alternativa per la selecció és triar parelles aleatòriament tenint en compte la seva probabilitat de selecció.
+
+> És com si fem rodar una ruleta i ens va donant individus; l’individu amb més probabilitat de selecció ocupa més posicions a la ruleta.
+
+Imaginem que la selecció ens ha donat aquestes dues parelles:
+
+<center><img src="images/gen2.png" width="450"></center>
+
+I ara, com les creuem?
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+La forma més simple de creuament és generar un punt de tall aleatòriament i intercanviar:
+
+
+<center><img src="images/gen3.png" width="550"></center>
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+Per a **mutar-los** canviarem el valor d’un quants bits de la població de forma aleatòria.
+
+La probabilitat de que un bit canviï de valor és `β` i la que probabilitat de no canviar és `(1- β)`, però sempre `β < (1- β)`.
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+En resum, la **funció d’adaptació** depèn del problema que volem resoldre.
++ La representació òptima, és en la majoria de casos i si no hi ha motius fonamentats per dubtar-ho, la binària.
++ La representació ha facilitar que el resultat d’aplicar els operadors genètics sigui vàlid.
+
+L’operació de **creuament** crea dos nous individus seleccionant punts de creuament en els cromosomes seleccionats i intercanviant les seves parts.
+
+L’operació de **mutació** consisteix en la selecció aleatòria d’algun dels gens del cromosoma i el canvi del seu valor. La probabilitat de mutació ha de ser petita (si no ho convertim en cerca aleatòria!).
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+Probabilitat de supervivència:
+
++ El valor d’adaptació de cada individu depèn del problema concret.
++ La probabilitat de supervivència a la següent generació és una ponderació del valor d’adaptació, i es pot fer de diverses maneres: el mètode estàndard (que ja hem vist), el mètode d’ordenació, el mètode de la diversitat, etc.
++ A partir d’ara suposarem que la generació següent es forma a partir d’una selecció entre els elements del conjunt format pels cromosomes progenitors i pels cromosomes descendents, però seguint una **estratègia elitista**: el(s) millor(s) cromosomes passen automàticament (així assegurem que una bona solució no es perd mai).
+
+---
+
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+Ponderació del valor d’adaptació. 
+
++ **Mètode Estàndard**. Donat un cromosoma `i`, aquest és avaluat com a possible solució al problema en qüestió. Com a resultat obté un valor d’adaptació `q_i`. Llavors definim la seva probabilitat de selecció com `f_i  = q_i / (sum_j q_j)`.
+
+ <center><img src="images/gen4.png" width="450"></center>
+
+> Un dels inconvenients associat al mètode estàndard és el poc pes que dóna al cromosomes "dolents", fet que els impedeix de passar a les futures generacions, i per tant, transmetre les poques coses que tinguin bones. Un altre possible inconvenient és que moltes vegades la funció d’avaluació és qualitativa: ordena de forma correcta però els seus valors no són precisos.
+
+---
+
+## Algorismes de cerca: cerca amb algorismes genètics.
+
++ **Mètode d'Ordenació**:  Per insensibilitzar el mètode de selecció respecte al valor d'adaptació del problema, podem ordenar els cromosomes segons aquest valor, i els ponderem segons aquesta regla: 
+
+	+ Establim un valor aleatori `p` entre `0` i `1`.
+	+ Al primer cromosoma li assignem aquesta probabilitat
+	+ Al segon li assignem la probabilitat `p*(1-p)` 
+	+ La probabilitat de l'`i`-èssim cromosoma és `p * (1 – la probabilitat que s’hagi triat algun cromosoma anterior)`.
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+> Per exemple, suposem que `p=0.667`. Llavors:
+
+ <center><img src="images/gen5.png" width="550"></center>
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
++ Ponderació del valor d’adaptació: **Mètode de Diversitat**. Aquest mètode es basa en l'anomenat principi de diversitat: és quasi tan bo ser diferent com estar adaptat. 
+
+> Definim la diversitat d'un grup de cromosomes com:
+
+  <center><img src="images/gen6.png" width="550"></center>
+
+> on `d_i` és una mesura de distància entre cromosomes. 
+
+---
+
+## Distància de Hamming
+
+> La **distància de Hamming** entre dues cadenes de la mateixa longitud és el nombre de posicions diferents. Si considerem cadenes de bits, correspon al nombre de bits que s'han de canviar d'una cadena perquè passi a tenir el valor d'una altra cadena.
+
+---
+
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+Ponderació del valor d’adaptació: Mètode de Diversitat. 
+
+Com l’apliquem?
+
++ El millor cromosoma passa automàticament a la següent generació (estratègia elitista).
++ Calculem la diversitat de tots els cromosomes respecte als que han passat a la + següent generació.
++ Ordenem els cromosomes segons la seva funció d’avaluació.
++ Sumem els nombres que representen l’ordre obtingut per cada cromosoma als passos 2 i 3. I reordenem segons aquest valor.
++ Triem el cromosoma que passa a la següent generació segons el mètode d’ordenació i si queden cromosomes per triar, i tornem al punt 2. 
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+**Ponderació del valor d’adaptació: Mètode de Diversitat.**
+
+Exemple:
+
+  <center><img src="images/gen7.png" width="250"></center>
+
+El cromosoma millor passa a la següent generació. En el nostre cas és el cromosoma `(0100 0001)`. 
+
+Per tant resten per triar 2 cromosomes entre `(0001 0100)`, `(0011 0001)`, `(0001 0010)`, `(0001 0001)`,  `(0111 0101)`.
+
+---
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+Construirem la taula segons el mètode de diversitat segons la diversitat de cada cromosoma amb respecte al que ja ha passat:
+
+  <center><img src="images/gen8.png" width="650"></center>
+
+---
+
+
+## Algorismes de cerca: cerca amb algorismes genètics.
+
+
+Llavors triem aleatòriament el següent que passa, i resulta que és el cromosoma 
+`(0001 0100)`. A partir d'aquest moment repetim el procés anterior, però calculant la diversitat respecte al dos cromosomes que ja han passat:
+
+  <center><img src="images/gen9.png" width="650"></center>
+
+---
+
+## Exemple: Optimització d'una funció multimodal.
+
+
+El problema és trobar la `x` dins del rang `[-1 .. 2]` que maximitza `f`:
+
+  <center><img src="images/gen10.png" width="350"></center>
+
+---
+
+
+## Exemple: Optimització d'una funció multimodal.
+
++ Utilitzarem un vector binari com a cromosoma per a representar el valor real de la variable `x`. La longitud del vector dependrà del domini i la precisió.
+
++ En el cas estudiat, el domini de la variable `x` és `[-1,2]`, té longitud 3.
+
++ Suposem que volem 6 decimals (1.000.000 de valors per cada unitat). 
+Per tant, necessitem mostrejar el rang en 3.000.000 posicions, o sigui, 22 bits:
+`2.097.152 = 2^21 < 3.000.000 < 2^22 = 4.194.304`.
+
+---
+
+## Exemple: Optimització d'una funció multimodal.
+
+La transformació d'una seqüència binària `[b_21,...,b_0]` a un nombre real `x` es fa en dos passos:
+
++ Primer convertim la seqüència de base 2 a base 10.
++  Després trobem el nombre real corresponent:
+
+  <center><img src="images/gen11.png" width="250"></center>
+
+
+> on `-1.0` és el límit esquerra de l'interval i `3` la longitud. 
+
+---
+
+## Exemple: Optimització d'una funció multimodal.
+
+L'algorisme te els següents passos:
+
++ Escollim com a població inicial 50 individus de forma aleatòria:
+
+```python
+# Creem la població inicial
+def initpop(n,long):
+    import random
+
+           # Generem una poblacio de n cromosomes de longitud long. 
+    pop = [[0] * long for x in range(n)]
+    for i in range(n):
+        for j in range(long):
+            if random.random()>0.5: pop[i][j] += 1 
+    return pop
+
+```
+---
+
+## Exemple: Optimització d'una funció multimodal.
+
++ La funció d'avaluació serà equivalent a la funció del gràfic `f`:
+
+```python
+
+# Definim la funció d'avaluació d’un cromosoma de len(r) bits.
+def cost(r):
+    import math
+           # Transformem els bits en un valor real a l'interval [-1,2]
+    sum=0.0
+    for i in range(len(r)):
+        sum = sum + r[i]*(2**i)
+    x = -1.0 + sum * (3.0/(2.0**(len(r))-1.0))
+           # Avaluem el cromosoma
+    y = x * math.sin(10*math.pi*(x))+1.0
+    return y
+
+
+```
+
+---
+
+## Exemple: Optimització d'una funció multimodal.
+
+
+Per fer la mutació imposem una probabilitat de mutació `pm = 0.01` per a cada bit.  Per exemple, si tenim el cromosoma `v3 = (1110000000111111000101)` i seleccionem el cinquè bit per mutar, obtindrem `v3' = (1110100000111111000101)`. 
+
+Aquest cromosoma representa el valor `x3'=1.721638`, i per tant `f(x3') = 2.343555`, que s'ha incrementat respecte `f(x3) = 2.250650`.
+
+
+---
+
+## Exemple: Optimització d'una funció multimodal.
+
+```python
+# Definim la mutació amb probabilitat mutprob
+def mutacio(r,mutprob):
+	 import random
+    for i in range(len(r)):
+        if random.random() < mutprob: 
+            if r[i]==0: r[i]=1
+            else: r[i]=0
+    return r
+
+```
+---
+## Exemple: Optimització d'una funció multimodal.
+
+Per al creuament d’una parella de cromosomes escollirem aleatòriament un punt de tall i intercanviarem informació per crear els dos descendents. 
+
+```python
+# Definim el creuament
+def creuament(r1,r2):
+    import random
+    i=random.randint(1,len(r1)-2)
+    return r1[:i]+r2[i:],r1[i:]+r2[:i]
+
+```
+
+---
+
+## Exemple: Optimització d'una funció multimodal.
+
+Si iterem l'algorisme 150 generacions trobem que el millor cromosoma és 
+`vmax = (1111001101000100000101)`, que correspon al valor `xmax = 1.850773`. 
+
+L'evolució de l'algorisme es pot avaluar a partir del millor valor de la funció aconseguit en cada generació:
+
+```python
+1     1.441942
+6     2.150003
+8     2.250283
+9     2.250284
+10    2.250363
+12    2.328077
+39    2.344251
+51    2.733893
+99    2.849246
+137   2.850217
+145   2.850227
+```
+
+---
+## Exemple: Optimització d'una funció multimodal.
+
+
+Observació vàlida per a qualsevol problema de recerca 
+amb algorismes genètics:
+
+> Quin és el factor que més pesa en el càlcul de la complexitat computacional de l’algorisme? El nombre d'avaluacions!
+
+En el nostre problema hem fet  `50x150=7.500` avaluacions!
+
+> Els operadors genètics tenen un cost  computacional nul, per tant la complexitat de l’algorisme és el nombre d’avaluacions per la complexitat de l’avaluació.
+
+
+---
+class: center, middle, inverse
+name:tema8
+
+# Tema 8: **Hashing i Cerca**
+
+---
+
+## Cerca i llistes
+
+
+Considerem el problema de buscar un determinat valor en una llista.
+
++ Si la llista no està ordenada, la complexitat és `O(n)`.
+	+ Si el valor no hi és, farem `n` comparacions.
+	+ Si el valor hi és, farem una mitja de `n/2` comparacions.
++ Si la llista està ordenada farem cerca binaria: 
+	+ La cerca binaria té una complexitat `O(log n)`
+	+ La complexitat és la mateixa tant si hi és com si no.
+
+Com podem millorar-ho?
+
+--
+
+Suposem que tenim una *funció màgica* que, donat un valor a cercar, ens digués a quina posició de la llista mirar, i:
++ Si hi és, és que estava a la llista.
++ Si no hi és, és que no hi era.
+
+Aquesta funció *màgica* tindria una complexitat `O(1)` per fer cerca en una llista!
+
+---
+
+## Hashing i Cerca
+
+Imaginem que volem assignar un *nom curt* (el més curt possible) a un determinat subconjunt (inicialment desconegut) d'adreces IP d'entre les possibles `2^48` adreces IP.
+
+Imaginem que el nostre subconjunt no serà mai més gran de 250 noms. 
+
+Imaginem que el subconjunt es forma de manera seqüencial, una adreça darrera una altra, i que anem guardant els noms en diccionari a mesura que van arribant. La clau del diccionari serà el nom curt i el contingut, l'adreça IP.
+
+En el cas d’assignar el mateix nom a dues adreces, o **col·lisió**, enlloc de guardar l'adreça IP al diccionari, hi guardem una llista amb l'adreces IP que comparteixen *nom curt*.
+
+Aquest esquema tindria sentit per fer cerques molt ràpides sempre i quant les llistes de col·lisió fossin petites. Per què?
+
+---
+
+  <center><img src="images/hash1.png" width="750"></center>
+
+
+---
+
+## Hashing i Cerca
+
+Com podem generar (amb una funció) els noms tals que minimitzen la probabilitat de col·lisió?
+
+Aquest és el rol de les funcions **hash**: a l’exemple, una funció `h` que assigni al voltant de 250 noms curts a les adreces IP.
+
+El nom assignat a una adreça `x` és `h(x)`, i llavors `x` s’emmagatzema a l'índex `h(x)` del diccionari.
+
+---
+
+## Hashing i Cerca
+
+
+Les funcions hash han de ser:
+
++ *Aleatòries*, en el sentit que han de *distribuir uniformement* les dades per tot arreu.
++ *Consistents*, en el sentit d’assignar a cada ítem sempre el mateix lloc.
+
+Imaginem que usem una funció que assigna l’adreça al nombre corresponent als últims 8 bits: `h(128.32.168.24.7.80)=80`
+
+És una bona funció hash?
+
+--
+
+No!
+
+--
+
+Les posicions corresponents als nombres baixos estaran molt plenes, atès que en la pràctica aquests nombres s’assignen successivament.
+
+I si assigna l’adreça al nombre corresponent als primers 8 bits?
+
+--
+
+Tampoc!
+Imaginem que la majoria d’adreces són d’Àsia.
+
+--
+
+Si les adreces vinguessin de forma **uniformement distribuïda del conjunt total** no hi hauria problema. Però això no passa mai.
+
+---
+## Hashing i Cerca
+
+
+Atès que fem una correspondència entre `248` adreces i una llista de `250` noms hi ha d’haver una col·lecció de `248/250` = 1 bilió d’adreces que potencialment col·lisionaran. 
+
+Però podem seguir el següent esquema per **minimitzar les col·lisions**: escollim de forma aleatòria una funció per alguna classe de funcions hash (per una funció hash haurem de poder demostrar que, sigui quin sigui el conjunt  d’adreces, la majoria de funcions escollides generaran poques col·lisions!)
+
+---
+## Hashing i Cerca
+
+Anem a definir una classe de funcions que puguem escollir aleatòriament:
+
++ Suposem que creem una llista de`n=257` noms (enlloc de `256`). `257` és un nombre primer.....
++ Representem una adreça com una `6`-tupla d’enters mòdul `n: x = (x1,x2,x3,x4,x5,x6)`
+
+Definim la classe `h: IP -> n`  de la següent manera:
+
++ Defineix 6 nombres qualsevol mòdul `n=257`. Per exemple: `87, 23, 125, 4, 17, 231`. 
++ Transforma l’adreça `(x1,x2,x3,x4,x5,x6)` a 
+`h(x1,x2,x3,x4,x5,x6)= (87x1+23x2+125x3+4x4+17x5+231x6) mod 257`. 
+
+---
+## Hashing i Cerca
+
+Dit d’una altra manera, per qualsevol conjunt de coeficients `a_1, ..., a_6` d'enters amb un valor entre `0` i `n-1`, podem definir la següent funció hash:
+
+  <center><img src="images/hash2.png" width="450"></center>
+
+---
+
+## Hashing i Cerca
+
+Es pot demostrar que donada qualsevol parella d’adreces IP 
+`x = (x1,x2,x3,x4,x5,x6)` i `y = (y1,y2,y3,y4,y5,y6)`, si els coeficients (`a1,a2,a3,a4,a5,a6`) s’escullen aleatòriament de `{0,1,...,n-1}`, llavors la probabilitat de que `h(x1,x2,x3,x4,x5,x6)=h(y1,y2,y3,y4,y5,y6)` és `1/n`.
+
+És a dir, la mateixa probabilitat que si les adreces haguessin estat escollides de forma aleatòria. 
+
+Per tant, siguin quines siguin les adreces que arribin, la majoria de funcions escollides tindran poques col·lisions.
+
+---
+## Hashing i Cerca
+
+Quin és el temps de cerca d’una adreça?
+
+> = El càlcul de la funció hash + la cerca en la llista assignada al mateix nom. 
+
+Però només hi ha 250 adreces i la probabilitat de col·lisió és 1/257. Per tant, el nombre esperat d'ítems emmagatzemats al mateix nom és 250/257 (o sigui, pel nostre problema, menys de dos).
+
+---
+## Hashing i Cerca
+
+Recapitulem el que hem fet:
+
++ Com que no teníem control sobre el conjunt de dades que ens arribava, hem escollit una funció `h` de forma uniformement aleatòria d’entre una família `H`. En el nostre cas: 
+	+ Per escollir-la, hem escollit aleatòriament 6 nombres mòdul `n`.
++ Hem dit que es pot demostrar que per dos ítems qualsevol `x` i `y`, aquests aniran al mateix lloc amb una probabilitat `1/n`, on `n` és el nombre de llocs.
+
+---
+## Hashing i Cerca
+
+Una família de funcions hash amb aquesta propietat es diu **universal**.
+
+La seva aplicació a d’altres problemes és simple: 
++ Triem una taula de mida `n` tal que n sigui un nombre primer una mica més gran que el nombre d’elements de la taula (o millor encara, el doble).  
++ Assumim que el domini dels ítems és `N=n^k` (encara que ho sobreestimem).
++ Llavors cada ítem es representa amb una `k`-tupla d’enters mòdul `n`.
+
+--
+
+Hi ha moltes families de funcions hash. Per triar la millor funció hash pel nostre problema hem d'examinar les dades i decidir quina és la millor funció hash a partir de les propietats de les dades.
+
+Per exemple, quina funció fariem servir si les nostres dades **ja estan uniformement distribuides**? 
+
+--
+
+Suposem que les nostres dades són enters `z` de rang `0..N-1`, uniformement distribuits, i que el nostre objectiu és assignar-lis un enter `h` en el rang `0..n-1`, tal que `n << N`.
+
+Llavors la funció hash podria ser `h = z mod n` o `h = (z × n) ÷ N`.
+
+---
+## Hashing i Cerca: enters no uniformement distribuits. 
+
+Quina funció fariem servir si les nostres dades són enters que ** no estan uniformement distribuits**?  
+
+Per exemple, suposem que són nombres de telèfon. Els nombres de telèfon tenen la propietat que els primers dígits no estan uniformement distribuits, pero els darrers si!
+
+Suposem que 'n=	10000'. En aquest cas, la fòrmula `h = z mod n` encara funciona, però `h = (z × n) ÷ N` no (perquè depen molt dels dígits del principi)!
+
+---
+## Hashing i Cerca: seqüències de longitud variable.
+
+Per les dades de longitud variable necessitem una funció que depengui de tots els elements de la seqüència. Una bona estratègia en aquest cas és trencar la seqüència en troços petits i combinar-los seqüencialment:
+
+```python
+def DEKHash(key):
+    hash = len(key)
+    for i in range(len(key)):
+      hash = ((hash << 5) ^ (hash >> 27)) ^ ord(key[i])
+    return hash
+```
+
+---
+
+## Exemple:
+
+Exemple:
+
+```python
+DEKHash('algorismica')
+>>> 291014770516511749
+```
+
+>`a = 0011 1100` 
+>`b = 0000 1101`
+
+>.code[`^`: *Binary XOR Operator*: copies the bit if it is set in one operand but not both. `(a ^ b) ` will give 49 which is `0011 0001`.]
+
+>.code[`<<`: *Binary Left Shift Operator.* The left operands value is moved left by the 	number of bits specified by the right operand. `a << 2` will give 240 which is `1111 0000`. ]
+
+>.code[`>>`: *Binary Right Shift Operator.* The left operands value is moved right by the number of bits specified by the right operand. `a >> 2` will give 15 which is `0000 1111`.]
+
+---
+## Exemple:
+
+```python
+def StringHash(a, m=257, C=1024):
+    hash=0
+    for i in range(len(a)):
+        hash = (hash * C + ord(a[i])) % m
+    return hash
+
+StringHash('hola')
+>>> 182
+StringHash('adeu')
+>>> 245
+StringHash('adeu hol adeu')
+>>> 208
+StringHash('a')
+>>> 97
+```
+
+`m` representa el nombre esperat d’ítems a guardar.
+
+`C` és un nombre més gran que  qualsevol `ord(c)`.
+
+Aquí ho apliquem a caràcters, però ho podríem fer amb bigrames, etc.
+
+---
+## Exemple:
+
+```python
+def StringHash(a, m=257, C=1024):
+    hash=0
+    for i in range(len(a)):
+        hash = (hash * C + ord(a[i])) % m
+    return hash
+
+diccionari
+>>> ['the', 'and', 'to', 'of', 'a', 'I', 'in', 'was', 'he', 'that', 'it', 'his', 'her', 'you', 'as', 'had', 'with', 'for', 'she', 'not', 'at', 'but', 'be', 'my', 'on', 'have', 'him', 'is', 'said', 'me', 'which', 'by', 'so', 'this', 'all', 'from', 'they', 'no', 'were', 'if', 'would', 'or', 'when', 'what', 'there', 'been', 'one', 'could', 'very', 'an', 'who', 'them', 'Mr', 'we', 'now', 'more', 'out', 'do', 'are', 'up', 'their', 'your', 'will', 'little', 'than', 'then', 'some', 'into', 'any', 'well', 'much', 'about', 'time', 'know', 'should', 'man', 'did', 'like', 'upon', 'such', 'never', 'only', 'good', 'how', 'before', 'other', 'see', 'must', 'am', 'own', 'come', 'down', 'say', 'after', 'think', 'made', 'might', 'being', 'Mrs', 'again']
+
+taula=[]
+for i in diccionari:
+    taula.append(StringHash(i))
+
+taula
+>>> [256, 184, 161, 172, 97, 73, 204, 89, 199, 136, 210, 74, 89, 67, 241, 91, 129, 17, 240, 147, 242, 188, 223, 199, 180, 179, 68, 209, 40, 179, 10, 243, 165, 103, 200, 101, 125, 185, 70, 196, 228, 184, 179, 201, 143, 190, 152, 248, 154, 236, 57, 113, 63, 139, 150, 99, 139, 225, 169, 158, 192, 103, 165, 82, 130, 114, 249, 84, 205, 101, 1, 195, 89, 241, 189, 181, 252, 95, 138, 131, 164, 256, 237, 54, 67, 7, 252, 206, 235, 125, 245, 150, 31, 81, 229, 188, 173, 178, 120, 207]
+
+```
+
+---
+## Exemple:
+
+```python
+def StringHash(a, m=5749, C=1024):
+    hash=0
+    for i in range(len(a)):
+        hash = (hash * C + ord(a[i])) % m
+    return hash
+
+taula
+>>> [589, 4073, 3915, 4535, 97, 73, 4148, 209, 3115, 1260, 4154, 3276, 4928, 1816, 1710, 818, 3248, 4903, 4080, 5722, 1711, 2017, 2720, 2506, 4543, 5313, 3270, 4153, 4034, 2486, 827, 2740, 2891, 3702, 2033, 5606, 5361, 3520, 3663, 4140, 4550, 4547, 2883, 4542, 3800, 1880, 1192, 3283, 2589, 1705, 1624, 5349, 4225, 1228, 5725, 3805, 2626, 4778, 2421, 4940, 346, 2771, 809, 824, 1254, 5350, 5249, 4978, 4094, 3275, 1996, 3590, 4293, 2054, 2931, 620, 5727, 4991, 254, 2811, 1654, 3360, 5666, 3675, 1738, 2900, 1008, 1145, 1704, 4668, 4992, 4837, 2681, 2870, 2993, 3849, 4778, 2591, 3267, 5397]
+```
+
+---
+## SimHash i cerca per semblança.
+
+Imaginem  que tenim un conjunt d’adreces. Com podem decidir que són repetides?
+
+Cas 1:  
++ `Burra Hotel, 5 Market Sq, Burra, SA, 5417 `
++ `Camping Country Superstore, 401 Pacific Hwy, Belmont North, NSW, 2280 `
+
+Cas 2:  
++ `One Stop Bakery, 1304 High St Rd, Wantirna, VIC, 3152 `
++ `One Stop Bakery, 1304 High Street Rd, Wantirna South, VIC, 3152 `
+
+---
+
+## SimHash i cerca per semblança.
+
+
+Cas 3:  
++ `Park Beach Interiors, Showroom Park Beach Plaza Pacific Hwy, Coffs Harbour, NSW, 2450 `
++ `Park Beach Interiors, Showroom Park Beach Plaza Pacific Highway, Coffs Harbour, NSW, 2450 `
++ `Park Beach Interiors, Park Beach Plaza Pacific Hwy, Coffs Harbour, NSW, 2450 `
++ `Park Beach Interiors, 26 Park Beach Plaza, Pacific Hwy, Coffs Harbour, NSW, 2450`
+
+---
+## SimHash i cerca per semblança.
+
+
+Cas 4:  
++ `Weaver Interiors, 955 Pacific Hwy, Pymble, NSW, 207`
++ ` Weaver Interiors, 997 Pacific Hwy, Pymble, NSW, 2073 `
+
+Cas 5:  
++ `Gibbon Hamor Commercial Interiors, 233 Johnston St, Annandale, NSW, 2038 `
++ `Gibbon Hamor Development Planners, 233 Johnston St, Annandale, NSW, 2038`
+
+Necessitem una manera de “comparar” aquestes adreces.
+
+---
+## SimHash i cerca per semblança.
+
+Les tècniques de **shingling** són una forma de generar un conjunt que pot ser usat com a representant del text.
+
+Per exemple, podem usar bigrames de paraules: 
+
++ Els bigrames que representen  `the cat sat on the`  són 
+`(the,cat)`, `(cat,sat)`, `(sat,on)`, `(on,the)`.
+
+Llavors podem aplicar l’**índex de Jaccard** (el quocient entre la cardinalitat de la intersecció de dos conjunt i la cardinalitat de la unió) com a mesura de semblança entre adreces!
+
+Si `J(A,B)` és l’índex de Jaccard entre `A` i `B`, i tenim `A = {1,2,3}`, `B = {2,3,4}`, `C = {4,5,6}`, llavors,
+ `J(A,B) = 2/4 = 0.5`, ` J(A,C) = 0/6 = 0`, ` J(B,C) = 1/5 = 0.2`
+
+ I els conjunts més semblants són `A` i `B` i els menys semblants són `A` i `C`.
+
+---
+## SimHash i cerca per semblança.
+
+`Burra Hotel, 5 Market Sq, Burra, SA, 5417`  es pot representar (amb bigrames de lletres) com:  `A={" 5", " B", " H", " M", " S", ", ", "17", "41", "5 ", "54", "A,", "Bu", "Ho", "Ma", "SA", "Sq", "a ", "a,", "ar", "el", "et", "ke", "l,", "ot", "q,", "ra", "rk", "rr", "t ", "te", "ur"}`
+
+`Camping Country Superstore, 401 Pacific Hwy, Belmont North, NSW, 2280 ` es pot representar (amb bigrames de lletres) com:  `B={" 2", " 4", " B", " C", " H", " N", " P", " S", ", ", "01", "1 ", "22", "28", "40", "80", "Be", "Ca", "Co", "Hw", "NS", "No", "Pa", "SW", "Su", "W,", "ac", "am", "c ", "ci", "e,", "el", "er", "fi", "g ", "h,", "ic", "if", "in", "lm", "mo", "mp", "ng", "nt", "on", "or", "ou", "pe", "pi", "re", "rs", "rt", "ry", "st", "t ", "th", "to", "tr", "un", "up", "wy", "y ", "y,"}`. 
+
+`J(A,B)= 6/87 = 0.068`
+
+---
+## SimHash i cerca per semblança.
+
+Cas 2 
++ `A = One Stop Bakery, 1304 High St Rd, Wantirna, VIC, 3152`  
++ `B = One Stop Bakery, 1304 High Street Rd, Wantirna South, VIC, 3152 `
++ `J(A,B) = 46/57 = 0.807`
+
+Cas 3 
++ `A = Park Beach Interiors, Showroom Park Beach Plaza Pacific Hwy, Coffs Harbour, NSW, 2450`
++ ` B = Park Beach Interiors, Showroom Park Beach Plaza Pacific Highway, Coffs Harbour, NSW, 2450 `
++ `C= Park Beach Interiors, Park Beach Plaza Pacific Hwy, Coffs Harbour, NSW, 2450 `
++ `D= Park Beach Interiors, 26 Park Beach Plaza, Pacific Hwy, Coffs Harbour, NSW, 2450 `
++ `J(A,B)=0.888, J(A,C)=0.861, J(A,D)=0.808, J(B,C)=0.760, J(B,D)=0.716, J(C,D)=0.932`
+
+---
+
+## SimHash i cerca per semblança.
+
+Cas 4: 
+
+ + `A = Weaver Interiors, 955 Pacific Hwy, Pymble, NSW, 2073`
++  `B = Weaver Interiors, 997 Pacific Hwy, Pymble, NSW, 2073 `
++ `J(A,B)= 43/49 = 0.877`
+
+Cas 5
+ 
++ A = `Gibbon Hamor Commercial Interiors, 233 Johnston St, Annandale, NSW, 2038`
++  B = `Gibbon Hamor Development Planners, 233 Johnston St, Annandale, NSW, 2038`
++ ` J(A,B)= 49/76 = 0.644`
+
+---
+## SimHash i cerca per semblança.
+
+Si volem buscar el parell d’adreces més semblants tenim un problema: hem de comparar cada element amb tots els elements i això és `O(n^2)`.
+
++ 50 adreces són 1,225 comparacions. 
++ 500 adreces són 124,750 comparacions
++ 2000 adreces són 1,999,000 comparacions
++ 1,000,000 adreces són 499,999,500,000 comparacions.
+
+Podem calcular un valor `Sim(A,B)` que “aproximi” `J(A,B)` amb menys complexitat que `O(n^2)`?
+
+---
+## SimHash i cerca per semblança.
+
+Per fer-ho necessitem una funció de hash que assigni codis semblants (en el sentit de la distància de Hamming) a ítems semblants.
+
+Hash clàssic vs SimHash:
+
+```python
+p1 = 'the cat sat on the mat'
+p2 = 'the cat sat on a mat' 
+p3 = 'we all scream for ice cream' 
+hash(p1) 
+>>> 415542861 
+hash(p2) 
+>>> 668720516 
+hash(p3) 
+>>> 767429688
+simhash(p1) 
+>>> 851459198 
+>>> 00110010110000000011110001111110 
+simhash(p2) 
+>>> 847263864 
+>>> 00110010100000000011100001111000 
+simhash(p3) 
+>>> 984968088 
+>>> 00111010101101010110101110011000
+``` 
+
+---
+## SimHash i cerca per semblança.
+
+```python
+def hamming_distance(s1, s2): 
+	return sum(ch1 != ch2 for ch1, ch2 in zip(s1, s2))
+
+zip('hola','hole')
+>>> [('h', 'h'), ('o', 'o'), ('l', 'l'), ('a', 'e')]
+hamming_distance('hola','hole')
+>>> 1
+```
+---
+## SimHash i cerca per semblança.
+
+L’algorisme SimHash genera un codi de la manera següent:
+
++ Escollim una mida de la taula, per exemple 32 bits.
++ Sigui  `V=[0]*32`.
++ Representem el text amb els bigrames:
+
+> `'the cat sat on the mat'` =>  
+`{"th", "he", "e ", " c", "ca", "at", "t ", " s", "sa", " o", "on", "n ", " t", " m", "ma"}`
+
++ Fem el hash de cada característica amb una funció de 32 bits. 
+
+> `Hash(‘th’) = -502157718`
+> `Hash(‘he’) = -369049682` ... 
+
++ Per cada hash, si el bit `i` del hash és 1 llavors sumem 1 a `V[i]`; si el bit `i` del hash és 0 llavors restem 1 de `V[i]`.
+
++ El bit `i` de simhash és 1 si `V[i] > 0` i 0 en els altres casos.
+
+---
+## SimHash i cerca per semblança.
+
+Simhash és útil perquè si la distància de Hamming entre els simhash de dues frases és petit, llavors el coeficient de Jaccard és alt. Però com ho usem pel nostre objectiu (sense fer `O(n^2)` comparacions)?
+
+Observació: En el cas que 2 nombres tenen una distància de Hamming petita i la seva diferència està en els bits menys significatius, llavors això vol dir que són dos ítems que estan propers en una llista ordenada.
+
+  <center><img src="images/hash3.png" width="650"></center>
+
+---
+## SimHash i cerca per semblança.
+
+Per tant, només cal comprovar parelles adjacents de la llista per trobar la parella més semblant!
+
+Això redueix la complexitat de `n*(n-1)/2` comparacions amb `O(n^2)` a `n` càlculs de la funció hash amb `O(n)` + una ordenació `O(n log n)` + `n` distàncies amb `O(n)` = la complexitat total és `O(n log n)`.
+
+  <center><img src="images/hash4.png" width="450"></center>
+
+---
+## SimHash i cerca per semblança.
+
+
+Però hi ha una parella semblant que ha deixat apartats: el 4 i el 2, que tenen distància = 2...
+
+L’ordenació només ha ajuntat els que tenien bits poc significatius semblants...
+
+Però podem aprofitar una propietat de la distància de Hamming: una permutació dels bits dels nombres preserva la distància!
+
+  <center><img src="images/hash5.png" width="450"></center>
+
+Si permutem mitjançant la rotació dels bits tenim la mateixa distància però els bits més significatius passen a ser els menys significatius.
+
+---
+## SimHash i cerca per semblança.
+
+
+Però hi ha una parella semblant que ha deixat apartats: el 4 i el 2, que tenen distància = 2...
+
+Rotem els bits a l’esquerra dues vegades i després ordenem:
+
+
+  <center><img src="images/hash6.png" width="550"></center>
+
+---
+## SimHash i cerca per semblança.
+
+
+Per tant, l’algorisme ha de desplaçar els bits `B` vegades (on `B` és la longitud en bits) i fer:
+
++ Rotar els bits
++ Ordenar
++ Calcular la distància de Hamming entre files adjacents.
+
+Com que segurament `B << n` el cost de l’algorisme és més semblant a `O(n log n)` que a `O(n^2)`.
+
+---
+class: center, middle, inverse
+
+
+# **That's all folks!**
 
 
     </textarea>
     <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
     <script type="text/javascript">
-      var slideshow = remark.create();
+      var slideshow = remark.create({ratio: '16:9'});
 
       // Setup MathJax
       MathJax.Hub.Config({
