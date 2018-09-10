@@ -1,1 +1,1 @@
-# AlgorismicaUB2018-2019.github.io
+# Algorismica2018.github.io
