@@ -1,1 +1,3 @@
-# Algorismica2018.github.io
+# Algorismica - Universitat de Barcelona
+
+Apunts de l'assignatura
