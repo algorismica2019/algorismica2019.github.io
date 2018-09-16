@@ -181,6 +181,7 @@ class: center, middle, inverse
 + Tema 6: [Dividir i vèncer](#tema6)
 + Tema 7: [Algorismes de Cerca](#tema7)
 + Tema 8: [Hashing i Cerca](#tema8)
++ Tema 9: Estratègies algorísmiques per resoldre el PVC.
 
 
 ---
@@ -300,10 +301,13 @@ class: summary
   + Input(entrada), 
   + Output(sortida), 
   + Correcció, 
-  + Eficiència, 
-  + Errors, 
-  + Llenguatge de programació 
-    + Primitives (símbols), sintaxi, semàntica estàtica, semàntica.
+  + Eficiència (memòria i cicles), 
+  + Errors (tipus), 
+  + Conceptes de llenguatge de programació: 
+      + Primitives (símbols), 
+      + sintaxi, 
+      + semàntica estàtica, 
+      + semàntica.
 
 ---
 
@@ -540,11 +544,16 @@ Si un programa té un error que no ha estat detectat:
 ---
 class: exam
 
-### Possibles preguntes d'exàmen relacionades amb el tema1
+## Possibles preguntes d'exàmen del Tema 1
 
-1. Quines són les dues característiques que defineixen un algorisme?
++ Quines són les dues característiques que defineixen un algorisme?
++ Quins errors són més difícils de corregir i perquè?
++ Donat un algorisme simple, determinar si té o no té algun error i de quin tipus és.
++ Donat un algorisme simple, determinar si generarà una sortida (i quina) a partir d'una entrada determinada.
++ Donats dos programes diferents, determinar si implementen o no el mateix algorisme.
++ Donat un problema simple i dos possibles algorismes que el resolen, determinar quin dels dos és millor.
 
-2. Quins errors són més difícils de corregir i perquè?
+
 
 ---
 
@@ -571,8 +580,8 @@ class: summary
   + variables, 
   + iteracions definides / bucles, 
   + biblioteques (libraries) de funcions /  mòduls, 
-  + assignacions
-    + asssignacions simples, d'entrada, simultànies
+  + assignacions:
+      + asssignacions simples, d'entrada, simultànies.
 
 ---
 class: summary
@@ -581,28 +590,31 @@ class: summary
 	
 + **Llenguatge Python**: 
 
-  + com crear funcions i blocs de codi 
-  + def, 
-  + print(), 
-  + input i eval(input), 
-  + for i in range(star,stop,step), 
+  + com organitzar un programa modularment: funcions i blocs de codi 
+  + `def`, 
+  + `print()`, 
+  + `input` i `eval(input)`, 
+  + `for i in range(star,stop,step)`, 
   + índex, 
-  + operació **, 
-  + abs(), 
-  + %, 
-  + import  math, 
-  + math.sqrt
+  + operació `**`, 
+  + `abs()`, 
+  + `%`, 
+  + `import`
 
 ---
 
 # Python
 
-Si volem executar una seqüència d’instruccions podem **crear/definir** una **funció** (que en aquest cas s’anomena `hola`): 
+## Funcions
+
+Un programa en Python pot ser una simple seqüència d'instruccions vàlides, però si volem organitzar el codi de forma òptima podem **crear/definir**  **funcions** (que en aquest cas s’anomena `hola`): 
 
 ```python
 def hola():
     print("Hola!")
 ```
+
+Les funcions serveixen per facilitar la **reutilització** del codi i també la seva **organització**. 
 
 Un cop la tenim definida la poden **cridar/invocar**: 
 
@@ -610,17 +622,27 @@ Un cop la tenim definida la poden **cridar/invocar**:
 hola()
 > Hola!
 ```
-
 El símbol `>` indica una resposta de l'ordinador a través de la pantalla.
 
-Una funció **no fa res si no la cridem**: 
+---
+
+## Funcions
+
+
+La definició d'una funció no té cap efecte visible, **no fa res si no la cridem**: 
 
 ```python
 def hola():
     print("Hola!")
+>
 ```
 
-per si sol no mostra res a pantalla.
+Però internament, Python l'emmagatzema. 
+
+La funció es podrà cridar dins de la sessió en que s'ha definit. Si canviem de sessió i la volem usar tenim dues opcions:
+
++ Tornar-la a definir.
++ Guardar-la en un fitxer al disc de l'ordinador i llegir-la des de Python.
 
 ---
 ## Un programa en Python
@@ -634,7 +656,9 @@ def hola(persona):
     print("Hola", persona)
 ```
 
-Que quan es criden han de prendre un valor:
+Un paràmetre és un contenidor, que en el moment de la definició no té valor.
+
+Quan es crida la funció els paràmetres han de prendre un valor:
 
 ```python
 hola("Jordi")
@@ -682,25 +706,26 @@ Els elements més importants que tenim per a construir un programa Python són:
 
 + **Noms**. Els fem servir per anomenar les funcions i les variables. 
   + Tècnicament s’anomenen identificadors.  Han de començar per lletra o `_`  que pot ser seguit per qualsevol seqüència de lletres, dígits o subratllats (no espais!). 
-  + Distingeixen entre majúscules i minúscules. 
+  + Distingirem entre majúscules i minúscules. 
   + Hi ha noms reservats (`and`, `for`, `def`, etc.). 
 + **Expressions**: Són la part de codi que calcula o produeix nous valors de les dades. 
-  + L’expressió més simple s’anomena literal, i s’usa per especificar un valor.  Hem vist literals numèrics. Un identificador simple també pot ser una expressió (el nom d’una variable). 
-  + Podem crear expressions combinant expressions més simples amb operadors: `3.9 + x * (1-x)`
-  + Els operadors matemàtics segueixen les precedències estàndard.  
+  + L’expressió més simple s’anomena *literal*, i s’usa per especificar un valor: `3.6`, `"hola"`. 
+  + Les variables són literals.
+  + Podem crear expressions complexes combinant expressions més simples amb operadors: `3.9 + x * (1-x)`
+      + Els operadors matemàtics segueixen les precedències estàndard. Tot i que per tant no sigui necessari l'ús de parèntesi, és **molt** recomanable. 
 
 ---
 ## Un programa en Python
 
-+ **Sortides**. Hi ha la funció `print`, amb els següents arguments:  
++ **Sortides**. Són les dades o missatges que Python escriu com a producte de l'execució d'un programa. La forma més important de produïr una sortida és la funció `print`, amb els següents arguments:  
 
     `print(value1, value2,..., sep=' ', end='\n')`
 
-+ **Assignacions**. 
-  + Assignacions simples: `x = 3 + x * (1-x)` 
-  + Assignacions d’entrada: `x = input("Entra un valor: ")`. 
++ **Assignacions**. N'hi ha dos tipus:
+  + Assignacions simples: `x = 3 + x * (1-x)`, per assignar el valor d'una expressió a una variable.
+  + Assignacions d’entrada: `x = input("Entra un valor: ")`, per assignar l'entrada de l'usuari (alfanumèrica) a través del teclat a una variable.
 
-    A més a més de nombres, podem entrar qualsevol expressió i avaluar-la: 
+    Si volem introduir algun altre tipus de valor hem de fer servir la funció `eval` (que fins i tot ens permet evaluar expressions): 
 
 ```python
 a = eval(input("Entrada: "))
@@ -714,11 +739,9 @@ a
 
 ## Un programa en Python
 
-+ Assignacions simultànies, com per exemple: `sum, diff = x+y, x-y`
++ En Python podem fer assignacions simultànies, com per exemple: `sum, diff = x+y, x-y`
 
-  Aquest tipus d’assignació pot ser molt útil, com per exemple per intercanviar els valors de dues variables. 
-
-  Això no funciona!:
+  Aquest tipus d’assignació pot ser molt útil, com per exemple per *intercanviar els valors de dues variables*. Si volem intercanviar els valors de dues variables, això no funciona!:
 
   ```python
   x = 3
@@ -731,6 +754,7 @@ a
   ```
   
   Com ho faríeu?
+
 --
 
   ```python
@@ -746,63 +770,26 @@ a
 
 ## Un programa en Python
 
-+ Iteracions (*loops*) definides. Es fa un nombre definit de vegades, i són el tipus més simple d’iteració.
++ **Iteracions** (*loops*) definides. Els *iteradors* ens permeten executar un conjunt d'instruccions un nombre definit de vegades. La instrucció `for` és l'iterador més simple:
 
   ```python
+  for j in [0,1,2,3]:
+      print(i*i, end=" ")
+
+  > 0 1 4 9
+
   for i in range(10):
       print(i, end=" ")
 
   > 0 1 2 3 4 5 6 7 8 9 
   
-  for j in [0,1,2,3]:
-      print(i*i, end=" ")
-
-  > 0 1 4 9
-  ```
----
-
-## Els nombres i Python
-
-Les dades  que un programa pot manipular i emmagatzemar són de diferents tipus. El tipus de la dada determina quins valors pot tenir i quines operacions es poden fer. 
-
-  ```python
-  type(3)
-  > int 
-  
-  type(3.14)
-
-  > float 
-  
-  x = -32
-  type(x)
-
-  > int
-
-  print(3+4, 3+4.0)
-
-  > 7 7.0
-
-  print(10.0/3, 10/3)
-
-  > 3.3333333333335  3.3333333333335
   ```
 
-Els operadors bàsics són: `+`, `-`, `*`, `/`, `**`, `%`, `abs()`.
-
-`**` indica la potència,  `%` el mòdul,  i abs() el valor absolut. Què dona `3**2`, `10%3`, i `abs(-4)`?
+L'expressió `[0,1,2,3]` representa una **llista** de nombres. La funció `range` ens permet generar llistes de forma automàtica.
 
 ---
 
-## Els nombres i Python
-
-Python també ens dona funcions matemàtiques dins d’una biblioteca (*library*) especial anomenada `math`. Una biblioteca no és res més que un mòdul que conté definicions útils de funcions. 
-
-  ```python
-  import math
-  def main(a,b,c):
-      x = (-b+math.sqrt(b**2-4*a*c))/2*a
-      print(x)
-  ```
+## Un programa en Python
 
   Quan treballem amb nombres, la funció `range` pot ser molt útil. 
   La seva sintàxi és `range(start, stop, step)`.
@@ -817,6 +804,49 @@ Python també ens dona funcions matemàtiques dins d’una biblioteca (*library*
   list(range(0,-4,-1))
   > [0,-1,-2,-3]
   ```
+
+---
+
+## Els nombres i Python
+
+Les dades  que un programa pot manipular i emmagatzemar són de diferents **tipus**. El tipus de la dada determina quins valors pot tenir i quines operacions es poden fer. 
+
+  ```python
+  type(3)
+  > int 
+  type(3.14)
+  > float 
+  x = -32
+  type(x)
+  > int
+  print(3+4, 3+4.0)
+  > 7 7.0
+  print(10.0/3, 10/3)
+  > 3.3333333333335  3.3333333333335
+  ```
+
+--
+
+Els operadors bàsics són: `+`, `-`, `*`, `/`, `**`, `%`, `abs()`. `**` indica la potència,  `%` el mòdul,  i `abs()` el valor absolut. 
+
++ Què dona `3**2`, `10%3`, i `abs(-4)`?
+
+---
+
+## Els nombres i Python
+
+Python també ens proporciona funcions matemàtiques dins d’una biblioteca (*module*) especial anomenada `math`. 
+
+Una biblioteca no és res més que un fitxer que conté un conjunt de definicions de funcions. Quan carreguem una biblioteca normalment no s'executa res, només es fan definicions de funcions i potser de variables. 
+
+  ```python
+  import math
+  def main(a,b,c):
+      x = (-b+math.sqrt(b**2-4*a*c))/2*a
+      print(x)
+  ```
+
+Python té centenars de mòduls predefinits que l'usuari pot usar lliurement.
 
 ---
 
@@ -837,18 +867,20 @@ def factorial(num):
 
 ---
 
-### *Exemple explicat: el factorial d'un nombre*
+### Exemple explicat: el factorial d'un nombre.
 
 ```python
-def factorial(num):   					# definim la funció factorial amb un paràmetre
+def factorial(num): # definim la funció factorial amb un paràmetre
 	factorial = 1
-	if num < 0:						   # condicional
-	  print("Entra un enter positiu! ")		# només s'executa si es compleix la condició
-	elif num == 0:						# condicional
-	  print("El factorial de 0 és 1")          # només s'executa si es compleix la condició
-	else:							     # alternativa als condicionals
-	  for i in range(1,num+1):		         # 1,2,3...num
-	      factorial *= i				       # factorial = factorial * i
+	if num < 0:	# condicional
+	  print("Entra un enter positiu! ")	 # només s'executa si 
+                                        # es compleix la condició
+	elif num == 0:	# condicional
+	  print("El factorial de 0 és 1") # només s'executa si 
+                                        # es compleix la condició
+	else:	# alternativa als condicionals
+	  for i in range(1,num+1): # 1,2,3...num
+	      factorial *= i # factorial = factorial * i
 	  print("El factorial de ", num, "és", factorial)		
 ```
 
@@ -859,6 +891,14 @@ def factorial(num):   					# definim la funció factorial amb un paràmetre
   + [Lloc Web de Python](https://www.python.org/)
   + [Documentació](https://docs.python.org/3/)
   
+
+---
+class: exam
+
+## Possibles preguntes d'exàmen del Tema 2(I)
+
++ 
+
 ---
 
 class: center, middle, inverse
