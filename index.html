@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<!DOCTYPE html>
+
 
     <meta name="keywords" content="remark,remarkjs,markdown,slideshow,presentation">
     <meta name="description" content="A simple, in-browser, markdown-driven slideshow tool.">
@@ -37,6 +39,10 @@
         background:#003366;
         color: #ffffcc;
       }
+	  
+	  .summary a{
+        color: #ffddaa;
+	  }
 
       .exam {
         background: #802222;
@@ -601,7 +607,46 @@ class: summary
   + `%`, 
   + `import`
 
+	
 ---
+class: summary
+
+### Resum del tema 2 (III)
+	
++ **Llenguatge Python (2)**: 
+
+  + [cadenes de caràcters o strings](#strings)
+		+ slicing
+		+ concatenar(+) i repetir (*)
+		+ split, join, strip
+		+ islower, isupper, isalpha
+  + [ASCII i UniCode](ASCII)
+		+ ord i char
+  + [àmbit o scope](#scope)
+  + [crida de funcions](#crida)
+  + [operadors relacionals](#relacionals): <, <=, ==, >=, >, !=
+  + [operadors booleans](#booleans): and, or
+  + [estructures de control](#control): 
+		+ if elif else
+		+ while
+	
+  
+---
+class: summary
+
+### Resum del tema 2 (IV)
+	
++ **Llenguatge Python (3)**: 
+
+  + col·leccions de dades, mutables/immutables, homogènies/inhomogènies
+		+ [llistes](#llistes)
+		+ [diccionaris](#diccionaris)
+		+ [tuples](#tuples)
+  + referències
+  + clonatge  
+  
+---
+name:funcio
 
 # Python
 
@@ -898,7 +943,7 @@ class: exam
 ## Possibles preguntes d'exàmen del Tema 2(I)
 
 + 
-
+  
 ---
 
 class: center, middle, inverse
@@ -1012,6 +1057,8 @@ chr(97)
 ```
 ---
 
+name:ASCII
+
 class: center
 
 ## Taula ASCII
@@ -1041,6 +1088,8 @@ llista = cadena.split('.')
 ```
 
 ---
+
+name:strings
 
 ## Cadenes de caràcters (*strings*)
 
@@ -1090,11 +1139,12 @@ c
 ```
 
 ---
+name:scope
 
 ## Funcions
 
 
-*Scope* és el nom que donem als **llocs d’un programa** en els que *es pot fer referència* a una variable.  
+L'àmbit o *scope* és el nom que donem als **llocs d’un programa** en els que *es pot fer referència* a una variable.  
 
 Només es pot fer referència a les variables definides dins d’una funció dins la pròpia funció, són locals, i per això poden tenir el mateix nom que variables externes. 
 
@@ -1113,6 +1163,8 @@ print("fora, a val ",a)
 
 Què es mostrarà a pantalla?
 ---
+
+name:crida
 
 ## Crida de funcions
 
@@ -1148,11 +1200,12 @@ print(sumdif(a,b))
 
 Veiem-ho amb [Code Skulptor](http://www.codeskulptor.org/viz/index.html)
 
-<center><img src="images/CodeSkulptor.png" width="80%" alt="Codi de la funció anterior amb un punt de control a s = sum(a,b) i amb l'execució de la funció sum(a,b) a mitges dins l'entorn de CodeSkulptor"></center>
+<center><img src="images/CodeSkulptor.JPG" width="80%" alt="Codi de la funció anterior amb un punt de control a s = sum(a,b) i amb l'execució de la funció sum(a,b) a mitges dins l'entorn de CodeSkulptor"></center>
 
 
 
 ---
+name:relacionals
 
 ## Operadors relacionals 
 
@@ -1179,6 +1232,7 @@ Els operadors són:
 ```
 
 ---
+name:booleans
 
 ## Operadors booleans 
 
@@ -1201,6 +1255,7 @@ print(a or (not b) and c)
 
 
 ---
+name:control
 
 ## Estructures de control
 
@@ -1333,6 +1388,7 @@ $$ \sigma = \sqrt{\frac{\sum_{i=1}^n (x_i - \mu)^2}{n-1}} $$
 Quin problema tenim?
 
 ---
+name:llistes
 
 ## Col·lecions de dades
 
@@ -1594,6 +1650,7 @@ m[1][1]
 >5
 ```
 ---
+name:diccionaris
 
 ## Diccionaris
 
@@ -1662,6 +1719,8 @@ list(p.values())
 ```
 
 ---
+name:tuples
+
 ## Tuples
 
 Hi ha una altra classe de col·lecció a Python que és semblant a la llista, però que és immutable: la **tupla**.
@@ -1717,8 +1776,68 @@ def numW():
     for i in range(min(n,len(lfreq))-1):
         print(lfreq[i][1], lfreq[i][0])
 ```
+
 ---
 
+class: exam
+
+### Possibles preguntes d'exàmen relacionades amb el tema 2 (I)
+
+1. Converteix a una iteració `while` la següent iteració `for`:
+```python
+		word = 'hola'
+		for a in word:
+			print(a)
+```
+
+2. Quin és el valor de x?
+```python
+		x = 1 == 1 or 1 != 1
+```
+3. Què mostrarà el següent programa:
+```python
+		a = 2
+		if a + 1 > 3:
+			print a + 3
+		elif a > 2:
+			print a + 2
+		else:
+			print a + 1	
+```
+
+---
+class: exam
+
+### Possibles preguntes d'exàmen relacionades amb el tema 2 (II)
+
+1. Què es mostrarà per pantalla?
+```python
+		def funA(l):
+			l.append(1)
+			print(l)
+		l=[2,3,4]
+		funA(l)
+		print(l)
+		
+		def funB(w):
+			w=w+'s'
+			print(w)
+		w="gat"
+		funB(w)
+		print(w)
+```
+per què?
+
+
+2. Què sortirà a pantalla?
+```python
+		def funA(x,y,z):
+			return (x + y) &gt; z
+			
+		print funA(2,3,4)	
+```
+
+---
 
 class: center, middle, inverse
 name:tema3
@@ -1726,6 +1845,32 @@ name:tema3
 # Tema 3:  **Algorísmes Numèrics**
 
 ---
+class: summary
+
+### Resum del tema 3 
+
++ [Sistema numeració](#sistnum)
+		+ base
+		+ nombre de dígits 
++ [Seqüència de Fibonacci](#fib)
++ Notació [Gran O](#granO)
++ Aritmètica bàsica
+	+ [suma](#suma)
+	+ [multiplicació](#mult)
+		+ versió d'Al Khwarizmi
+	+ [divisió](#div)
++ Aritmètica Modular		
+	+ [suma](#sumamod)
+	+ [multiplicació](#multmod), versió d'Al Khwarizmi
+	+ divisió
+	+ [potència](#potmod)
++ [Algorisme d'Euclides](#euclides)
++ [Test de primeritat](#testprimer)
+	+ [Teorema petit de Fermat](#fermat)
+	+ [Teorema de Lagrange](#lagrange)
+		
+---
+name:sistnum
 
 ## Una mica d'història
 
@@ -1785,6 +1930,7 @@ Una de les persones que més van valorar aquesta aportació va ser Leonardo Fibo
 
 
 ---
+name:fib
 
 ## Una mica d'història
 
@@ -1932,6 +2078,7 @@ for i in range(327864287686868676876876876887986):
 Caldrà tenir en compte quina complexitat computacional té operar dos nombres d’aquestes característiques.
 
 ---
+name:granO
 
 ## La notació Gran O
 
@@ -2002,6 +2149,7 @@ Veiem un exemple:
 Quan fem un canvi de base la mida del nombre només es veu afectada per un factor multiplicatiu, i per tant considerem que no canvia!
 
 ---
+name:suma
 
 ## Aritmètica Bàsica: Suma
 
@@ -2011,7 +2159,7 @@ Hi ha una propietat, que ens serà molt útil, dels nombres decimals:
 
 Aquesta regla ens permet definir una regla general per sumar dos nombres en qualsevol base: la que hem après a l’escola!
 
-<center><img src="images/suma.png" width="350" alt: Carry 1 x x 1 1 1  first operand x 1 1 0 1 0 1 (53)  second operand x 1 0 0 0 1 1 (35)  result 1 0 1 1 0 0 0 (88)"></center>
+<center><img src="images/suma.png" width="350" alt="Carry 1 x x 1 1 1  first operand x 1 1 0 1 0 1 (53)  second operand x 1 0 0 0 1 1 (35)  result 1 0 1 1 0 0 0 (88)"></center>
 --
 
 
@@ -2034,6 +2182,7 @@ Es pot fer millor?
 No! Per sumar `n` bits com a mínim s’han de poder llegir i escriure, i això ja són `2n` passos!
 
 ---
+name: mult
 
 ## Aritmètica Bàsica: Multiplicació
 
@@ -2083,6 +2232,7 @@ L’algorisme s'acaba després de `n` crides recursives.red[*] i a cada crida fe
 .footnote[.red[*]Si cada vegada que cridem la funció recursivament anem dividint per `2` el paràmetre `x` al cap de `n` crides el paràmetre ja valdrà `0`. Per exemple, si `x=16`, que necessita 5 bits (`n`= 5) per representar-se, llavors arribem a `0` en `5` crides:  `16, 8, 4, 2, 0`].
 
 ---
+name: div
 
 ## Aritmètica Bàsica: Divisió
 
@@ -2157,43 +2307,55 @@ En certs aspectes de la informàtica (per exemple, la criptografia) és importan
 
 Definim `x mòdul N`, o `x%N`,  com la resta de dividir `x` per `N`, és a dir, si `x = qN+r`  amb `0 < =r < N`, llavors `x mòdul N` és `r`.red[*].
 
+Per exemple 12 % 7 és 5, i 100 % 12 és 4.
+
 Això permet definir una equivalència (congruència) entre nombres (inclosos els negatius!). Direm que `x` és congruent amb `y`, `mod N`, si i només si `N` divideix `(x-y)`.
+
+Per exemple 16, 28, 40 i 100 són congruents entre sí mòdul 12.
 
 .footnote[.red[*]La complexitat és `O(n^2)`]
 
 ---
+name:sumamod
 
 ## Aritmètica Modular
 
+Quan treballem amb aritmètica modular tots els operands i els resultats han d'estar en mòdul N. 
+
 La suma i la multiplicació no són gaire complexes d’analitzar.
 
-**Suma modular (a + b) % N :** es resol fent a % N + b % N 
+**Suma modular (a + b) % N :** 
 
-
-> Si el resultat passa de `N-1` el que hem de fer és simplement restar del resultat `N`. Altrament, no hem de fer res.
-
-> Exemple: (34 + 15) % 12 = 34 % 12 + 15 % 12 = 10 + 3 = 13 => com que passa de 11 => 13 - 12 => **1**, i efectivament 49 % 12 = 1
+> Sabem que  (a + b) % N  = (a % N + b % N) % N
 
 > A més, sabem que si dos nombres estan el rang `[0, N-1]` (`a % N` i `b % N` ho estan) la seva suma està en el rang `[0, 2(N-1)]` (que només és un bit més). 
+
+> Com que els operands ja estan en mòdul N, fem la suma bàsica i l'únic que hem de tenir en compte és que si el resultat passa de `N-1` li hem de restar `N`. Altrament, no hem de fer res.
+
+> Exemple: (11 + 8) % 12 = 19 => com que passa de 11 => 19 - 12 => **7**
 
 > Per tant, **la complexitat de la suma modular és lineal `O(n)`**, als dígits de `N`.red[*]. 
 
 > .footnote[.red[*] Recordem que per escriure N en base b necessitem `log_b(N)` dígits.]
 ---
+name:multmod
 
 ## Aritmètica Modular
 
-**Multiplicació modular (a * b) % N**: es resol fent a % N * b % N
+**Multiplicació modular (a * b) % N**: 
 
-> De forma semblant, fem la multiplicació normal i transformem al rang `[0,N-1]`, si és que ens hem passat.
+> Sabem que  (a * b) % N = (a % N * b % N) % N
 
-> Exemple: (34 * 15) % 12 = 34 % 12 * 15 % 12 = 10 * 3 = 30 => com que passa de 11 => 30 % 12 => **6**, i efectivament 510 % 12 = 6
+> A més, sabem que el producte pot ser fins `(N-1)^2` però això es pot representar amb `2n` bits. Per transformar el resultat hem de dividir per N i calcular el mòdul (amb complexitat O(n^2)). 
 
->El producte pot ser fins `(N-1)^2` però això es pot representar amb `2n` bits. Per transformar el resultat hem de dividir per N (amb complexitat O(n^2)). 
+> De forma semblant a la suma, fem la multiplicació bàsica i transformem al rang `[0,N-1]`, si és que ens hem passat.
+
+> Exemple: (11 * 8) % 12 = 88 % 12 => com que passa de 11 => 88 % 12 => 4
 
 > Per tant, **la complexitat de la multiplicació modular és `O(n^2)`**.
 
 ---
+name:potmod
 
 ## Aritmètica Modular
 
@@ -2228,7 +2390,7 @@ O sigui, calcular `x^y mod N` fent `y` multiplicacions successives per `x mòdul
 <center><img src="images/modul.png" width="550" alt="x mod N, passa a x^2 mod N, després x^3 mod N, ... fins a x^y mod N"></center>
 
 Tots aquests resultats són menors que `N`
-i per tant no necessiten tants bits. Per tant, les multiplicacions són de complexitat `O(n2)`.
+i per tant no necessiten tants bits. Per tant, les multiplicacions són de complexitat `O(n^2)`.
 
 El problema és que si `y` té 500 bits, hem de fer `y - 1` multiplicacions (o sigui, anem a una complexitat d'ordre `2^500`) i l’algorisme és exponencial sobre `n`, la mida de `y`. 
 
@@ -2275,9 +2437,10 @@ def modexp(x,y,N):
 		            # la y inicial no és una potència de 2, cal multiplicar per x, també mòdul N 
 ```
 
-La complexitat és `O(n^3)`: `n` crides recursives i per cada una d'elles una multiplicació mòdul `N` d'ordre n^2.
+La **complexitat és `O(n^3)`**: `n` crides recursives i per cada una d'elles una multiplicació mòdul `N` d'ordre n^2.
 
 ---
+name:euclides
 
 ## Algorisme d'Euclides
 
@@ -2316,6 +2479,7 @@ Es pot demostrar que això vol dir que en dos iteracions successives els dos arg
 Si inicialment eren enters de `n` bits, en `2n` crides recursives arribarem al final de l’algorisme. Com que cada crida implica una divisió d’ordre quadràtic, `(a mod b)` , el temps total serà `O(n^3)`.
 
 ---
+name:testprimer
 
 ## Nombres primers
 
@@ -2342,7 +2506,7 @@ O el que és el mateix, no podem factoritzar grans nombres, però podem mirar f�
 
 Per fer-ho, ens basarem en un teorema de l'any 1640...
 --
-
+name:fermat
 
 ** Teorema petit de Fermat**: 
 
@@ -2413,6 +2577,7 @@ Amb un nombre moderat de tests podem determinar si un nombre és primer!
 <center><img src="images/test.png" width="750" alt="algorisme fermat en codi i algorisme que l'usa per generar un primer de 1024 bits"></center>
 
 ---
+name:lagrange
 
 ## Nombres primers grans
 
@@ -2452,11 +2617,37 @@ La solució del darrer punt és:
 .bold[Per tant, els algorísmes de més alta complexitat en un procés criptogràfic tenen `O(n^3)`]. 
 
 ---
+class:exam
+### Possibles preguntes d'exàmen relacionades amb el tema 3 
+
+1. Tenim una n=30, té sentit un algorisme d'ordre n^2? i un d'ordre n!? perquè?
+
+2. Suma 12 i 25 amb l'algorisme d'Al Khwarizmi
+
+3. Quin ordre de complexitat tenen les següents operacions de l'aritmètica bàsica? i de l'aritmètica modular?
+	suma, multiplicació, divisió
+
+4. Quina probabilitat hi ha que un nombre de 2 bits sigui primer?
+
+5. Perquè és segur enviar un missatge encriptat? quina dificultat troba qui el vulgui desxifrar?
+
+
+---
 
 class: center, middle, inverse
 name:tema4
 
 # Tema 4: **Algorismes per text**
+
+---
+class: summary
+
+### Resum del tema 4 
+
++ Cerca de cadenes
++ Cerca aproximada
++ Distància d'edició
+	+ Levensthein
 
 ---
 
@@ -2863,12 +3054,41 @@ El càlcul de la matriu té una complexitat de `O(mn)`, mentre que la cerca del
 Trobem tres respostes a distància 1: `cas`, `cass`, `cassa`
 
 ---
+class: exam
+
+### Possibles preguntes d'exàmen relacionades amb el tema 4
+
+1. Completa la següent matriu de Levensthein
+
+<center><img src="images/lev1.png" width="350" alt="matriu de Levensthein parcialment completa"></center>
+
+2. Quina distància d'edició tenen les següents paraules?
+
+GAT GOS  
+GAT TIGRE
+
+3. En el pitjor cas i amb força bruta quin és el cost de cercar un patró en un text?
+
+---
+
 
 class: center, middle, inverse
 name:tema5
 
 # Tema 5: **Algorismes i força bruta**
 
+---
+class: summary
+
+### Resum del tema 5 
+
++ Ordenar
+	+ [Ordenació per selecció](#sel)
++ Algorismes intractables: cas fort (NP-hard) i cas dèbil
+	+ Cerca exhaustiva
+		+ [TSP](#TSP)
+		+ [Knapsack](#knapsack)
+	
 ---
 
 ## Força Bruta
@@ -2904,6 +3124,7 @@ Hi ha molts algorismes d’ordenació. Anem a veure’n un basat en la força br
 <center><img src="images/bruta1.png" width="700"></center>
 
 ---
+name:sel
 
 ## Ordenació per selecció
 
@@ -2947,14 +3168,14 @@ I el nombre de vegades que s’executa és:
 <center><img src="images/sort5.png" width="700"></center>
 
 
-Evidentment l’algorisme és quadràtic, tot i que només fem `O(n)` intercanvis a la llista.
+Evidentment l’algorisme és quadràtic, **O(n^2)**, tot i que només fem `O(n)` intercanvis a la llista.
 
 ---
 
 ## Ordenació per selecció
 
 
-L’ordenació per selecció no és un bon mètode d’ordenació perquè hi ha altres algorismes de complexitat `O(n log n)`!
+L’ordenació per selecció no és un bon mètode d’ordenació perquè hi ha altres algorismes de complexitat `O(n&nbsp;log&nbsp;n)`!
 
 .bold[**Avís**: No useu mai un algorisme `O(n^2)` per ordenar (bubble sort, insertion sort, ...).]
 
@@ -2986,6 +3207,7 @@ Pot dividir-se en varies parts: com generar totes les possibles solucions, selec
 La resolució de problemes per cerca exhaustiva sol comportar l’exploració d’espais molt grans de solucions, per la qual cosa resulta pràctica només per a instàncies petites del problema.
 
 ---
+name:TSP
 
 ## Cerca exhaustiva: TSP o el problema del viatjant de comerç.
 
@@ -3087,6 +3309,8 @@ D’això en diem problemes **NP-hard**.
 Hi ha algorismes que troben solucions probablement bones, tot i que no podem estar segurs que siguin òptimes.
 
 ---
+name: knapsack
+
 ## Cerca exhaustiva: El problema de la motxilla.
 
 El **problema de la motxilla**, altrament dit KP (en anglès, *Knapsack Problem*) és un problema d'optimització combinatòria.
@@ -3151,6 +3375,19 @@ D’això en diem problemes NP-hard.
 
 
 ---
+class: exam
+
+### Possibles preguntes d'exàmen relacionades amb el tema 5
+
+1. Quin cost té un *bon* algorisme d'ordenació?
+
+2. Quin cost té l'ordenació per selecció?
+
+3. Perquè diem que el problema del viatjant de comerç és NP-hard?
+
+4. Es pot trobar una solució millor al problema de la motxilla?
+
+---
 
 class: center, middle, inverse
 name:tema6
@@ -3158,32 +3395,29 @@ name:tema6
 # Tema 6: **Dividir i vèncer**
 
 ---
+class: summary
 
-## Algorismes de dividir i vèncer
+### Resum del tema 6 
 
-Dividir i vèncer és una **estratègia de resolució de problemes** consistent en:
-
-+  Dividir un problema en subproblemes que són instàncies més petites (des del punt de vista de la mida de l'entrada) del mateix problema.
-
-+  Resoldre recursivament aquests subproblemes.
-
-+  Combinar adequadament les solucions dels subproblemes per trobar la solució del problema original.
-
---
-
-Les **qüestions a resoldre** són tres:
-
-+  Com anem dividint el problema en subproblemes de forma recursiva?
-
-+  Com aturem la recursió i donem una solució al darrer subproblema?
-
-+  Com combinem les solucions recursives per assolir la solució del problema complet?
-
++ Recursió
+	+ [Torres de Hanoi](#Hanoi)
++ [Dividir i vencer](#divvenc)
+	+ [Teorema Màster](#master)
+	+ [MergeSort](#mergesort)
+		+ merge
+	+ [QuickSort](#quicksort)
+		+ partition
+	+ Multiplicació de matrius ([Strassen](#matrius))
+	+ Càlcul de la [mediana](#mediana)
+	
 ---
 
-## Què és la recursió?
+## La recursió
+
+Per poder comprendre l'estratègia de dividir i vèncer ens cal aprofundir en el concepte de la recursió. I l'estudiarem a través d'un exemple clàssic: les torres de Hanoi
 
 ---
+name:Hanoi
 
 ## Exemple: el problema de les torres de Hanoi
 
@@ -3292,6 +3526,30 @@ executa instruccions de cost `O(1)`, el cost és `O(2^(n+1))`. És a dir,  ordre
 
 
 ---
+name:divvenc
+
+## Algorismes de dividir i vèncer
+
+Dividir i vèncer és una **estratègia de resolució de problemes** consistent en:
+
++  Dividir un problema en subproblemes que són instàncies més petites (des del punt de vista de la mida de l'entrada) del mateix problema.
+
++  Resoldre recursivament aquests subproblemes.
+
++  Combinar adequadament les solucions dels subproblemes per trobar la solució del problema original.
+
+--
+
+Les **qüestions a resoldre** són tres:
+
++  Com anem dividint el problema en subproblemes de forma recursiva?
+
++  Com aturem la recursió i donem una solució al darrer subproblema?
+
++  Com combinem les solucions recursives per assolir la solució del problema complet?
+
+
+---
 
 ## Exemple: Suma (recursiva) dels elements d'una llista.
 
@@ -3324,6 +3582,7 @@ L’esquema general d’aquests algorismes és: tenim un problema de mida `n`, q
 Aquesta recurrència té una solució tancada, que està enunciada al **Teorema Master**.
 
 --
+name:master
 
 ### Teorema Master
 
@@ -3357,10 +3616,10 @@ i per tant resulta `O(n^2)`.
 
 A continuació coneixerem dos algorismes que ens ajudaran a ordenar una llista de forma més eficient, concretament amb una complexitat d'O(n log n)
 
-Ambdós usen funcions auxiliars per preparar o per recombinar els subproblemes en que es basa la divisió.
+Cadascun usa alguna funció auxiliar per preparar (partition al quicksort) o per recombinar (merge al mergesort) els subproblemes en que es basa la divisió.
 
 ---
-
+name:mergesort
 
 
 ## Algorismes de dividir-i-vèncer: **merge**
@@ -3476,6 +3735,7 @@ Quan dividim creem 2 problemes, de mida `n/2`. Per tant, com que `a=2` i `b=2` l
 La funció mergesort es pot implementar iterativament, però per fer-ho necessitem una estructura que no veurem en aquesta assignatura: la cua.
 
 ---
+name:quicksort
 
 ## Algorismes de dividir-i-vèncer: **quicksort**
 
@@ -3621,6 +3881,7 @@ En el **cas promig** el nombre de comparacions serà `O(1,38 n log_2 n)`, és a 
 La complexitat se seguiria expressant com a **O(n log n)**.
 
 ---
+name:matrius
 
 ## Algorismes de dividir-i-vèncer: multiplicació de matrius
 
@@ -3670,6 +3931,7 @@ La complexitat ara és `T(n) = 7 T(n/2) + O(n^2)`, que resulta en una complexita
 >>> 72443596007499056
 ```
 ---
+name:mediana
 
 ## Algorismes de dividir-i-vèncer: càlcul de la mediana
 
@@ -3764,11 +4026,47 @@ def kSelect(A,k,length):
 
 ```
 ---
+class: exam
+
+### Possibles preguntes d'exàmen relacionades amb el tema 6
+
+1. Quin cost té l'algorisme quicksort? és més ràpid que el mergesort?
+2. Calcula les complexitats dels següents algorismes, segons el teorema Màster:
+
+	* T (n) = 3T (n/2) + n^2
+	* T (n) = 4T (n/2) + n^2
+	* T (n) = T (n/2) + 2^n
+	* T (n) = 2^n T (n/2) + n^n
+	* T (n) = 16T (n/4) + n
+	* T (n) = 2T (n/2) + n log n
+
+3. A cada iteració de partition quants elements addicionals tenim ordenats?
+
+---
 
 class: center, middle, inverse
 name:tema7
 
 # Tema 7: **Algorismes de Cerca**
+
+---
+class: summary
+
+### Resum del tema 7 
+
++ Cerca líneal 
++ [Cerca binària](#cercbin)
++ Cerca exhaustiva
++ Cerca aleatòria
++ Cerca amb [algorismes genètics](#genetic)
+	+ concepte de generació
+	+ funció d'adaptació
+	+ mutació i creuament
+	+ selecció supervivents
+		+ mètode estàndard
+		+ mètode d'ordenació
+		+ mètode diversitat
++ Distància de Hamming
 
 ---
 
@@ -3821,6 +4119,7 @@ def linsearch(list,ele):
 ``` 
 
 ---
+name:cercbin
 
 ## Algorismes de cerca: cerca binària
 
@@ -3971,6 +4270,8 @@ def rsearchfunc1d():
 En general, la cerca totalment aleatòria **no** és una bona solució: tenim el cost de la cerca afitat, però depèn molt de l’aleatorietat i té un resultat molt semblant, si no equivalent, a la cerca lineal, per força bruta. 
 
 ---
+name:genetic
+
 ## Algorismes de cerca: cerca amb algorismes genètics.
 
 Anem a veure un tipus d’algorisme aproximat que ens fa una cerca, amb un cert component aleatori més intel·ligent, de l’espai de solucions: la cerca basada en **algorismes genètics**.
@@ -4419,11 +4720,46 @@ En el nostre problema hem fet `50x150=7.500` avaluacions!
 
 
 ---
+class: exam
+
+### Possibles preguntes d'exàmen relacionades amb el tema 7
+
+1. Quan té sentit aplicar algorismes genètics?
+
+2. Tens aquests dos cromosomes: creua'ls i muta'ls.
+	
+	- 0001110001
+	- 1100110011
+
+3. Tens els següents cromosomes. Quins sobreviuran a la següent generació? perquè?
+
+	- 0001110000
+	- 1100110011
+	- 1000110001
+	- 1101110001
+	- 1111110111
+	- 1000110010
+
+4. Tens una llista ordenada amb 32 números i busques si conté el número 5. Quantes comparacions hauràs de fer com a màxim?
+
+6. Tens una llista no necessàriament ordenada amb 32 números i busques si conté el número 5. Quin cost té en el cas pitjor? surt a compte ordenar-la?
+
+---
 class: center, middle, inverse
 name:tema8
 
 # Tema 8: **Hashing i Cerca**
 
+---
+class: summary
+
+### Resum del tema 8 
+
++ Concepte de col·lisió
++ Propietats de les funcions hash
++ SimHash
+	+ Índex de Jaccard  J(A/B) = A &#8745; B / A &#8746;  B 
+		
 ---
 
 ## Cerca i llistes
@@ -4921,10 +5257,212 @@ Per tant, l’algorisme ha de desplaçar els bits `B` vegades (on `B` és la lon
 Com que segurament `B << n` el cost de l’algorisme és més semblant a `O(n log n)` que a `O(n^2)`.
 
 ---
+class: exam
+
+### Possibles preguntes d'exàmen relacionades amb el tema 8
+
+1. Si tenim un conjunt amb 99 elements i fem un hash. Quants valors diferents haurà de tenir aquest hash. Raona la teva resposta
+
+2. Quines propietats ha de complir una funció hash?
+
+3. Com valoraràs si dues adreces són similars? 
+
+---
 class: center, middle, inverse
 
+<center><img src="images/allfolks.gif" width="100%"></center>
 
-# **That's all folks!**
+---
+class: center, middle, inverse
+
+# Sumari de tots els temes
+
+---
+class: summary
+
+### Resum del tema 1: Què és un algorisme 
+
++ **Conceptes**: 
+
+  + [Algorisme](#algorisme), 
+  + Input(entrada), 
+  + Output(sortida), 
+  + [Correcció](#correccio), 
+  + [Eficiència](#eficiencia), 
+  + Errors, 
+  + Llenguatge de programació 
+		+ [Primitives (símbols), sintaxi, semàntica estàtica, semàntica](#llenguatge)
+
+
+---
+class: summary
+
+### Resum del tema 2: Python (I)
+	
++ **Conceptes de programació**: 
+
+  + Instrucció, 
+  + variables, 
+  + [funció](#funcio), 
+	+ paràmetres, 
+	+ crida/invocació, 
+  + [noms, expressions, literals](#noms),
+  + assignacions
+    + asssignacions simples, d'entrada, simultànies
+  + comentaris, 
+  + iteracions definides o bucles/loops, 
+  + biblioteques (libraries) de funcions /  mòduls, 
+
+---
+class: summary
+
+### Resum del tema 2: Python (II)
+	
++ **Llenguatge Python (1)**: 
+
+  + com crear funcions i blocs de codi 
+	+ def, 
+  + print(), 
+  + input i eval(input), 
+  + for i in range(star,stop,step), 
+  + índex, 
+  + operacions **, abs(), %, 
+  + import  math, 
+	+ math.sqrt
+	
+
+---
+class: summary
+
+### Resum del tema 2: Python (III)
+	
++ **Llenguatge Python (2)**: 
+
+  + [cadenes de caràcters o strings](#strings)
+		+ slicing
+		+ concatenar(+) i repetir (*)
+		+ split, join, strip
+		+ islower, isupper, isalpha
+  + [ASCII i UniCode](#ASCII)
+		+ ord i char
+  + [àmbit o scope](#scope)
+  + [crida de funcions](#crida)
+  + [operadors relacionals](#relacionals): <, <=, ==, >=, >, !=
+  + [operadors booleans](#booleans): and, or
+  + [estructures de control](#control): 
+		+ if elif else
+		+ while
+	
+  
+---
+class: summary
+
+### Resum del tema 2: Python (IV)
+	
++ **Llenguatge Python (3)**: 
+
+  + col·leccions de dades, mutables/immutables, homogènies/inhomogènies
+		+ [llistes](llistes)
+		+ [diccionaris](diccionaris)
+		+ [tuples](tuples)
+  + referències
+  + clonatge  
+  
+---
+class: summary
+
+### Resum del tema 3: Algorismes Numèrics 
+
++ [Sistema numeració](#sistnum)
+		+ base
+		+ nombre de dígits 
++ [Seqüència de Fibonacci](#fib)
++ Notació [Gran O](#granO)
++ Aritmètica bàsica
+	+ [suma](#suma)
+	+ [multiplicació](#mult)
+		+ versió d'Al Khwarizmi
+	+ [divisió](#div)
++ Aritmètica Modular		
+	+ [suma](#sumamod)
+	+ [multiplicació](#multmod), versió d'Al Khwarizmi
+	+ divisió
+	+ [potència](#potmod)
++ [Algorisme d'Euclides](#euclides)
++ [Test de primeritat](#testprimer)
+	+ [Teorema petit de Fermat](#fermat)
+	+ [Teorema de Lagrange](#lagrange)
+		
+---
+
+class: summary
+
+### Resum del tema 4: [Algorismes per Text](#tema4) 
+
++ Cerca de cadenes
++ Cerca aproximada
++ Distància d'edició
+	+ Levensthein
+
+---
+class: summary
+
+### Resum del tema 5: [Algorismes i Força Bruta](#tema5) 
+
++ Ordenar
+	+ [Ordenació per selecció](#sel)
++ Algorismes intractables: cas fort (NP-hard) i cas dèbil
+	+ Cerca exhaustiva
+		+ [TSP](#TSP)
+		+ [Knapsack](#knapsack)
+
+---
+class: summary
+
+### Resum del tema 6: [Dividir i vèncer](#tema6)
+
++ Recursió
+	+ [Torres de Hanoi](#Hanoi)
++ [Dividir i vencer](#divvenc)
+	+ [Teorema Màster](#master)
+	+ [MergeSort](#mergesort)
+		+ merge
+	+ [QuickSort](#quicksort)
+		+ partition
+	+ Multiplicació de matrius ([Strassen](#matrius))
+	+ Càlcul de la [mediana](#mediana)
+	
+---
+class: summary
+
+### Resum del tema 7: [Algorismes de Cerca](#tema7) 
+
++ Cerca líneal 
++ [Cerca binària](#cercbin)
++ Cerca exhaustiva
++ Cerca aleatòria
++ Cerca amb [algorismes genètics](#genetic)
+	+ concepte de generació
+	+ funció d'adaptació
+	+ mutació i creuament
+	+ selecció supervivents
+		+ mètode estàndard
+		+ mètode d'ordenació
+		+ mètode diversitat
++ Distància de Hamming
+
+---
+class: summary
+
+### Resum del tema 8: [Hashing i Cerca](#tema8) 
+
++ Concepte de col·lisió
++ Propietats de les funcions hash
++ SimHash
+	+ Índex de Jaccard  J(A/B) = A &#8745; B / A &#8746;  B 
+
+
+
 
 
 </textarea>
