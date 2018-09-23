@@ -5,6 +5,13 @@
    padding:0 !important;
    font-size: 1em
 }
+
+.remark-slide-scaler {
+	width:27cm;
+	height:18cm;
+	transform: scale(0.66);
+	left: 1cm; top: 1cm;
+}
 .remark-slide-number {
 	display:none !important;
 }
