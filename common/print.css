@@ -1,7 +1,7 @@
 .remark-slide { 
    page-break-before: always;
    width:27cm !important;
-   margin:0cm !important;
+   margin:-2cm !important;
    padding:0 !important;
 }
 .inverse, .summary, .exam {
