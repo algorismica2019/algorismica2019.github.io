@@ -1,8 +1,8 @@
 .remark-slide { 
    page-break-before: always;
-   width:25cm !important;
-   height:18cm !important;
-   margin: 0 !important;
+   width:27cm !important;
+   height:16cm !important;
+   margin: -2cm -2cm 0 0!important;
    padding:0 !important;
    font-size: 1em
 }
