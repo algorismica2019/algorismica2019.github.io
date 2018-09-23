@@ -1,12 +1,12 @@
 .remark-slide { 
-   page-break-before: always;
-   width:27cm !important;
    margin: 0 0 0 -2cm !important;
    padding:0 !important;
-   font-size: 1em
+   /* height:90%;
+   width:90%;*/
 }
 
 .remark-slide-scaler {
+   page-break-before: always;
 	width:27cm;
 	height:18cm;
 	transform: scale(0.66);
