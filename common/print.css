@@ -1,8 +1,10 @@
 .remark-slide { 
    page-break-before: always;
-   width:29cm !important;
+   width:25cm !important;
+   height:18cm !important;
    margin: 0 !important;
    padding:0 !important;
+   font-size: 1em
 }
 .inverse, .summary, .exam {
 	background-color: #ffffff !important;
