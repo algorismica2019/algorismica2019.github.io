@@ -2,9 +2,12 @@
    page-break-before: always;
    width:27cm !important;
    height:15cm !important;
-   margin: -5cm -0 0 -2cm !important;
+   margin: 0 0 0 -2cm !important;
    padding:0 !important;
    font-size: 1em
+}
+.remark-slide-number {
+	margin: 0 !important;
 }
 .inverse, .summary, .exam {
 	background-color: #ffffff !important;
