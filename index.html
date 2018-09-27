@@ -9,7 +9,7 @@
 
     <title>Apunts d'algorísmica</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="common/print.css" media="print">
+	<link rel="stylesheet" type="text/css" href="common/print.css" media="print">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
@@ -943,7 +943,9 @@ class: exam
 
 ## Possibles preguntes d'exàmen del Tema 2(I)
 
-+ 
++ Donat un programa simple en Python, detectar (sense executar-lo) possibles errors sintàctics i semàntics.
++ Donat un programa simple en Python, determinar (sense executar-lo), si s'aturarà o té un buble infinit.
+
   
 ---
 
@@ -1811,7 +1813,7 @@ class: exam
 
 ### Possibles preguntes d'exàmen relacionades amb el tema 2 (II)
 
-1. Què es mostrarà per pantalla?
++ Què es mostrarà per pantalla?
 ```python
 		def funA(l):
 			l.append(1)
@@ -1830,13 +1832,31 @@ class: exam
 per què?
 
 
-2. Què sortirà a pantalla?
++ Què sortirà a pantalla?
 ```python
 		def funA(x,y,z):
 			return (x + y) &gt; z
 			
 		print funA(2,3,4)	
 ```
+
+---
+class: exam
+
+### Possibles preguntes d'exàmen relacionades amb el tema 2 (III)
+
++ Fes un programa en Python que, donat un enter `N`, calculi totes les combinacions de 4 enters, `A`, `B`, `C`, `D`, que compleixen aquesta equació: `A^2+B^2+C^2+D^2 = N`. Nota: no s'han de considerar les combinacions repetides!
+
++ Completa aquest programa (substituïnt `____`):
+```python
+define word_lengths(list_of_words):
+        list_of_lengths = []
+        for each ____ in ____:
+                list_of_lengths.append(____)
+        return list_of_lengths
+```
+de manera que ens retorni una llista amb la longitud de les paraules: `
+word_lengths(["red", "green", "blue"]) => [3, 5, 4]`
 
 ---
 
