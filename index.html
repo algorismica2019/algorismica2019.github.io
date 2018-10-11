@@ -1582,6 +1582,8 @@ def head(l):
 a = [1,2,3]
 head(a)
 > 1
+a
+> [1,2,3]
 ```
 
 
@@ -1594,6 +1596,8 @@ def deleteHead(l):
 
 a = [1,2,3]
 deleteHead(a)
+> [2,3]
+a
 > [2,3]
 ```
 
@@ -1621,9 +1625,8 @@ En canvi en el següent cas:
 numbers = [1,2,3]
 def test(l):
     l.reverse()
-
+test(numbers)
 print(numbers)
-
 > [3,2,1]
 ```
 ---
@@ -5537,6 +5540,19 @@ class: summary
                 // Enable or disable counting of incremental slides in the slide counting
                 countIncrementalSlides: true
               }); 
+
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+
+  <script type="text/javascript">
+// Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+
+      MathJax.Hub.Configured();
   </script>
 </body>
 
