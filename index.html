@@ -2169,11 +2169,11 @@ Per tant, necessitem `log_b (N+1)` dígits per escriure `N` en base `b` (això s
 
 Veiem un exemple: 
 
-	k=5, b=2, 
+> `k=5, b=2` 
 
-	Si tenim 5 dígits en base 2, podem representar fins a 2^5 -1 = 32 - 1 = 31, efectivament 11111 = 16 + 8 + 4 + 2 + 1 = 31
+>	Si tenim 5 dígits en base 2, podem representar fins a `2^5 -1 = 32 - 1 = 31`, efectivament `1111 = 16 + 8 + 4 + 2 + 1 = 31`
 
-	Per altra banda, necessitarem log_2 (31+1) dígits per escriure 31 en base b => 5 dígits
+>	Per altra banda, necessitarem `log_2 (31+1)` dígits per escriure `31` en base `b => 5` dígits
 
 Quan fem un canvi de base la mida del nombre només es veu afectada per un factor multiplicatiu, i per tant considerem que no canvia!
 
@@ -2202,7 +2202,7 @@ Però, **quina complexitat té aquest algorisme**?
 ## Aritmètica Bàsica: Suma
 
 
-Suposem que tant `x` com `y` tenen `n` bits. La seva suma té com a màxim `n+1` bits. La seva complexitat és per tant, `O(n)`.
+Suposem que tant `x` com `y` tenen `n` bits. La seva suma `(x+y)` té com a màxim `n+1` bits. La seva complexitat és per tant, `O(n)`.
 
 Es pot fer millor? 
 --
@@ -2269,9 +2269,7 @@ La divisió `x/y` consisteix en trobar un quocient `q` i una resta `r` de manera
 
 $$ x = y \times q + r $$
 
-amb  `r < y`.
-
-La seva versió recursiva és: 
+amb  `r < y`. La seva versió recursiva és: 
 
 ```python
 def div(x,y):
