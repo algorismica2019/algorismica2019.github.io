@@ -2322,7 +2322,7 @@ Aquest esquema té sentit si:
 
 + Factoritzar `n = p*q` és impossible. 
 + Trobar `(p,q)` “grans” es basa en un mètode eficient.
-+ Calcular `x*y % n` es es basa en un mètode eficient.
++ Calcular `x^y % n` es es basa en un mètode eficient.
 + Calcular `e*d % (p-1)*(q-1) = 1` es basa en un mètode eficient.
 
 ---
@@ -2349,21 +2349,19 @@ name:sumamod
 
 Quan treballem amb aritmètica modular tots els operands i els resultats han d'estar en mòdul N. 
 
-La suma i la multiplicació no són gaire complexes d’analitzar.
+**Suma modular `(a + b) % N` :** 
 
-**Suma modular (a + b) % N :** 
-
-> Sabem que  (a + b) % N  = (a % N + b % N) % N
+> Sabem que  `(a + b) % N  = (a % N + b % N) % N`
 
 > A més, sabem que si dos nombres estan el rang `[0, N-1]` (`a % N` i `b % N` ho estan) la seva suma està en el rang `[0, 2(N-1)]` (que només és un bit més). 
 
 > Com que els operands ja estan en mòdul N, fem la suma bàsica i l'únic que hem de tenir en compte és que si el resultat passa de `N-1` li hem de restar `N`. Altrament, no hem de fer res.
 
-> Exemple: (11 + 8) % 12 = 19 => com que passa de 11 => 19 - 12 => **7**
+> Exemple: `(11 + 8) % 12 = 19` => com que passa de `11 => 19 - 12 => 7`
 
-> Per tant, **la complexitat de la suma modular és lineal `O(n)`**, als dígits de `N`.red[*]. 
+> Per tant, **la complexitat de la suma modular és lineal `O(n)`**, on `n` és el nombre de dígits de `N`.red[*]. 
 
-> .footnote[.red[*] Recordem que per escriure N en base b necessitem `log_b(N)` dígits.]
+> .footnote[.red[*] Recordem que per escriure `N` en base `b` necessitem `n = log_b(N)` dígits.]
 ---
 name:multmod
 
@@ -2371,13 +2369,13 @@ name:multmod
 
 **Multiplicació modular (a * b) % N**: 
 
-> Sabem que  (a * b) % N = (a % N * b % N) % N
+> Sabem que  `(a * b) % N = (a % N * b % N) % N`
 
-> A més, sabem que el producte pot ser fins `(N-1)^2` però això es pot representar amb `2n` bits. Per transformar el resultat hem de dividir per N i calcular el mòdul (amb complexitat O(n^2)). 
+> A més, sabem que el producte pot ser fins `(N-1)^2` i que això es pot representar amb `2n` bits. Per transformar el resultat hem de dividir per `N` i calcular el mòdul (amb complexitat `O(n^2)`). 
 
 > De forma semblant a la suma, fem la multiplicació bàsica i transformem al rang `[0,N-1]`, si és que ens hem passat.
 
-> Exemple: (11 * 8) % 12 = 88 % 12 => com que passa de 11 => 88 % 12 => 4
+> Exemple: `(11 * 8) % 12 = 88 % 12` => com que passa de `11 => 88 % 12 => 4`
 
 > Per tant, **la complexitat de la multiplicació modular és `O(n^2)`**.
 
@@ -2414,7 +2412,8 @@ Una solució és fer totes les operacions intermèdies mòdul `N`.
 
 O sigui, calcular `x^y mod N` fent `y` multiplicacions successives per `x mòdul N`.
 
-<center><img src="images/modul.png" width="550" alt="x mod N, passa a x^2 mod N, després x^3 mod N, ... fins a x^y mod N"></center>
+$$ x \mbox{ mod } N \rightarrow x^2 \mbox{ mod } N \rightarrow x^3 \mbox{ mod } N \rightarrow
+\dots x^N \mbox{ mod } N$$
 
 Tots aquests resultats són menors que `N`
 i per tant no necessiten tants bits. Per tant, les multiplicacions són de complexitat `O(n^2)`.
