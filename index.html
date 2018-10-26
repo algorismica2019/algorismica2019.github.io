@@ -2418,7 +2418,7 @@ $$ x \mbox{ mod } N \rightarrow x^2 \mbox{ mod } N \rightarrow x^3 \mbox{ mod } 
 Tots aquests resultats són menors que `N`
 i per tant no necessiten tants bits. Per tant, les multiplicacions són de complexitat `O(n^2)`.
 
-El problema és que si `y` té 500 bits, hem de fer `y - 1` multiplicacions (o sigui, anem a una complexitat d'ordre `2^500`) i l’algorisme és exponencial sobre `n`, la mida de `y`. 
+El problema és que si `y` té 500 bits, hem de fer `2^(y-1)` multiplicacions (o sigui, anem a una complexitat d'ordre `2^500`) i l’algorisme és exponencial sobre `n`, la mida de `y`. 
 
 ---
 
@@ -2426,44 +2426,56 @@ El problema és que si `y` té 500 bits, hem de fer `y - 1` multiplicacions (o s
 
 Però una petita modificació pot ser un gran canvi!  
 
-Si l'exponent fos 2, x^2 mod N seria equivalent a una simple multiplicació (x * x) mod N, d'ordre O(n^2), i generalitzant observem que si `y` és una potència de 2, es pot calcular `x` elevat a `y` 
-elevant al quadrat, mòdul `N`, successivament:
++ Si l'exponent fos `2, x^2 mod N` seria equivalent a una simple multiplicació `(x * x) mod N`, d'ordre `O(n^2)`.
 
-<center><img src="images/modul2.png" width="650" alt="x mod N elevat a 2 modul N passa a ser x^2 mod N, després x^4 mod N, després x^8 mod N... fins a x^2[log y] mod N"></center>
++ Generalitzant, observem que si `y` és una potència de 2, es pot calcular `x` elevat a `y`  elevant al quadrat, mòdul `N`, successivament:
 
-Exemple: 5^8 mod 12 = (((((5 mod N)^2)mod N)^2 mod N)^2 mod N)
+$$ x \mbox{ mod } N \rightarrow x^2 \mbox{ mod } N \rightarrow x^4 \mbox{ mod } N \rightarrow
+\dots x^{2^{\log y}} \mbox{ mod } N$$
 
-390625 mod 12 = 1 = (((25 mod 12)^2 mod 12)^2 mod 12)
+Exemple: 
 
-Segons el que hem vist de la multiplicació, cada potència pren un temps proporcional a `O(log^2 N)` i hi ha             
-`log_y` multiplicacions: l’algorisme és polinòmic `O(n^2)`  respecte la mida de `N` i lineal `O(m)` respecte la mida de `y`.
+> `5^8 mod 12 = (((((5 mod N)^2)mod N)^2 mod N)^2 mod N)`
 
-Per un valor qualsevol de `y` (que no sigui potència de 2) només hem de reduir primer el nombre a la multiplicació de les potències de 2 que corresponen a la representació binaria de `y`, i per cadascuna aplicar l'algorisme anterior:
-
-<center><img src="images/modul3.png" width="650" alt="x^25 = x^11001 en base 2, que és igual a x^10000 base 2 * x^1000 base 2 * x^1 base 2, que és igual a x^16 * x^8 * x^1" ></center>
+> `390625 mod 12 = (((25 mod 12)^2 mod 12)^2 mod 12) = 1`
 
 ---
 
 ## Aritmètica Modular
 
-Aqueste operacions es poden expressar recursivament fent aquestes operacions mòdul `N`:
+Segons el que hem vist de la multiplicació, cada potència pren un temps proporcional a `O(log^2 N)` (o el que és el mateix `O(n^2)`) i hi ha `m = log_y` multiplicacions: l’algorisme és polinòmic, `O(n^2)`,  respecte la mida de `N` i lineal `O(m)` respecte la mida de `y`.
+
+El més interessant d'aquest resultat és que es pot generalitzar a valors de `y` que no són potències de dos amb un augment de cost molt reduït:
+
+> Per un valor qualsevol de `y` (que no sigui potència de 2) només hem de reduir primer el nombre a la multiplicació de les potències de 2 que corresponen a la representació binaria de `y`, i per cadascuna aplicar l'algorisme anterior:
+
+$$ x^{25} = x^{{11001}_2} = x^{{10000}_2} \cdot x^{{1000}_2} \cdot x^{{1}_2} = x^{16} \cdot x^{8} \cdot x^{1}$$
+
+
+---
+
+## Aritmètica Modular
+
+Aquestes operacions es poden expressar recursivament fent operacions mòdul `N`:
 
 ```python
 def modexp(x,y,N):
     import math
     if y == 0:
         return 1    # cas base x^0 dona 1
+    
     z = modexp(x, math.floor(y/2), N)  
 	                # dividim la potència per 2 fins arribar al cas base  
     if y%2 == 0:
         return (z**2)%N
 		            # anem fent les potències de 2 mòdul N
     else:
-        return (x*z**2)%N
-		            # la y inicial no és una potència de 2, cal multiplicar per x, també mòdul N 
+        return (x*(z**2))%N
+		            # la y inicial no és una potència de 2, 
+		            # cal multiplicar per x, també mòdul N 
 ```
 
-La **complexitat és `O(n^3)`**: `n` crides recursives i per cada una d'elles una multiplicació mòdul `N` d'ordre n^2.
+La **complexitat és `O(n^3)`**: `n` crides recursives i per cada una d'elles una multiplicació mòdul `N` d'ordre `n^2`.
 
 ---
 name:euclides
@@ -2475,12 +2487,24 @@ La forma més obvia de trobar el **màxim comú divisor** de dos nombres és tro
 > `1035 = 32*5*23`  i  `759 = 3*11*23`, per tant `mcd = 3*23 = 69`
  
 El problema és que no es coneix cap algorisme eficient per **factoritzar** els nombres!
+No hi ha cap algorisme publicat per poder factoritzar-lo en temps polinòmic, és a dir, no existeix cap algorisme publicat que pugui factoritzar-lo en temps `O(n^k)` independentment de quina sigui la constant `k`.
+
+**Curiositat**: El millor algorísme que es coneix té aquesta complexitat:
+
+$${\displaystyle O\left(\exp \left(\left({\begin{matrix}{\frac {64}{9}}\end{matrix}}n\right)^{1 \over 3}(\log n)^{2 \over 3}\right)\right)}$$
+
+per factoritzar un nombre de `n` bits.
+
+---
+name:euclides
+
+## Algorisme d'Euclides
 
 Fa més de 2000 anys que Euclides va enunciar un algorisme alternatiu per trobar el màxim comú divisor de dos nombres `a` i `b`.
 
 ```python
 def gcd(a,b):
-    while a:			# aquí es fa un truc, si a!=0 s'avalua com a True
+    while a:			# aquí es fa un truc, si 'a!=0', 'a' s'avalua com a True
         a,b = b%a, a
     return b
 
@@ -2496,9 +2520,9 @@ Quina complexitat té per nombres grans?
 
 La primera cosa que hem de veure és com es van reduint els nombres a mesura que anem calculant.
 
-Cal fixar-se que a cada iteració els arguments `(a,b)` es converteixen a `(b mod a, a)`: canviem l’ordre i el més gran queda reduït al mòdul del petit.
+> Cal fixar-se que a cada iteració els arguments `(a,b)` es converteixen a `(b mod a, a)`: canviem l’ordre i el més gran queda reduït al mòdul del petit.
 
-Es pot demostrar que això vol dir que en dos iteracions successives els dos arguments decreixen al menys a la meitat, és a dir, perden un bit en la seva representació.
+> Es pot demostrar que això vol dir que**en dos iteracions successives els dos arguments decreixen al menys a la meitat**, és a dir, perden un bit en la seva representació.
 --
 
 
@@ -2511,16 +2535,18 @@ name:testprimer
 
 **Test de primeritat**: És un nombre primer el vostre DNI?
 
+--
+
 Comprovar si un nombre més o menys gran és primer per la via de la factorització és una tasca a priori dura, perquè hi ha molts factors per provar. Però hi ha alguns fets que ens poden estalviar feina:
 
 > No cal considerar com a factor cap nombre parell excepte el 2. De fet, podem obviar tots els factors que no són primers.
 
 
-> Podem dir que un nombre és primer si no hem trobat cap candidat a factor menor que arrel quadrada de `N`, atès que `N=K*L`, i per tant és impossible que els dos nombres siguin més grans que arrel de `N`.
+> **Podem dir que un nombre és primer si no hem trobat cap candidat a factor menor que arrel quadrada de `N`, atès que `N=K*L`, i per tant és impossible que els dos nombres siguin més grans que arrel de `N`**.
 
 Fins aquí, bé, però no trobarem més maneres d’eliminar més candidats! 
 
-Això podria fer dir que provar la primeritat d’un nombre és un problema dur, però això no és veritat: **només és dur si ho intentem pel camí de la factorització**!
+Això podria fer dir que **provar la primeritat d’un nombre és un problema dur**, però això no és veritat: **només és dur si ho intentem pel camí de la factorització**!
 
 ---
 
@@ -2536,7 +2562,7 @@ name:fermat
 
 ** Teorema petit de Fermat**: 
 
-> Si `p` és primer, llavors per a qualsevol enter `a`, `1 <= a < p`, es compleix que `a^(p-1)` és congruent amb `1`, mòdul `p`.
+> Si `p` és primer, llavors per a qualsevol enter `a`, `1 <= a < p`, es compleix que `a^(p-1) % p = 1`.
 
 Això ens suggereix un test directe per comprovar si un nombre és primer. Però cal anar en compte….
 
@@ -2550,8 +2576,8 @@ def fermat(num, test_count):
         return False
     for x in range(test_count):
         val = randint(1, num-1)             # genera nombre aleatori
-        if pow(val, num-1, num) != 1:		# la potència a Python es basa en l'algorisme modular
-            return False
+        if pow(val, num-1, num) != 1:	    # la potència a Python es 
+            return False                    # basa en l'algorisme modular
     return True
 
 fermat(41651,10)
@@ -2564,7 +2590,7 @@ Els problema és que aquest teorema és **necessari però no suficient**: no diu
 
 > D’entrada, es coneixen uns certs nombres compostos, anomenats nombres de Carmichael, que passen el test i no són primers... però són pocs i és poc probable que en trobem un de forma aleatòria. Per altra banda existeixen algorismes modificats de Fermat que els eviten.
 
-> Què passa amb els nombres compostos que no són nombres de Carmichael?
+Què passa amb els nombres compostos que no són nombres de Carmichael?
 
 ---
 
