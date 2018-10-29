@@ -2443,7 +2443,7 @@ Exemple:
 
 ## Aritmètica Modular
 
-Segons el que hem vist de la multiplicació, cada potència pren un temps proporcional a `O(log^2 N)` (o el que és el mateix `O(n^2)`) i hi ha `m = log_y` multiplicacions: l’algorisme és polinòmic, `O(n^2)`,  respecte la mida de `N` i lineal `O(m)` respecte la mida de `y`.
+Segons el que hem vist de la multiplicació, cada potència pren un temps proporcional a `O(log^2 N)` (o el que és el mateix `O(n^2)`) i hi ha `m = log_y` multiplicacions: l’algorisme és polinòmic, `O(n^2)`,  respecte la mida de `N` i lineal `O(m)` respecte la mida de `y`. Per tant, si `N` i `y` tenen la mateixa mida, la complexitat de l'exponenciació és `O(n^3)`.
 
 El més interessant d'aquest resultat és que es pot generalitzar a valors de `y` que no són potències de dos amb un augment de cost molt reduït:
 
@@ -2484,7 +2484,7 @@ name:euclides
 
 La forma més obvia de trobar el **màxim comú divisor** de dos nombres és trobar els factors dels dos nombres i multiplicar llavors els seus factors comuns. Per exemple, el mcd de `1035` i `759`:
 
-> `1035 = 32*5*23`  i  `759 = 3*11*23`, per tant `mcd = 3*23 = 69`
+> `1035 = 3^2*5*23`  i  `759 = 3*11*23`, per tant `mcd = 3*23 = 69`
  
 El problema és que no es coneix cap algorisme eficient per **factoritzar** els nombres!
 No hi ha cap algorisme publicat per poder factoritzar-lo en temps polinòmic, és a dir, no existeix cap algorisme publicat que pugui factoritzar-lo en temps `O(n^k)` independentment de quina sigui la constant `k`.
@@ -2583,22 +2583,37 @@ def fermat(num, test_count):
 fermat(41651,10)
 > True
 ```
+
+Aquest algorime va mostrejant nombres entre `1` i `num-1` i si en troba algun que compleix el teorema
+petit de Fermat s'atura i el retorna.
+
 --
 
+Aquest algorisme té dues limitacions:
 
-Els problema és que aquest teorema és **necessari però no suficient**: no diu què passa quan `N` no és primer!
++ Només provem una valor `val`. 
++ Aquest teorema és **necessari però no suficient**: no diu què passa quan `N` no és primer!
 
-> D’entrada, es coneixen uns certs nombres compostos, anomenats nombres de Carmichael, que passen el test i no són primers... però són pocs i és poc probable que en trobem un de forma aleatòria. Per altra banda existeixen algorismes modificats de Fermat que els eviten.
-
-Què passa amb els nombres compostos que no són nombres de Carmichael?
 
 ---
 
 ## Nombres primers
 
+D’entrada, es coneixen uns certs nombres compostos, anomenats nombres de Carmichael, que passen el test i no són primers... però són pocs i és poc probable que en trobem un de forma aleatòria. Per altra banda **existeixen algorismes modificats de Fermat que els eviten**.
+
+A més a més hem de veure què passa amb els nombres compostos que no són nombres de Carmichael...
+
+--
+
 **Lema**
 
 > Si `a^(N-1)` no és congruent amb 1 mòdul `N` per algun `a` que sigui nombre compost però no de Carmichael, llavors com a mínim en la meitat dels casos en que `a < N` el teorema petit de Fermat fallarà.
+
+---
+
+## Nombres primers
+
+
 
 ** Test de primeritat **
 
@@ -2654,7 +2669,7 @@ Abans hem dit que l'esquema de comunicació secreta té sentit si:
 
 + Factoritzar `n = p*q` és pràcticament impossible. 
 + Trobar `(p,q)` “grans” es basa en un mètode eficient.
-+ Calcular `x*y % n` es es basa en un mètode eficient.
++ Calcular `x^y % n` es es basa en un mètode eficient.
 + Calcular `e*d % ((p-1)(q-1)) == 1` es basa en un mètode eficient.
 
 Només ens falta solucionar el darrer punt!
