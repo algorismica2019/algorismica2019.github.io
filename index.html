@@ -2714,7 +2714,7 @@ class: summary
 + Cerca de cadenes
 + Cerca aproximada
 + Distància d'edició
-	+ Levensthein
+	+ Levenshtein
 
 ---
 
@@ -2801,11 +2801,13 @@ def BFStringMatching(t,p):
 
 La complexitat de l’algorisme es pot analitzar en tres situacions:
 
-+ En moltes ocasions, fem una comparació i movem. Aquest és el millor cas, i la complexitat si per tots els moviments féssim això seria `O(n)`. Aquest seria el cas, per exemple, de tenir una patró que comença per una lletra que no apareix al text.
++ En moltes ocasions, fem una comparació i movem. Aquest és el **millor cas**, i la complexitat si per tots els moviments féssim això seria `O(n)`. Aquest seria el cas, per exemple, de tenir una patró que comença per una lletra que no apareix al text.
 
-+ En d’altres, fem totes les comparacions. Aquest és el pitjor cas, i la complexitat si per tots els moviments féssim això seria `O(n*m)`.
++ En d’altres, fem totes les comparacions. Aquest és el **pitjor cas**, i la complexitat, si per tots els moviments féssim això, seria `O(n*m)`.
 
-+ En un cas real, amb llenguatge natural, la complexitat mitja d'aquest algorisme s’acosta a `O(n+m)=O(n)`(calculada de forma empírica).
++ En un cas real, amb llenguatge natural, la **complexitat mitja** d'aquest algorisme s’acosta a `O(n+m)=O(n)`(l'única manera de calcular aquesta complexitat és de forma empírica: fent experiments).
+
+Hi ha algorismes (com l'algorisme de **Boyer-Moore**) que són lleugerament més òptims que la cerca ingènua, tot i que des del punt de vista de la complexitat són també `O(n)`.
 
 ---
 
@@ -2819,18 +2821,20 @@ La cerca no és l’únic problema interessant:
 --
 
 
-El problema de la **cerca aproximada** és: donat un patró `P[1..m]` i un text `T[1..n]`, trobar la subcadena de `T` amb la distància d’edició mínima respecte a `P`.
-
-La **distància d’edició** és el nombre d’operacions primitives per convertir un string en un altre.
+El problema de la **cerca aproximada** és: donat un patró `P[1..m]` i un text `T[1..n]`, trobar la subcadena de `T` amb la distància d’edició mínima respecte a `P`. La **distància d’edició** és el nombre d’operacions primitives per convertir un string en un altre.
 
 
-<center><img src="images/string2.png" width="350" alt="la distància entre barbershop i varvar suposa canviar la e per una a i les dues Bs per Vs"></center>
+<center><img src="images/string2.png" width="320" alt="la distància entre barbershop i varvar suposa canviar la e per una a i les dues Bs per Vs"></center>
 
-Un algorisme basat en la força bruta calcularia la distància d’edició de `P` a totes les subcadenes de `T`, i llavors escolliria la que té distància mínima.
+En el primer cas de l'exemple hem de fer una *edició* de la paraula `BERBER` per convertir-la en `BARBER`. En el segon i tercer cas en calen 2. 
 
 ---
 
 ## Cerca aproximada de cadenes.
+
+Un algorisme basat en la força bruta **calcularia la distància d’edició de `P` a totes les subcadenes de `T`, i llavors escolliria la que té distància mínima**.
+
+--
 
 Com calculem totes les subcadenes d'una cadena?
 
@@ -2851,7 +2855,7 @@ $$
 \sum_{i = 1}^n i = \frac{n(n+1)}{2}
 $$ 
 
-que és una complexitat `O(n^2)`.
+que té una complexitat `O(n^2)`.
 
 ---
 
@@ -2861,15 +2865,13 @@ Un algorisme basat en la força bruta per fer cerca aproximada de cadenes tindri
 
 Hi ha algorismes més òptims per fer-ho?
 
-> Sí, l'algorisme de Boyer-Moore, l'algorisme de Horspool, etc. 
-
 ---
 
 ## Càlcul de la distancia d'edició: Levenshtein
 
 Abans de veure com cercar un patró (curt) en un text (llarg), anem a veure com calcular la “distància” `d` entre dos strings (curts).
 
-> Quina és la distància entre `BARBER` i `BRBAR`
+> Quina és la distància entre `BARBER` i `BRBAR`?
 
 Això es fa amb l’algorisme de Levenshtein:
 
@@ -2878,7 +2880,7 @@ Això es fa amb l’algorisme de Levenshtein:
 <center><img src="images/lev.png" width="100" alt="bust de Levensthein"></center>
 
 
-.footnote[Traduït a l'anglès: Levenshtein VI (1966). “Binary codes capable of correcting deletions, insertions, and reversals".Soviet Physics Doklady 10: 707–10.]
+.footnote[Traduït a l'anglès: Levenshtein VI (1966). “Binary codes capable of correcting deletions, insertions, and reversals". Soviet Physics Doklady 10: 707–10.]
 
 ---
 
@@ -2926,7 +2928,7 @@ Suposem que ja tenim una alineació òptima entre els prefixos `p[0,i-1]` i `t[0
 
 Només podem fer tres coses!
 
-1 Fem que `p[i]` i `t[j]` facin correspondència. Si `p[i]=t[j]` llavors `d[i,j]=d[i-1,j-1]`. Si no substituim i  `d[i,j]=d[i-1,j-1]+1`.
+1) Fem que `p[i]` i `t[j]` facin correspondència. Si `p[i]=t[j]` llavors `d[i,j]=d[i-1,j-1]`. Si no substituim i  `d[i,j]=d[i-1,j-1]+1`.
 
 <center><img src="images/lev5.png" width="350"></center>
 
@@ -2934,12 +2936,12 @@ Només podem fer tres coses!
 
 ## Càlcul de la distancia d'edició: Levenshtein
 
-2 Decidim que hi ha un forat al patró, i per tant inserim i `d[i,j]=d[i-1,j]+1`
+2) Decidim que hi ha un forat al patró, i per tant inserim i `d[i,j]=d[i-1,j]+1`
 
 <center><img src="images/lev6.png" width="350"></center>
 
 
-3 Decidim que hi ha un forat al text, i per tant eliminem i  `d[i,j]=d[i,j-1]+1`
+3) Decidim que hi ha un forat al text, i per tant eliminem i  `d[i,j]=d[i,j-1]+1`
 
 <center><img src="images/lev7.png" width="350"></center>
 
@@ -3125,16 +3127,16 @@ class: exam
 
 ### Possibles preguntes d'exàmen relacionades amb el tema 4
 
-1. Completa la següent matriu de Levensthein
++ Completa la següent matriu de Levensthein
 
-<center><img src="images/lev1.png" width="350" alt="matriu de Levensthein parcialment completa"></center>
+<center><img src="images/lev1.png" width="250" alt="matriu de Levensthein parcialment completa"></center>
 
-2. Quina distància d'edició tenen les següents paraules?
++ Quina distància d'edició tenen les següents paraules?
 
 GAT GOS  
 GAT TIGRE
 
-3. En el pitjor cas i amb força bruta quin és el cost de cercar un patró en un text?
++ En el pitjor cas i amb força bruta quin és el cost de cercar un patró en un text?
 
 ---
 
