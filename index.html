@@ -3162,16 +3162,22 @@ class: summary
 
 ## Força Bruta
 
-Diem que un algorisme està basat en la força bruta si implementa la solució a un problema basant-se directament en la definició del problema i en la definició dels conceptes involucrats, sense cap optimització.
+Diem que un algorisme està basat en la **força bruta** si implementa la solució a un problema basant-se directament en la definició del problema i en la definició dels conceptes involucrats, sense cap mena d'optimització. Exemples:
 
-+ Calcular `a^n mod m`, per (`a > 0`, `n >= 0`).
-+  Calcular `n!`
-+  Multiplicar dues matrius `A` i `B`.
-+  Buscar el valor mínim en els valors d’una funció.
++  Calcular `a^n mod m`, per (`a > 0`, `n >= 0`), calculant primer `a^n` i després passant aquest resultat a `mod n`. Ja hem vist que hi havia millors maneres de fer-ho!
++  Calcular `n!` com `n * (n-1) * ... * 1`. En aquest cas no sabem fer-ho millor.
++  Multiplicar dues matrius `X` i `Y` aplicant la definició de multiplicació de matrius:
+
+```python
+for i in range(len(X)):
+   for j in range(len(Y[0])):
+       for k in range(len(Y)):
+           result[i][j] += X[i][k] * Y[k][j]
+```
 
 ---
 
-## Ordenació d'una llista
+## El problema de l'ordenació d'una llista
 
 Ordenar és una de les operacions més repetides per qualsevol ordinador!
 
@@ -3187,7 +3193,7 @@ Ordenar és una de les operacions més repetides per qualsevol ordinador!
 Hi ha molts algorismes d’ordenació. Anem a veure’n un basat en la força bruta.
 
 ---
-## Ordenació d'una llista
+## Algorismes d'ordenació d'una llista
 
 
 <center><img src="images/bruta1.png" width="700"></center>
@@ -3237,51 +3243,57 @@ I el nombre de vegades que s’executa és:
 <center><img src="images/sort5.png" width="700"></center>
 
 
-Evidentment l’algorisme és quadràtic, **O(n^2)**, tot i que només fem `O(n)` intercanvis a la llista.
+Evidentment l’algorisme és **quadràtic**, `O(n^2)`, tot i que **només fem `O(n)` intercanvis** a la llista.
 
 ---
 
-## Ordenació per selecció
+## Avís Important
 
 
-L’ordenació per selecció no és un bon mètode d’ordenació perquè hi ha altres algorismes de complexitat `O(n&nbsp;log&nbsp;n)`!
+> .bold[L’ordenació per selecció no és un bon mètode d’ordenació perquè hi ha altres algorismes de complexitat `O(n log n)`, tal com hem vista a la taula anterior.]
 
-.bold[**Avís**: No useu mai un algorisme `O(n^2)` per ordenar (bubble sort, insertion sort, ...).]
+> .bold[No useu mai un algorisme `O(n^2)` per ordenar (bubble sort, insertion sort, ...). Aquí només els veiem com a exemple algorísmic, no perque siguin útils.]
 
 ---
 
-## Algorismes
+## Conceptes Algorísmics
 
-Hi ha molts problemes computacionals que s’han demostrat intractables. La intractabilitat pot ser de dos tipus:
+Hi ha molts problemes computacionals que s’han demostrat **intractables**. 
 
-+ Cas fort: **S’ha demostrat** que no existeix un algorisme per resoldre el problema (p.e. la indecidibilitat de l’aturada d’un programa).
-+ Cas dèbil:  **No es coneix** cap algorisme eficient per resoldre el problema  (p.e. la factorització). 
+La **intractabilitat** pot ser de dos tipus:
 
-NOTA: Una forma d’afrontar la intractabilitat són els algorismes aproximats.
++ Cas fort: **S’ha demostrat que no existeix un algorisme** per resoldre el problema (p.e. la [indecidibilitat de l’aturada d’un programa](https://ca.wikipedia.org/wiki/Problema_de_la_parada)).
++ Cas dèbil:  **No es coneix cap algorisme eficient** per resoldre el problema  (p.e. la factorització de nombres enters grans) i per tant no sóm capaços de trobar-ne la solució. Normalment s'enten que un algorisme *eficient* ha de ser com a màxim de tipus polinòmic.
+
 --
 
 
-Quan no hi ha cap algorisme eficient per resoldre un problema ens enfrontem a un problema de cerca per força bruta:  **enumerar totes les solucions i trobar la millor**.
+Quan no hi ha cap algorisme eficient per resoldre un problema sovint ens enfrontem a un problema de cerca per força bruta:  **enumerar totes les solucions i trobar la millor**.
 
-**Exemple**: Coloració d’un graf: Donat un graf `G` amb `n` vèrtexs, `m` arcs i una paleta de `k` colors, decidir si és possible assignar a cada vèrtex un color de manera que tots els arcs  tinguin colors diferents als seus extrems.
+Una forma d’afrontar la intractabilitat són els **algorismes aproximats**: algorismes que poden trobar amb alta probabilitat una *bona* solució del problema però que no ens poden mai assegurar que sigui la millor.
+
 
 ---
 ## Cerca exahustiva
 
 
-La **cerca exhaustiva** (o cerca per força bruta) consisteix en una exploració sistemàtica de l’espai de solucions possibles a un problema donat.
+La **cerca exhaustiva** (o cerca per força bruta) consisteix en una exploració sistemàtica de l’espai de solucions possibles a un problema donat. 
 
-Pot dividir-se en varies parts: com generar totes les possibles solucions, seleccionar les que compleixen unes determinades restriccions, triar la millor. 
+Pot dividir-se en varies parts: 
++ generar totes les possibles solucions, 
++ seleccionar les que compleixen unes determinades restriccions (si és necessari), 
++ triar la millor. 
 
 La resolució de problemes per cerca exhaustiva sol comportar l’exploració d’espais molt grans de solucions, per la qual cosa resulta pràctica només per a instàncies petites del problema.
 
 ---
 name:TSP
 
-## Cerca exhaustiva: TSP o el problema del viatjant de comerç.
+## TSP o el problema del viatjant de comerç.
 
+El problema TSP es pot resoldre per cerca exahustiva si tenim un conjunt reduït de ciutats.
 
-Donat un conjunt de llocs o ciutats, es tracta de trobar l'ordre a seguir per tal de tal que el camí fet pel viatjant de comerç passant per tots els llocs, des del punt de partida fins al punt d'arribada, sigui el més curt possible.
+*Definició*: Donat un conjunt de llocs o ciutats, es tracta de trobar l'ordre a seguir per tal de tal que el camí fet pel viatjant de comerç passant per tots els llocs, des del punt de partida fins al punt d'arribada, sigui el més curt possible.
 
 El problema del viatjant de comerç es presenta en moltes aplicacions pràctiques, per exemple en la planificació d'un viatge, en logística o en el disseny del microxips. 
 
@@ -3290,7 +3302,7 @@ Encara apareix més freqüentment com a subproblema, per exemple en el problema 
 
 ---
 
-## Cerca exhaustiva: TSP o el problema del viatjant de comerç.
+## TSP o el problema del viatjant de comerç.
 
 
 El problema del viatjant de comerç es pot modelitzar amb l'ajuda d'un graf utilitzant els vèrtex i les arestes. 
@@ -3303,31 +3315,33 @@ Cada aresta `a_ij` té una determinada longitud que, depenent del context, sign
 
 ---
 
-## Cerca exhaustiva: TSP o el problema del viatjant de comerç.
+## TSP o el problema del viatjant de comerç.
 
 
-Una ruta (també coneguda com circuit hamiltonià) és un circuit que passa per tots els vèrtexs i en el que cada vèrtex surt exactament una vegada. (= una seqüència de `n` vèrtexs diferents = una seqüència de `n+1` vèrtexs que comencen i acaben al mateix vèrtex).
+Una ruta (també coneguda com **circuit hamiltonià**) és un circuit que passa per tots els vèrtexs i en el que cada vèrtex surt exactament una vegada. 
+
+Per definir l'algorisme farem servir aquesta observació: una seqüència de `n` vèrtexs diferents = una seqüència de `n+1` vèrtexs que comencen i acaben al mateix vèrtex.
 
 
 L'objectiu és trobar la ruta més curta possible.
 
 ---
 
-## Cerca exhaustiva: TSP o el problema del viatjant de comerç.
+## TSP o el problema del viatjant de comerç.
 
-Generar totes les possibles rutes és el mateix que generar **totes les possibles permutacions** dels vèrtexs del mig. 
+Generar totes les possibles rutes és el mateix que generar **totes les possibles permutacions** dels vèrtexs del mig. Recordeu que el nombre de permutacions de `n` elements és `n!`.
 
 <center><img src="images/cerca2.png" width="200"></center>
 
 <center><img src="images/cerca3.png" width="500"></center>
 
 ---
-## Cerca exhaustiva: TSP o el problema del viatjant de comerç.
+## TSP o el problema del viatjant de comerç.
 
 
-De fet, podem obviar la meitat de les rutes: `B-C-D` = `D-C-B`
+De fet, podem fer-ho una mica millor si ens adonem que podem obviar la meitat de les rutes: la ruta `B-C-D-B` té la mateixa longitud que la ruta `B-D-C-B`
 
-Per tant, podem triar dues ciutats del mig (per exemple `B` i `C`) i tenir en compte només les permutacions on `B` precedeix `C`  (aquest petit truc defineix la direcció de la ruta!).
+Per tant, podem triar dues ciutats del mig (per exemple `D` i `C`) i tenir en compte només les permutacions on `D` precedeix `C`  (aquest petit truc defineix la direcció de la ruta!).
 
 Tot i això, el nombre de rutes és `(n-1)!/2`....
 
@@ -3345,7 +3359,7 @@ Algorisme de Johnson-Trotter per generar permutacions:
  
 <center><img src="images/trotter.png" width="200"></center>
 
-El símbol `k` es diu mòbil si el símbol contigu en la direcció que assenyala és menor que ell (a l’exemple, `3` i `4` són mòbils).
+El símbol `k` es diu **mòbil** si el símbol contigu en la direcció que assenyala és menor que ell (a l’exemple, `3` i `4` són mòbils).
 
 ---
 
@@ -3361,17 +3375,17 @@ Sortida: una llista amb totes les permutacions.
 2. Mentre hi hagi un element mòbil:
     2.1 Troba l’enter mòbil k més gran
     2.2 Intercanvia k i l’element adjacent al qual assenyala
-3. Inverteix la direcció de tots els elements que són més grans que k
-4. Afegeix la permutació a la llista.
+    2.3 Inverteix la direcció de tots els elements que són més grans que k
+    2.4 Afegeix la permutació a la llista.
 ```
 
 <center><img src="images/trotter2.png" width="500"></center>
 
 ---
-## Cerca exhaustiva: TSP o el problema del viatjant de comerç.
+## TSP o el problema del viatjant de comerç.
 
 
-El problema del viatjant de comerç no té una solució exacta més eficient que la cerca exhaustiva: no es coneix cap algorisme exacte en temps polinòmic.
+El problema del viatjant de comerç no té una **solució exacta** més eficient que la cerca exhaustiva: no es coneix cap algorisme exacte en temps polinòmic.
 
 D’això en diem problemes **NP-hard**.
 
@@ -3380,41 +3394,42 @@ Hi ha algorismes que troben solucions probablement bones, tot i que no podem est
 ---
 name: knapsack
 
-## Cerca exhaustiva: El problema de la motxilla.
+## El problema de la motxilla.
 
 El **problema de la motxilla**, altrament dit KP (en anglès, *Knapsack Problem*) és un problema d'optimització combinatòria.
 
 Modelitza una situació anàloga al fet d'omplir una motxilla, en la que no es pot posar més d'un cert pes, amb tot o una part d'un conjunt d'objectes. Aquests objectes tenen un pes i un valor determinat. 
-Els objectes que es posen dins la motxilla han de maximitzar el valor total sense sobrepassar el pes màxim.
+Els objectes que es posen dins la motxilla han de **maximitzar el valor total** dels objectes transportats sense sobrepassar el pes màxim.
 
 <center><img src="images/motx.png" width="300"></center>
 
 ---
-## Cerca exhaustiva: El problema de la motxilla.
+## El problema de la motxilla.
 
 
 Com es generen les possibles solucions?
 
 --
 
-Generar les possibles solucions d’aquest problema és el mateix que generar tots els possibles subconjunts d’un conjunt (`O(2^n)`).
+Generar les possibles solucions d’aquest problema és el mateix que generar tots els **possibles subconjunts d’un conjunt**. El nombre de subconjunts diferents d'un conjunt de `n` elements és (`O(2^n)`).
 
-Després podríem seleccionar les que “caben” a la motxilla, i per últim, entre les que hi caben, quina és la més valuosa.
+Un cop generats els subconjunts podríem seleccionar les que “caben” a la motxilla, i per últim, entre les que hi caben, quina és la més valuosa.
 
 ---
-## Cerca exhaustiva: El problema de la motxilla.
+## El problema de la motxilla.
 
 És útil per modelar:
 
-+ sistemes de suport a la gestió del portafolis : per equilibrar la selecció i la diversificació amb l'objectiu de trobar el millor equilibri entre el rendiment i el risc d'un capital col·locat en diferents actius financers (accions...);
++ sistemes de suport a la gestió del portafolis financers: per equilibrar la selecció i la diversificació amb l'objectiu de trobar el millor equilibri entre el rendiment i el risc d'un capital col·locat en diferents actius financers (accions...);
 
 + en la càrrega d'un vaixell o d'un avió: tot l'equipatge que es pot portar sense sobrepès;
 
 + en el tall dels materials: per minimitzar les pèrdues degudes als talls (de diferents mides) realitzats en barres de ferro;
+
 + en el problema de emplenat de contenidors o *bin packing*.
 
 ---
-## Cerca exhaustiva: El problema de la motxilla.
+## El problema de la motxilla.
 
 
 **Com generem els subconjunts d’un conjunt?**
@@ -3427,7 +3442,7 @@ Ens basarem en fer una correspondència entre els `2^n` subconjunts d’un conju
 
 ---
 
-## Cerca exhaustiva: El problema de la motxilla.
+## El problema de la motxilla.
 
 
 **Com generem els subconjunts d’un conjunt?**
@@ -3454,7 +3469,7 @@ class: exam
 
 3. Perquè diem que el problema del viatjant de comerç és NP-hard?
 
-4. Es pot trobar una solució millor al problema de la motxilla?
+4. Es pot trobar una solució exacta millor al problema de la motxilla?
 
 ---
 
