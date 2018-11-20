@@ -3510,7 +3510,7 @@ If the legend were true, and if the priests were able to move disks at a rate of
 ## Exemple: el problema de les torres de Hanoi
 
 
-Les torres de Hanoi és un joc usat típicament com a exemple de recursivitat. 
+Les torres de Hanoi és un joc usat típicament com a exemple de **recursivitat**. 
 
 A l'inici estan col·locats de més gran a més petit en la primera vareta. El joc consisteix en passar tots els discs a la tercera vareta tenint en compte que només es pot canviar de vareta un disc cada vegada i que mai no podem tenir un disc col·locat sobre un que sigui més petit.
 
@@ -3527,11 +3527,12 @@ Aquesta idea bàsica es pot repetir recursivament!
 ## Exemple: el problema de les torres de Hanoi
 
 ```python
-def moveTower(height,fromPole, toPole, withPole):   #height és el nombre de discos que hi ha al pal orígen
-    if height >= 1:
+def moveTower(height,fromPole, toPole, withPole):  # height és el nombre de discs 
+    if height >= 1:                                # que hi ha al pal origen
         moveTower(height-1,fromPole,withPole,toPole)
         moveDisk(fromPole,toPole)
         moveTower(height-1,withPole,toPole,fromPole)
+    return
 
 def moveDisk(fp,tp):
     print("moving disk from",fp,"to",tp)
@@ -3551,19 +3552,19 @@ moving disk from C to B
 moving disk from A to B
 ```
 
-La complexitat és exponencial `O(2^n)`
+Després veurem que la complexitat és exponencial `O(2^n)`.
 
 
 ---
 
 ## Exemple: el problema de les torres de Hanoi
 
-Les crides recursives generen aquest arbre (a cada node hi ha els paràmetres, que recordem eren: height, fromPole, toPole, withPole):
+Les crides recursives generen aquest arbre (a cada node hi ha els paràmetres, que recordem eren: `height`, `fromPole`, `toPole`, `withPole`):
 
+<center><img src="images/hanoi1.png" width="550"></center>
 
-<center><img src="images/hanoi1.png" width="650"></center>
+per exemple: `3ABC` vol dir que hi ha tres discs a `A`, que es mouran a `B` amb l'ajut de `C`; `1CAB` vol dir que hi ha 1 disc a `C`, que es mouran a `A` amb l'ajut de `B`.
 
-per exemple: 3ABC vol dir que hi ha tres discs a A, que es mouran a B amb l'ajut de C; 1CAB vol dir que hi ha 1 disc a C, que es mouran a A amb l'ajut de B
 ---
 
 ## Exemple: el problema de les torres de Hanoi
@@ -3571,8 +3572,16 @@ per exemple: 3ABC vol dir que hi ha tres discs a A, que es mouran a B amb l'ajut
 L'ordre de generació de la solució és:
 
 
-<center><img src="images/hanoi2.png" width="650"></center>
+<center><img src="images/hanoi2.png" width="500"></center>
 
+```python
+def moveTower(height,fromPole, toPole, withPole): 
+    if height >= 1:
+        moveTower(height-1,fromPole,withPole,toPole)
+        moveDisk(fromPole,toPole)
+        moveTower(height-1,withPole,toPole,fromPole)
+    return
+```
 ---
 
 ## Exemple: el problema de les torres de Hanoi
@@ -3589,7 +3598,7 @@ L'ordre de generació de la solució és:
 
 --
 
-> `1`+ `2` + `4` + `8` + `...` + `2^n` = `2^(n+1) - 1`
+$$ 1 + 2 + 4 + 8 + \dots + 2^n = \sum_{0}^n 2^i = 2^{n+1} - 1$$
 
 --
 
@@ -3597,8 +3606,8 @@ L'ordre de generació de la solució és:
 
 --
 
-> *Si fa `(2^(n+1)-1)` crides i cada una de les crides com a màxim
-executa instruccions de cost `O(1)`, el cost és `O(2^(n+1))`. És a dir,  ordre exponencial, O(2^n)*
+> *Si fa* `(2^(n+1)-1)` *crides i cada una de les crides com a màxim
+executa instruccions de cost* `O(1)`*, el cost és* `O(2^(n+1))`*. És a dir,  ordre exponencial,* `O(2^n)`.
 
 
 ---
@@ -3653,23 +3662,39 @@ a =[5,7,3,8,10]
 
 ## Algorismes de dividir i vèncer: relacions de recurrència.
 
-L’esquema general d’aquests algorismes és: tenim un problema de mida `n`, que reformulem mitjançant la solució d’`a` problemes de mida `n/b` i llavors combinem les respostes en un temps `O(n^d)`. La seva complexitat serà per tant `T(n)=aT(n/b)+O(n^d)`
+L’esquema general d’aquests algorismes és: tenim un problema de mida `n`, que reformulem mitjançant la solució d’`a` problemes de mida `n/b` i llavors combinem les respostes en un temps `O(n^d)`. 
 
-Aquesta recurrència té una solució tancada, que està enunciada al **Teorema Master**.
+La seva complexitat serà per tant:
 
---
+
+$$ T(n) = a T(n/b) + O(n^d) $$
+
+
+Aquest tipus de recurrència té una **solució tancada**, que està enunciada al **Teorema Master**.
+
+---
+
 name:master
 
 ### Teorema Master
 
-Si `T(n)=aT(n/b)+O(n^d)` per algunes constants `a>0`, `b>1`, i `d>=0`, llavors:
+___ 
+
+
+**Teorema:** Si `T(n)=aT(n/b)+O(n^d)` per algunes constants `a>0`, `b>1`, i `d>=0`, llavors:
 
 +  **cas 1**: `T(n) = O(n^d) ` si `d > log_b a`  
 +  **cas 2**: `T(n) = O(n^d log n) ` si `d = log_b a `
 +  **cas 3**: `T(n) = O(n^(log_b a))` si `d < log_b a`
 
+___ 
 
->Fixeu-vos que en el cas 1 el que mana és el cost de la combinació de solucions per què d és molt gran. En el cas 3, en canvi, el que mana és log b d'a que serà gran quan hi hagi molts subproblemes i no es redueixin gaire en cada divisió. En el cas 2 àmbdues complexitats estan equilibrades.
+Fixeu-vos que en el cas 1 el que mana és el cost de la combinació de solucions per què `d` és molt gran. 
+
+En el cas 3, en canvi, el que mana és `log b` d'`a` que serà gran quan hi hagi molts subproblemes i no es redueixin gaire en cada divisió. 
+
+En el cas 2 àmbdues complexitats estan equilibrades.
+
 ---
 
 ## Algorismes de dividir i vèncer: relacions de recurrència.
@@ -3688,11 +3713,11 @@ i per tant resulta `O(n^2)`.
 
 ---
 
-## Algorismes de dividir i vèncer per ordenar, mergesort i quicksort
+## Algorismes de dividir i vèncer per ordenar: *mergesort* i *quicksort*
 
-A continuació coneixerem dos algorismes que ens ajudaran a ordenar una llista de forma més eficient, concretament amb una complexitat d'O(n log n)
+A continuació coneixerem dos algorismes que ens ajudaran a ordenar una llista de forma més eficient, concretament amb una complexitat d'`O(n log n)`. 
 
-Cadascun usa alguna funció auxiliar per preparar (partition al quicksort) o per recombinar (merge al mergesort) els subproblemes en que es basa la divisió.
+Cadascun usa alguna funció auxiliar per preparar (`partition` al *quicksort*) o per recombinar (`merge` al *mergesort*) els subproblemes en que es basa la divisió.
 
 ---
 name:mergesort
@@ -3700,9 +3725,8 @@ name:mergesort
 
 ## Algorismes de dividir-i-vèncer: **merge**
 
-L’ordenació d’una llista es pot plantejar d’aquesta manera:
 
-Suposem que tenim dos conjunts de cartes, amb `n` elements cada un, que estan ordenats de menor a major (quan les posem de cara la més petita està al davant).
+Suposem que tenim dos conjunts de cartes, amb `n` elements cada un, que estan ordenats de menor a major (quan les posem de cara la més petita està al davant). En aquest cas concret podem obtenir una llista ordenada barrejant les dues si seguim aquests passos:
 
 1. Comparem les dues cartes de sobre de tot de cada conjunt i escollim la més petita, que posem a un nou conjunt de cartes ordenades (pel darrera, si n’hi ha alguna).
 2. Repetim 1 fins que un dels conjunts estigui buit, i el conjunt que encara té cartes l’afegim per darrera al conjunt de cartes ordenades.
@@ -3729,7 +3753,9 @@ El resultat és un conjunt de cartes ordenades!
 
 ## Algorismes de dividir-i-vèncer: **mergesort**
 
-Però en el cas general no partim de dos conjunts de cartes ordenades! **merge** és una funció auxiliar de l'algorisme general d'ordenació **mergesort**.
+Però en el cas general no partim de dos conjunts de cartes ordenades! 
+
+`merge` és una funció auxiliar de l'algorisme general d'ordenació *mergesort*.
 
 El que podem fer és descomposar el problema en subproblemes més petits fins que arribem als casos que sabem resoldre!
 
@@ -3750,9 +3776,16 @@ La correcció d’aquest algorisme és evident, sempre i quan definim bé la fun
 
 ---
 
+## Algorismes de dividir-i-vèncer: **mergesort**
+
+<center><img src="images/merge3.png" width="650" alt="diagrama amb els passos de divisió i ordenació de la llista 1,5,8,3,4,2,1,0"></center>
+
+
+---
+
 ## Algorismes de dividir-i-vèncer: **merge**
 
-La funció merge també la podem definir recursivament:
+La funció `merge` també la podem definir recursivament:
 
 ```python
 def merge(x,y):
@@ -3767,13 +3800,7 @@ def merge(x,y):
 
 ```
 
-> Aquesta funció es pot definir també de forma NO recursiva, i és simplement anar comparant i copiant de forma ordenada els dos vectors en un nou vector.
-
----
-
-## Algorismes de dividir-i-vèncer: **mergesort**
-
-<center><img src="images/merge3.png" width="650" alt="diagrama amb els passos de divisió i ordenació de la llista 1,5,8,3,4,2,1,0"></center>
+Aquesta funció es pot definir també de forma NO recursiva, i és simplement anar comparant i copiant de forma ordenada els dos vectors en un nou vector.
 
 ---
 
@@ -3802,13 +3829,13 @@ def merge(left, right):
 
 ## Algorismes de dividir-i-vèncer: **mergesort**
 
+Quina és la complexitst d'aquest algorisme?
+
 La funció `merge` té una complexitat per cada crida recursiva `O(n)` (en el pitjor dels casos). Com que aquesta és la funció que usem per combinar les solucions parcials, `d=1`.
 
-Quan dividim creem 2 problemes, de mida `n/2`. Per tant, com que `a=2` i `b=2` log_b a = 1, que és igual a d i apliquem el cas 2. 
+Quan dividim creem 2 problemes, de mida `n/2`. Per tant, com que `a=2` i `b=2`, `log_b a = 1`, que és igual a `d`, podem aplicar el cas 2 del teorema Master: **`mergesort` té una complexitat `O(n log n)`.**
 
-`mergesort` té una complexitat `O(n log n)`.
-
-La funció mergesort es pot implementar iterativament, però per fer-ho necessitem una estructura que no veurem en aquesta assignatura: la cua.
+La funció mergesort es pot implementar iterativament, de forma no recursiva, en la seva totalitat, però per fer-ho necessitem una estructura que no veurem en aquesta assignatura: la cua.
 
 ---
 name:quicksort
@@ -3818,11 +3845,17 @@ name:quicksort
 
 **Quicksort** és un altre algorisme d’ordenació basat en l’estratègia de dividir i vèncer.
 
-Aquest algorisme divideix el vector basant-se en els valors dels elements que conté: reordena els elements per aconseguir una partició, una situació en la que tots els elements anteriors a una posició `s` siguin menors o iguals que `A[s]` i tots els elements posteriors a la posició `s` siguin majors o iguals que `A[s]`:
+Aquest algorisme divideix el vector basant-se en els valors dels elements que conté: reordena els elements per aconseguir una **partició**, una situació en la que tots els elements anteriors a una posició `s` siguin menors o iguals que `A[s]` i tots els elements posteriors a la posició `s` siguin majors o iguals que `A[s]`:
 
 `A[0] ... A[s-1] <= A[s] <=  A[s+1] ... A[n-1]`
 
 L'element `A[s]` s'anomena **pivot**. 
+
+> Per exemple:
+
+> `3  56 34 2 <= 99 <= 134 345 111`
+
+> és una partició de la llista `[3  99 56 134 34 2 345 111]`
 
 ---
 
@@ -3833,9 +3866,11 @@ L'element `A[s]` s'anomena **pivot**.
 ```python
 
 def quick_sort(A):
-    quick_sort_r(A, 0, len(A) - 1)    # quicksort_r té més paràmetres per facilitar les crides recursives
+    quick_sort_r(A, 0, len(A) - 1)    # quicksort_r té més paràmetres per 
+                                      # facilitar les crides recursives
 
-def quick_sort_r(A , first, last):	# A és la llista, first i last els índexs entre els quals cal ordenar
+def quick_sort_r(A , first, last):	# A és la llista, first i last els índexs 
+                                      # entre els quals cal ordenar
     if last > first:
         pivot = partition(A, first, last) # dividim el problema
         quick_sort_r(A, first, pivot - 1) # ordenem part esquerra
@@ -3848,13 +3883,13 @@ def quick_sort_r(A , first, last):	# A és la llista, first i last els índexs e
 
 Com calculem la partició d’una llista `A`?
 
-Primer seleccionem un element, respecte del qual dividirem la subllista, que anomenarem el pivot. Per exemple, escollim `pivot=A[first]`.
++ Primer seleccionem un element, respecte del qual dividirem la subllista, que anomenarem el **pivot**. Per exemple, escollim `pivot=A[first]`.
 
-Després hem de reordenar per aconseguir una partició.  Això ho podem fer amb dues passades (d’esquerra a dreta i de dreta a esquerra) de la llista.
++ Després hem de reordenar per aconseguir una partició.  Això ho podem fer amb dues passades (d’esquerra a dreta i de dreta a esquerra) de la llista.
 
-+ La passada d’esquerra a dreta `(i)` comença pel segon element `i`  no s’atura fins trobar un element més gran o igual que el pivot `(p)`. 
+  + La passada d’esquerra a dreta `(i)` comença pel segon element `i`  no s’atura fins trobar un element més gran o igual que el pivot `(p)`. 
 
-+ La passada de dreta a esquerra `(j)` comença per l’últim element i s’atura quan troba un element més petit o igual que el pivot.
+  + La passada de dreta a esquerra `(j)` comença per l’últim element i s’atura quan troba un element més petit o igual que el pivot.
 
 ---
 
@@ -3895,7 +3930,6 @@ def partition(A, first, last):
 
 A = [3,7,2,4,1,80]
 quick_sort(A)
-A
 >>> [1,2,3,4,7,80]
 
 ```
@@ -3934,7 +3968,7 @@ A
 
 <center><img src="images/quicksort6.png" width="550"></center>
 
-Quicksort és l’algorisme que fa servir Linux/Unix per ordenar amb la seva instrucció `sort`.  
+**Quicksort** és l’algorisme que fa servir Linux/Unix per ordenar amb la seva instrucció `sort`.  
 
 ---
 
@@ -3949,7 +3983,7 @@ Si totes les particions passen al mig del vector tenim **el millor cas**, i el n
 `T(n) = 2 T(n/2) + n`, que segons el teorema Master és `O(n log n)`.
 
 En **el pitjor cas** (p.e. [4,3,2,1,0]), totes les particions són als extrems (alguna de les subllistes estarà buida), llavors el nombre de comparacions serà `T(n) = O(n^2)`. 
-> Sempre podem desordenar la llista al principi i aquest cas no existirà! 
+> Observació:  Sempre podem desordenar la llista al principi i aquest cas no existirà mai! 
 
 
 En el **cas promig** el nombre de comparacions serà `O(1,38 n log_2 n)`, és a dir, un 38% més de comparacions que en el millor cas.
@@ -3982,9 +4016,11 @@ Es va basar en que el producte de dues matrius `(n x n)` es pot calcular a parti
 ## Algorismes de dividir-i-vèncer: multiplicació de matrius
 
 
-I que aquesta descomposició es pot expressar recursivament.  La recurrència consisteix en passar d’una matriu `(n x n)` a 8 matrius `(n/2 x n/2)`, i per tant la seva complexitat és `T(n) = 8 T(n/2) + O(n^2)`. 
+I que aquesta descomposició es pot expressar recursivament.  
 
-Que resulta en una complexitat de `O(n^3)`...
+La recurrència consisteix en passar d’una matriu `(n x n)` a 8 matrius `(n/2 x n/2)`, i per tant la seva complexitat és `T(n) = 8 T(n/2) + O(n^2)`. 
+
+Que resulta en una complexitat de `O(n^3)`... No hem guanyat res!
 
 --
 
@@ -4011,9 +4047,11 @@ name:mediana
 
 ## Algorismes de dividir-i-vèncer: càlcul de la mediana
 
-La mediana de `[45,1,10,30,25]` és `25`, perquè es defineix com l’element que queda al mig del vector si els ordenem. Per tant, la seva implementació directa és `O(n log n)`.
+La mediana de `[45,1,10,30,25]` és `25`, perquè la **mediana** es defineix com l’element que queda al mig del vector si ordenem els seus elements. Per tant, la seva implementació directa és `O(n log n)`.
 
-> **Ho podem fer lineal?**
+**Ho podem fer lineal?**
+
+--
 
 Considerem el següent problema (que subsumeix el problema de la mediana): 
 
@@ -4030,7 +4068,7 @@ Per exemple, si `k=1`, la sortida hauria de ser el valor mínim de `S`.
 
 Anem a plantejar una solució de dividir i vèncer.
 
-Suposem un  nombre qualsevol `v` i que fem una partició de la llista segons aquest nombre (per exemple, `v=5`) en tres parts, Sleft, Sv i Sright:
+Suposem un  nombre qualsevol `v` i que fem una partició de la llista segons aquest nombre (per exemple, `v=5`) en tres parts, `Sleft`, `Sv` i `Sright`:
 
 
 <center><img src="images/mediana1.png" width="650" alt="la llista [2,36,5,21,8,13,11,20,5,4,1] queda partida en Sleft = [2,4,1], elements més petits que v, Sv = [5,5], elements iguals a v, Sright = [36,21,8,13,11,20] elements més grans que v"></center>
@@ -4062,9 +4100,10 @@ L’ideal seria que `v` partís les llistes per la meitat. Aleshores la complexi
 --
 
 
+
 La solució és triar-lo de forma aleatòria cada vegada!
 
-+ En el pitjor cas farem: ` n + (n-1) + (n-2) + ... n/2 = O(n^2)`. 
++ En el pitjor cas farem: ` n + (n-1) + (n-2) + ...  = O(n^2)`. 
 
 + En el millor cas farem `O(n)`. 
 
@@ -4072,6 +4111,9 @@ La solució és triar-lo de forma aleatòria cada vegada!
 
 
 ---
+
+## Algorismes de dividir-i-vèncer: càlcul de la mediana
+
 
 
 ```python
@@ -4106,17 +4148,17 @@ class: exam
 
 ### Possibles preguntes d'exàmen relacionades amb el tema 6
 
-1. Quin cost té l'algorisme quicksort? és més ràpid que el mergesort?
+1. Quin cost té l'algorisme `quicksort`? És més ràpid que el `mergesort`?
 2. Calcula les complexitats dels següents algorismes, segons el teorema Màster:
 
-	* T (n) = 3T (n/2) + n^2
-	* T (n) = 4T (n/2) + n^2
-	* T (n) = T (n/2) + 2^n
-	* T (n) = 2^n T (n/2) + n^n
-	* T (n) = 16T (n/4) + n
-	* T (n) = 2T (n/2) + n log n
+	* `T (n) = 3T (n/2) + n^2`
+	* `T (n) = 4T (n/2) + n^2`
+	* `T (n) = T (n/2) + 2^n`
+	* `T (n) = 2^n T (n/2) + n^n`
+	* `T (n) = 16T (n/4) + n`
+	* `T (n) = 2T (n/2) + n log n`
 
-3. A cada iteració de partition quants elements addicionals tenim ordenats?
+3. A cada iteració de `partition` quants elements addicionals tenim ordenats?
 
 ---
 
