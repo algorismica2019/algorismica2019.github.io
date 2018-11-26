@@ -3525,7 +3525,6 @@ Aquesta idea bàsica es pot repetir recursivament!
 ---
 
 ## Exemple: el problema de les torres de Hanoi
-
 ```python
 def moveTower(height,fromPole, toPole, withPole):  # height és el nombre de discs 
     if height >= 1:                                # que hi ha al pal origen
@@ -3533,7 +3532,6 @@ def moveTower(height,fromPole, toPole, withPole):  # height és el nombre de dis
         moveDisk(fromPole,toPole)
         moveTower(height-1,withPole,toPole,fromPole)
     return
-
 def moveDisk(fp,tp):
     print("moving disk from",fp,"to",tp)
 
@@ -3570,9 +3568,7 @@ per exemple: `3ABC` vol dir que hi ha tres discs a `A`, que es mouran a `B` amb 
 ## Exemple: el problema de les torres de Hanoi
 
 L'ordre de generació de la solució és:
-
-
-<center><img src="images/hanoi2.png" width="500"></center>
+<center><img src="images/hanoi2.png" width="400"></center>
 
 ```python
 def moveTower(height,fromPole, toPole, withPole): 
@@ -3652,10 +3648,8 @@ a =[5,7,3,8,10]
 + Quina complexitat té aquest algorisme?
 
 --
-
 > `O(n)` 
-
-<center><img src="images/suma recursiva.png" width="300" alt="una cadena amb un darrer element '4' amb un retorn de 4, un element '3,4' amb un retorn de 3 + 4 = 7, un element '7,3,4' amb un retorn de 7+7 = 14, un element '5,7,3,4' amb un retorn de 14+5=19"></center>
+<center><img src="images/suma recursiva.png" width="220" alt="una cadena amb un darrer element '4' amb un retorn de 4, un element '3,4' amb un retorn de 3 + 4 = 7, un element '7,3,4' amb un retorn de 7+7 = 14, un element '5,7,3,4' amb un retorn de 14+5=19"></center>
 
 
 ---
@@ -3778,7 +3772,7 @@ La correcció d’aquest algorisme és evident, sempre i quan definim bé la fun
 
 ## Algorismes de dividir-i-vèncer: **mergesort**
 
-<center><img src="images/merge3.png" width="650" alt="diagrama amb els passos de divisió i ordenació de la llista 1,5,8,3,4,2,1,0"></center>
+<center><img src="images/merge3.png" width="550" alt="diagrama amb els passos de divisió i ordenació de la llista 1,5,8,3,4,2,1,0"></center>
 
 
 ---
@@ -3916,57 +3910,53 @@ def partition(A, first, last):
     pivot = first
     i = first + 1
     j = last
-  
     while True:
 	    # anem avançant
         while i <= last and A[i] <= A[pivot]: i += 1
         while j >= first and A[j] > A[pivot]: j -= 1
-		
         if i >= j: break
         else:
             A[i], A[j] = A[j], A[i] # intercanviem, fem avançar i j
     A[j], A[pivot] = A[pivot], A[j] # vector partit, pivot=j
     return j
 
-A = [3,7,2,4,1,80]
-quick_sort(A)
+quick_sort([3,7,2,4,1,80])
 >>> [1,2,3,4,7,80]
-
 ```
 ---
 
 ## Algorismes de dividir-i-vèncer: **quicksort**
 
 
-<center><img src="images/quicksort2.png" width="550" alt="passos de l'algorisme quicksort"></center>
+<center><img src="images/quicksort2.png" width="500" alt="passos de l'algorisme quicksort"></center>
 
 ---
 
 ## Algorismes de dividir-i-vèncer: **quicksort**
 
 
-<center><img src="images/quicksort3.png" width="550" alt="passos de l'algorisme quicksort"></center>
+<center><img src="images/quicksort3.png" width="500" alt="passos de l'algorisme quicksort"></center>
 
 ---
 
 ## Algorismes de dividir-i-vèncer: **quicksort**
 
 
-<center><img src="images/quicksort4.png" width="550" alt="passos de l'algorisme quicksort"></center>
+<center><img src="images/quicksort4.png" width="500" alt="passos de l'algorisme quicksort"></center>
 
 ---
 
 ## Algorismes de dividir-i-vèncer: **quicksort**
 
 
-<center><img src="images/quicksort5.png" width="550" alt="passos de l'algorisme quicksort"></center>
+<center><img src="images/quicksort5.png" width="500" alt="passos de l'algorisme quicksort"></center>
 
 ---
 
 ## Algorismes de dividir-i-vèncer: **quicksort**
 
 
-<center><img src="images/quicksort6.png" width="550"></center>
+<center><img src="images/quicksort6.png" width="500"></center>
 
 **Quicksort** és l’algorisme que fa servir Linux/Unix per ordenar amb la seva instrucció `sort`.  
 
@@ -4118,30 +4108,22 @@ La solució és triar-lo de forma aleatòria cada vegada!
 
 ```python
 import random
-def kSelect(A,k,length):
-
-        # escollim una posició r de forma aleatòria entre 1 i length(A)
+def kSelect(A,k,length):  # escollim una posició r random( 1 - length(A))
         n = length-1
         r = random.randint(0, length-1)
         A1 = []
         A2 = []
         pivot = A[r]
-
-        # construim la llista més petita i la més gran
-        for i in range ( 0 , n+1):
+        for i in range ( 0 , n+1):  # construim la llista més petita i la més gran
                 if A[i] < pivot :  A1.append(A[i])
                 if A[i] > pivot :  A2.append(A[i])
-
-        if k <= len(A1):
-                # cerquem a la llista dels elements mes petits
+        if k <= len(A1): # cerquem a la llista dels elements mes petits
                 return kSelect(A1, k ,len(A1))
 
-        if k > len(A) - len(A2):
-                # cerquem a la llista dels elements mes grans
+        if k > len(A) - len(A2): # cerquem a la llista dels elements mes grans
                 return kSelect(A2, k-(len(A)-len(A2)),len(A2))
-
-        else :  return pivot
-
+        else :  
+			return pivot
 ```
 ---
 class: exam
