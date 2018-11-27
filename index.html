@@ -4186,10 +4186,7 @@ Ens centrarem en la **cerca en llistes**.
 ---
 
 ## Algorismes de cerca: cerca lineal
-
-
 L’algorisme que implementa la cerca d’un element en una llista amb una estratègia de força bruta es diu **cerca seqüencial o lineal**. La complexitat de l’algorisme és `O(n)` en el pitjor cas!
-
 ```python
 def linsearch(list,ele):
 	i=0
@@ -4200,11 +4197,10 @@ def linsearch(list,ele):
 	else:
         return -1
 ``` 
-
---
+---
+## Algorismes de cerca: cerca lineal (millorat)
 
 Podem fer una petita millora si afegim l’element que busquem al final de la llista:
-
 ```python
 def linsearch(list,ele):
 	list.append(ele)
@@ -4215,7 +4211,6 @@ def linsearch(list,ele):
 	    return i
 	else: 
 	    return -1
-
 ``` 
 
 ---
@@ -4303,24 +4298,24 @@ Com busquem el màxim? Quin tipus de cerca hi podem aplicar?
 ---
 ##  Cerca dels extrems d'una funció.
 
-
 Podem aplicar-hi cerca exhaustiva:
 
 ```python
-def func1d(x):                  # funció multimodal de la que buscarem max
+def func1d(x): # funció multimodal de la que buscarem max
     import math
     y = x * math.sin(10*math.pi*(x))+1.0
     return y
 
-def frange(start, stop, step):  # definim un range sobre floats per conveniència
-    current = start
+def frange(start, stop, step): 
+# definim un range sobre floats per conveniència 
+    current = start 
     while current < stop:
         yield current
         current += step
 
 def linsearchfunc1d():
-    x=0.0                       # inicialització punt x, corresponent al valor màxim de func1d
-    maxim=0.0                   # inicialització valor màxim
+    x=0.0  # inicialització punt x, corresponent al valor màxim de func1d
+    maxim=0.0  # inicialització valor màxim
     for i in frange(-1.0,2.0,0.01):
         if func1d(i)>maxim: 
             maxim=func1d(i)
@@ -4335,11 +4330,9 @@ def linsearchfunc1d():
 
 Si el nombre de punts a mostrejar és molt gran tenim un problema!
 
-<center><img src="images/fun2.png" width="350" alt="gràfic 3D d'una funció amb 4 extrems"></center>
+<center><img src="images/fun2.png" width="250" alt="gràfic 3D d'una funció amb 4 extrems"></center>
 
-En aquest cas si analitzem els punts amb una precisió de `0.01` analitzaríem `300x300` punts.
-
-Si necessitéssim una precisió `0.000001` analitzaríem `3000000x3000000` punts. 
+En aquest cas si analitzem els punts amb una precisió de `0.01` analitzaríem `300x300` punts. Si necessitéssim una precisió `0.000001` analitzaríem `3000000x3000000` punts. 
 
 No podem fer cerca exhaustiva!
 ---
@@ -4474,12 +4467,9 @@ El problema del viatjant de comerç també és un problema candidat a ser resolt
 ## Algorismes de cerca: cerca amb algorismes genètics.
 
 
-Normalment es considera que la millor **representació** dels cromosomes possible és la binària.
-
-El creuament, la mutació, i d'altres operacions que es poden utilitzar, són aleshores simples operacions a nivell de bit. 
+Normalment es considera que la millor **representació** dels cromosomes possible és la binària. El creuament, la mutació, i d'altres operacions que es poden utilitzar, són aleshores simples operacions a nivell de bit. 
 
 Suposem doncs que tenim una població inicial de quatre individus amb les següents característiques:
-
 
 |   individu     | valor adaptació | possibilitat de selecció |
 |----------------|-----------------|--------------------------|
@@ -4487,8 +4477,6 @@ Suposem doncs que tenim una població inicial de quatre individus amb les següe
 |  111010101100  |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6        |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24%              |
 |  001110101001  |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6        |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24%              |
 |  111011011100  |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5        |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20%              |
-
-
 
 I suposem que definim la probabilitat de selecció en funció del valor d'adaptació (q) com a 
 
@@ -4505,7 +4493,7 @@ Una primera alternativa per la selecció és triar parelles aleatòriament tenin
 
 Imaginem que la selecció ens ha donat aquestes dues parelles:
 
-<center><img src="images/gen2.png" width="450" alt="4 gens de la població es combinen de 2 a 2 per fer 2 parelles" ></center>
+<center><img src="images/gen2.png" width="400" alt="4 gens de la població es combinen de 2 a 2 per fer 2 parelles" ></center>
 
 I ara, com les creuem?
 
@@ -5302,9 +5290,13 @@ L’algorisme SimHash genera un codi de la manera següent:
 
 Simhash és útil perquè si la distància de Hamming entre els simhash de dues frases és petit, llavors el coeficient de Jaccard és alt. Però com ho usem pel nostre objectiu (sense fer `O(n^2)` comparacions)?
 
-A la taula es mostra un identificador correlatiu per cada cadena de bits (1..8), el simhash corresponent a cada cadena, la cadena pròpiament dita i la distància de hamming de la cadena actual amb l'anterior. Per ex. la cadena 3 té el simhash 2648 i té una distància de hamming de 11 respecte la cadena 2. A la dreta les mateixes cadenes s'ordenen pel simhash.
+En el cas que 2 nombres tenen una distància de Hamming petita i la seva diferència està en els bits menys significatius, llavors això vol dir que són dos ítems que estan propers en una llista ordenada (vegeu taula a la següent diapositiva).
 
-Observació: En el cas que 2 nombres tenen una distància de Hamming petita i la seva diferència està en els bits menys significatius, llavors això vol dir que són dos ítems que estan propers en una llista ordenada.
+
+---
+## SimHash i cerca per semblança (taula)
+
+A la taula es mostra un identificador correlatiu per cada cadena de bits (1..8), el simhash corresponent a cada cadena, la cadena pròpiament dita i la distància de hamming de la cadena actual amb l'anterior. Per ex. la cadena 3 té el simhash 2648 i té una distància de hamming de 11 respecte la cadena 2. A la dreta les mateixes cadenes s'ordenen pel simhash.
 
   <center><img src="images/hash3.png" width="650" alt="s'ordenen els números segons el simhash, els semblants estan consecutius"></center>
 
@@ -5314,6 +5306,9 @@ Observació: En el cas que 2 nombres tenen una distància de Hamming petita i la
 Per tant, només cal comprovar parelles adjacents de la llista per trobar la parella més semblant!
 
 Això redueix la complexitat de `n*(n-1)/2` comparacions amb `O(n^2)` a `n` càlculs de la funció hash amb `O(n)` + una ordenació `O(n log n)` + `n` distàncies amb `O(n)` = la complexitat total és `O(n log n)`.
+
+---
+## SimHash i cerca per semblança (exemple de taula)
 
 A la taula es mostren 2 parelles de cadenes, la (3,6) i la (8,5) amb una distància de Hamming de 1 i de 2 respectivament. Queden juntes ordenades perquè el simhash també és semblant.
 
@@ -5474,8 +5469,8 @@ class: summary
 ### Resum del tema 3: Algorismes Numèrics 
 
 + [Sistema numeració](#sistnum)
-		+ base
-		+ nombre de dígits 
+	+ base
+	+ nombre de dígits 
 + [Seqüència de Fibonacci](#fib)
 + Notació [Gran O](#granO)
 + Aritmètica bàsica
