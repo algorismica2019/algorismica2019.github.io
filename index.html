@@ -4201,6 +4201,7 @@ def linsearch(list,ele):
 ## Algorismes de cerca: cerca lineal (millorat)
 
 Podem fer una petita millora si afegim l’element que busquem al final de la llista:
+
 ```python
 def linsearch(list,ele):
 	list.append(ele)
@@ -4212,6 +4213,10 @@ def linsearch(list,ele):
 	else: 
 	    return -1
 ``` 
+
+Recordeu de que `list.append(ele)` té una complexitat `O(1)` i per això surt a compte fer-ho!
+
+Si enlloc de ser `O(1)` fos `O(n)` (com per exemple `list.insert(ele)`) ja no valdria la pena.
 
 ---
 name:cercbin
@@ -4231,7 +4236,7 @@ I si la llista està ordenada (un diccionari, els nombres de la loteria, etc.) h
 
 La **cerca binària** ho fa comparant l’element cercat `K` a l’element central de la llista: si hi ha correspondència ja l’hem trobat, sinó, busquem a la subllista (de la dreta o de l'esquerra) que correspon. 
 
-<center><img src="images/cerca12.png" width="550" alt="A[0]...A[s-1] A[s] A[s+1]...A[n-1]  k apunta a l'element A[s], buscarem dins A[0]...A[s-1] si k<A[s], buscarem dins A[s+1]...A[n-1] si k>A[s]"></center>
+<center><img src="images/cerca12.png" width="550" alt=""></center>
 
 
 ---
@@ -4247,7 +4252,7 @@ La **cerca binària** ho fa comparant l’element cercat `K` a l’element centr
 
 Anem a veure com funcionaria per `K=70`. 
 
-l(low) indica el límit inferior de la subllista a buscar, h(high) el límit superior, m(middle) el punt de comparació.
+`l` (low) indica el límit inferior de la subllista a buscar, `h` (high) el límit superior, `m` (middle) el punt de comparació.
 
 <center><img src="images/cerca14.png" width="650" alt="es busca 70 en una llista de nombres ordenats, es mostren els límits inferiors, superiors i mitjos de la cerca"></center>
 
@@ -4298,7 +4303,7 @@ Com busquem el màxim? Quin tipus de cerca hi podem aplicar?
 ---
 ##  Cerca dels extrems d'una funció.
 
-Podem aplicar-hi cerca exhaustiva:
+Podem aplicar-hi cerca exhaustiva (de complexitat `O(n)`, on `n` és el nombre de `x` de la funció que conisderem):
 
 ```python
 def func1d(x): # funció multimodal de la que buscarem max
