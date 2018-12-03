@@ -4277,7 +4277,7 @@ def binsearch(nums, K):
     low = 0
     high = len(nums)-1
     while low <= high:                     
-        mid = (low + high) / 2            
+        mid = (low + high) // 2            
         if nums[mid] > K: high = mid - 1
         elif nums[mid] < K: low = mid + 1
         else: return mid                           
