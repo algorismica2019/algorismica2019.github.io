@@ -4881,13 +4881,14 @@ Aquesta funció *màgica* tindria una complexitat `O(1)` per fer cerca en una ll
 
 ## Hashing i Cerca
 
-Imaginem que volem assignar un *nom curt* (el més curt possible) a un determinat subconjunt (inicialment desconegut) d'adreces IP d'entre les possibles `2^48` adreces IP.
+Imaginem que volem guardar en una llista cada un dels elements d'un **determinat subconjunt (inicialment desconegut)** d'adreces IP d'entre les possibles `2^48` adreces IP.
 
-Imaginem que el nostre subconjunt no serà mai més gran de 250 noms. 
+Imaginem que sabem que el nostre subconjunt no serà mai més gran de 250 noms, i per tant creem una llista `a` de 250 posicions.
 
-Imaginem que el subconjunt es forma de manera seqüencial, una adreça darrera una altra, i que anem guardant els noms en un diccionari a mesura que van arribant. La clau del diccionari serà el nom curt i el contingut, l'adreça IP.
 
-En el cas d’assignar el mateix nom a dues adreces, o **col·lisió**, enlloc de guardar l'adreça IP al diccionari, hi guardem una llista amb l'adreces IP que comparteixen el mateix *nom curt*.
+Imaginem que tenim una funció `h` tal que donada una IP és capaç de generar un index `i` de la llista. Llavors, i suposant que subconjunt ens arriba de manera seqüencial, anem guardant el nom de les IP a la posició `a[i]` a mesura que van arribant. 
+
+En el cas que `h` assigni el mateix índex a dues adreces (aquest cas s'anomena **col·lisió**) enlloc de guardar directament l'adreça IP a la llista, hi guardem una llista amb l'adreces IP que comparteixen el mateix índex.
 
 Aquest esquema tindria sentit per fer cerques molt ràpides sempre i quant les llistes de col·lisió fossin petites. Per què?
 
@@ -4900,11 +4901,11 @@ Aquest esquema tindria sentit per fer cerques molt ràpides sempre i quant les l
 
 ## Hashing i Cerca
 
-Com podem generar (amb una funció) els noms tals que minimitzen la probabilitat de col·lisió?
+### **Problema**: Donades unes dades d'entrada, com podem crear una funció `h` tal que els índexos que crea minimitzin la probabilitat de col·lisió de les dades en la llista que creem?
 
-Aquest és el rol de les funcions **hash**: a l’exemple, una funció `h` que assigni al voltant de 250 noms curts a les adreces IP.
+Aquest és el rol de les funcions **hash**: a l’exemple, una funció `h` que generi indexos per adreces IP.
 
-El nom assignat a una adreça `x` és `h(x)`, i llavors `x` s’emmagatzema a l'índex `h(x)` del diccionari.
+L'índex  assignat a una adreça `x` és `h(x)`, i llavors `x` s’emmagatzema a la posició `h(x)` de la llista.
 
 ---
 
@@ -4945,26 +4946,28 @@ Si les adreces vinguessin de forma **uniformement distribuïda en el conjunt tot
 
 Atès que fem una correspondència entre `2^48` adreces i una llista de `250` noms hi ha d’haver una col·lecció de `2^48/250` = 1 bilió d’adreces que potencialment col·lisionaran. 
 
-Però podem seguir el següent esquema per **minimitzar les col·lisions**: escollim de forma aleatòria una funció per alguna classe de funcions hash (per una funció hash haurem de poder demostrar que, sigui quin sigui el conjunt  d’adreces, la majoria de funcions escollides generaran poques col·lisions!)
+Però podem seguir el següent esquema per **minimitzar les col·lisions**: escollir de forma aleatòria una funció per alguna classe de funcions hash 
+
+> Per definir una bona funció hash haurem de poder demostrar que, sigui quin sigui el conjunt  de dades d'entrada, la majoria de funcions escollides generaran poques col·lisions!
 
 ---
 ## Hashing i Cerca
 
 Anem a definir una classe de funcions que puguem escollir aleatòriament:
 
-+ Suposem que creem una llista de `n=257` noms (enlloc de `256`). `257` és un nombre primer.....
++ Suposem que creem una llista de `n=257` noms (enlloc de `256`). `257` és un nombre primer. Ha de ser un nombre primer si volem que sigui una bona funció hash!
 + Representem una adreça com una `6`-tupla d’enters mòdul `n: x = (x1,x2,x3,x4,x5,x6)`
 
-Definim la classe `h: IP -> n`  de la següent manera:
+Definim la classe de funcions hash `h: IP -> n`  de la següent manera:
 
-+ Defineix 6 nombres qualsevol mòdul `n=257`. Per exemple: `87, 23, 125, 4, 17, 231`. 
++ Escull 6 nombres qualsevol mòdul `n=257`. Per exemple: `87, 23, 125, 4, 17, 231`. 
 + Transforma l’adreça `(x1,x2,x3,x4,x5,x6)` a 
-`h(x1,x2,x3,x4,x5,x6)= (87x1+23x2+125x3+4x4+17x5+231x6) mod 257`. 
+`h(x1,x2,x3,x4,x5,x6)= (87*x1 + 23*x2 + 125*x3 + 4*x4 + 17*x5 + 231*x6) mod 257`. 
 
 ---
 ## Hashing i Cerca
 
-Dit d’una altra manera, per qualsevol conjunt de coeficients `a_1, ..., a_6` d'enters amb un valor entre `0` i `n-1`, podem definir la següent funció hash:
+Dit d’una altra manera, per qualsevol conjunt de coeficients $$a_1, ..., a_6$$ d'enters amb un valor entre `0` i `n-1`, podem definir la següent funció hash:
 
   <center><img src="images/hash2.png" width="450"></center>
 
@@ -5011,6 +5014,9 @@ La seva aplicació a d’altres problemes és simple:
 
 Hi ha moltes families de funcions hash. Per triar la millor funció hash pel nostre problema hem d'examinar les dades i decidir quina és la millor funció hash a partir de les propietats de les dades.
 
+---
+## Hashing i Cerca
+
 Per exemple, quina funció fariem servir si les nostres dades **ja estan uniformement distribuides**? 
 
 --
@@ -5022,9 +5028,9 @@ Llavors la funció hash podria ser `h = z mod n` o `h = (z × n) ÷ N`.
 ---
 ## Hashing i Cerca: enters no uniformement distribuits. 
 
-Quina funció fariem servir si les nostres dades són enters que ** no estan uniformement distribuits**?  
+Quina funció fariem servir si les nostres dades són enters que ** no estan uniformement distribuides**?  
 
-Per exemple, suposem que són nombres de telèfon. Els nombres de telèfon tenen la propietat que els primers dígits no estan uniformement distribuits, pero els darrers si!
+> Per exemple, suposem que són nombres de telèfon. Els nombres de telèfon tenen la propietat que els primers dígits no estan uniformement distribuits, pero els darrers si!
 
 Suposem que 'n=	10000'. En aquest cas, la fòrmula `h = z mod n` encara funciona, però `h = (z × n) ÷ N` no (perquè depen molt dels dígits del principi)!
 
@@ -5098,14 +5104,36 @@ def StringHash(a, m=257, C=1024):
     return hash
 
 diccionari
->>> ['the', 'and', 'to', 'of', 'a', 'I', 'in', 'was', 'he', 'that', 'it', 'his', 'her', 'you', 'as', 'had', 'with', 'for', 'she', 'not', 'at', 'but', 'be', 'my', 'on', 'have', 'him', 'is', 'said', 'me', 'which', 'by', 'so', 'this', 'all', 'from', 'they', 'no', 'were', 'if', 'would', 'or', 'when', 'what', 'there', 'been', 'one', 'could', 'very', 'an', 'who', 'them', 'Mr', 'we', 'now', 'more', 'out', 'do', 'are', 'up', 'their', 'your', 'will', 'little', 'than', 'then', 'some', 'into', 'any', 'well', 'much', 'about', 'time', 'know', 'should', 'man', 'did', 'like', 'upon', 'such', 'never', 'only', 'good', 'how', 'before', 'other', 'see', 'must', 'am', 'own', 'come', 'down', 'say', 'after', 'think', 'made', 'might', 'being', 'Mrs', 'again']
+>>> ['the', 'and', 'to', 'of', 'a', 'I', 'in', 'was', 'he', 'that', 'it', 'his', 
+'her', 'you', 'as', 'had', 'with', 'for', 'she', 'not', 'at', 'but', 
+'be', 'my', 'on', 'have', 'him', 'is', 'said', 'me', 'which', 'by', 
+'so', 'this', 'all', 'from', 'they', 'no', 'were', 'if', 'would', 'or', 
+'when', 'what', 'there', 'been', 'one', 'could', 'very', 'an', 'who', 
+'them', 'Mr', 'we', 'now', 'more', 'out', 'do', 'are', 'up', 'their', 
+'your', 'will', 'little', 'than', 'then', 'some', 'into', 'any', 'well', 
+'much', 'about', 'time', 'know', 'should', 'man', 'did', 'like', 'upon', 
+'such', 'never', 'only', 'good', 'how', 'before', 'other', 'see', 'must', 
+'am', 'own', 'come', 'down', 'say', 'after', 'think', 'made', 'might', 
+'being', 'Mrs', 'again']
 
+```
+
+---
+## Exemple:
+
+```python
 taula=[]
 for i in diccionari:
     taula.append(StringHash(i))
 
 taula
->>> [256, 184, 161, 172, 97, 73, 204, 89, 199, 136, 210, 74, 89, 67, 241, 91, 129, 17, 240, 147, 242, 188, 223, 199, 180, 179, 68, 209, 40, 179, 10, 243, 165, 103, 200, 101, 125, 185, 70, 196, 228, 184, 179, 201, 143, 190, 152, 248, 154, 236, 57, 113, 63, 139, 150, 99, 139, 225, 169, 158, 192, 103, 165, 82, 130, 114, 249, 84, 205, 101, 1, 195, 89, 241, 189, 181, 252, 95, 138, 131, 164, 256, 237, 54, 67, 7, 252, 206, 235, 125, 245, 150, 31, 81, 229, 188, 173, 178, 120, 207]
+>>> [256, 184, 161, 172, 97, 73, 204, 89, 199, 136, 210, 74, 89, 67, 241, 
+91, 129, 17, 240, 147, 242, 188, 223, 199, 180, 179, 68, 209, 40, 179, 10, 
+243, 165, 103, 200, 101, 125, 185, 70, 196, 228, 184, 179, 201, 143, 190, 
+152, 248, 154, 236, 57, 113, 63, 139, 150, 99, 139, 225, 169, 158, 192, 
+103, 165, 82, 130, 114, 249, 84, 205, 101, 1, 195, 89, 241, 189, 181, 252, 
+95, 138, 131, 164, 256, 237, 54, 67, 7, 252, 206, 235, 125, 245, 150, 31, 
+81, 229, 188, 173, 178, 120, 207]
 
 ```
 
@@ -5120,7 +5148,14 @@ def StringHash(a, m=5749, C=1024):
     return hash
 
 taula
->>> [589, 4073, 3915, 4535, 97, 73, 4148, 209, 3115, 1260, 4154, 3276, 4928, 1816, 1710, 818, 3248, 4903, 4080, 5722, 1711, 2017, 2720, 2506, 4543, 5313, 3270, 4153, 4034, 2486, 827, 2740, 2891, 3702, 2033, 5606, 5361, 3520, 3663, 4140, 4550, 4547, 2883, 4542, 3800, 1880, 1192, 3283, 2589, 1705, 1624, 5349, 4225, 1228, 5725, 3805, 2626, 4778, 2421, 4940, 346, 2771, 809, 824, 1254, 5350, 5249, 4978, 4094, 3275, 1996, 3590, 4293, 2054, 2931, 620, 5727, 4991, 254, 2811, 1654, 3360, 5666, 3675, 1738, 2900, 1008, 1145, 1704, 4668, 4992, 4837, 2681, 2870, 2993, 3849, 4778, 2591, 3267, 5397]
+>>> [589, 4073, 3915, 4535, 97, 73, 4148, 209, 3115, 1260, 4154, 3276, 4928, 
+1816, 1710, 818, 3248, 4903, 4080, 5722, 1711, 2017, 2720, 2506, 4543, 5313, 
+3270, 4153, 4034, 2486, 827, 2740, 2891, 3702, 2033, 5606, 5361, 3520, 3663, 
+4140, 4550, 4547, 2883, 4542, 3800, 1880, 1192, 3283, 2589, 1705, 1624, 5349, 
+4225, 1228, 5725, 3805, 2626, 4778, 2421, 4940, 346, 2771, 809, 824, 1254, 
+5350, 5249, 4978, 4094, 3275, 1996, 3590, 4293, 2054, 2931, 620, 5727, 4991, 
+254, 2811, 1654, 3360, 5666, 3675, 1738, 2900, 1008, 1145, 1704, 4668, 4992, 
+4837, 2681, 2870, 2993, 3849, 4778, 2591, 3267, 5397]
 ```
 
 ---
