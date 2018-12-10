@@ -5264,12 +5264,26 @@ Si volem buscar el parell d’adreces més semblants tenim un problema: hem de c
 
 Podem calcular un valor `Sim(A,B)` que “aproximi” `J(A,B)` amb menys complexitat que `O(n^2)`?
 
+Per fer-ho necessitem una funció de hash que assigni codis semblants (en el sentit de la distància de Hamming) a ítems semblants....
+
+```python
+def hamming_distance(s1, s2): 
+  return sum(ch1 != ch2 for ch1, ch2 in zip(s1, s2))
+
+zip('hola','hole')
+>>> [('h', 'h'), ('o', 'o'), ('l', 'l'), ('a', 'e')]
+hamming_distance('hola','hole')
+>>> 1
+```
+
+
 ---
 ## SimHash i cerca per semblança.
 
 Per fer-ho necessitem una funció de hash que assigni codis semblants (en el sentit de la distància de Hamming) a ítems semblants.
+Aquesta funció s'anomena `SimHash`. 
 
-Hash clàssic vs SimHash:
+Comportament del `Hash` clàssic vs `SimHash`:
 
 ```python
 p1 = 'the cat sat on the mat'
@@ -5295,19 +5309,7 @@ simhash(p3)
 ---
 ## SimHash i cerca per semblança.
 
-```python
-def hamming_distance(s1, s2): 
-	return sum(ch1 != ch2 for ch1, ch2 in zip(s1, s2))
-
-zip('hola','hole')
->>> [('h', 'h'), ('o', 'o'), ('l', 'l'), ('a', 'e')]
-hamming_distance('hola','hole')
->>> 1
-```
----
-## SimHash i cerca per semblança.
-
-L’algorisme SimHash genera un codi de la manera següent:
+L’algorisme `SimHash` genera un codi binari de la manera següent:
 
 + Escollim una mida de la taula, per exemple 32 bits.
 + Sigui  `V=[0]*32`.
@@ -5319,6 +5321,7 @@ L’algorisme SimHash genera un codi de la manera següent:
 + Fem el hash de cada característica amb una funció de 32 bits. 
 
 > `Hash(‘th’) = -502157718`
+
 > `Hash(‘he’) = -369049682` ... 
 
 + Per cada hash, si el bit `i` del hash és 1 llavors sumem 1 a `V[i]`; si el bit `i` del hash és 0 llavors restem 1 de `V[i]`.
