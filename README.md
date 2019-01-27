@@ -1,3 +1,3 @@
-# Accesibilidad- Universidad de Barcelona
+# Algorísmica- Universidad de Barcelona
 
 Apuntes de la asignatura
