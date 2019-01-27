@@ -1,3 +1,3 @@
-# Algorismica - Universitat de Barcelona
+# Accesibilidad- Universidad de Barcelona
 
-Apunts de l'assignatura
+Apuntes de la asignatura
