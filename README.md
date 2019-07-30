@@ -1,3 +1,3 @@
-# Algorísmica- Universidad de Barcelona
+# Algorísmica- Universitat de Barcelona
 
 Apunts de l'assignatura
