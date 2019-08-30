@@ -1,0 +1,171 @@
+<style>
+
+@import url('http://fonts.googleapis.com/css?family=Source+Code+Pro');
+@import url('http://fonts.googleapis.com/css?family=Lora');
+
+/*   adapted from https://github.com/edwardtufte/et-book/blob/gh-pages/et-book.css */
+
+@charset "UTF-8";
+
+@font-face {
+  font-family: "et-book";
+  src: url("et-book/roman-line-figures.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "et-book";
+  src: url("et-book/display-italic-old-style-figures.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic
+}
+
+@font-face {
+  font-family: "et-book";
+  src: url("et-book/bold-line-figures.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "et-book-roman-old-style";
+  src: url("et-book/roman-old-style-figures.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+       font-size: 15px !important;
+}
+
+.tema, h1 span { font-size: 14pt;
+	font-style: italic;
+	font-weight: 100;}
+
+#capcalera {	font-family:Arial;
+		font-size:12pt;
+		background-color:#fff1f1;
+		padding:5px;
+		}
+#peu {	font-family:Arial;
+	font-size:12pt;
+	background-color:#fff1f1;
+	padding:2px;
+	line-height:1}
+
+.exercici {color:#a60d0d;
+	   /* border-width:0 0 2px 2px !important;
+	   border-style:solid !important;
+	   border-color:#5e3333 !important; */ }
+
+.explicacio {}
+
+.avaluacio {}
+
+
+#notebook-container, .notebook_cell_list {
+       font-size: 1rem !important;
+       line-height: 1.5 !important;
+       width: 100%  !important;
+       margin-left: auto !important;
+       margin-right: auto !important;
+       padding-left: 12.5% !important;
+       font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif  !important;
+       background-color: #fffff8 !important;
+       color: #111 !important;
+       max-width: 1400px !important; }
+
+ .rendered .input_prompt {
+	 min-width:0 !important; } 
+
+.text_cell_render h1, .markdown h1 { 
+     font-weight: 400;
+     font-style: normal;
+     margin-top: 0rem;
+     margin-bottom: 0rem;
+     font-size: 2rem; }
+
+ .text_cell_render h2 { font-style: italic;
+     font-weight: 400;
+     font-size: 1.5rem;
+     margin-top: 1.5rem;
+     margin-bottom: 1.5em; }
+
+ .text_cell_render h3 { font-style: italic;
+             font-weight: 400;
+             margin-top: 1rem;
+             margin-bottom: 1rem;
+             font-size: 1.2rem;
+             display: block; }
+
+ .text_cell_render h4 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 1rem auto; }
+
+.rendered_html p { 
+	font-size: 1rem !important; 
+    	margin-top: 1rem !important;;
+    	margin-bottom: 1rem !important;;
+    	padding-right: 0 !important;;
+    	vertical-align: baseline !important;; }
+
+.rendered_html blockquote { font-size: 1.1rem !important;}
+
+.rendered_html ol, ul { width: 75% !important;; }
+
+.rendered_html li { padding: 0.5rem 0 !important;; }
+
+.rendered_html table {
+  border-top: 2px solid #111 !important;
+  border-bottom: 2px solid #111 !important;
+  font-size: 0.8rem !important;
+}
+
+.rendered_html th {
+  border-bottom: 1px solid #111 !important;
+}
+	 
+.rendered_html a { text-decoration: none !important;
+         background: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(#333, #333);
+         background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+         background-repeat: no-repeat, no-repeat, repeat-x;
+         text-shadow: 0.03em 0 #fffff8, -0.03em 0 #fffff8, 0 0.03em #fffff8, 0 -0.03em #fffff8, 0.06em 0 #fffff8, -0.06em 0 #fffff8, 0.09em 0 #fffff8, -0.09em 0 #fffff8, 0.12em 0 #fffff8, -0.12em 0 #fffff8, 0.15em 0 #fffff8, -0.15em 0 #fffff8;
+         background-position: 0% 93%, 100% 93%, 0% 93%; }
+
+.rendered_html a:link::selection { text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
+                    background: #b4d5fe; }
+ 
+.rendered_html pre { 
+	border:1px solid #cccccc !important; }
+
+.rendered_html * code { 
+	font-size: 1rem !important;
+        line-height: 1.5 !important;
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+	background-color: #fff !important }
+</style> 
+<script>
+    MathJax.Hub.Config({
+                        TeX: {
+                           extensions: ["AMSmath.js"],
+                           equationNumbers: { autoNumber: "AMS", useLabelIds: true}
+                           },
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+                },
+                displayAlign: 'center', // Change this to 'center' to center equations.
+                "HTML-CSS": {
+                    scale: 95,
+                        availableFonts: [],
+                        preferredFont:null,
+                        webFont: "TeX",
+                    styles: {'.MathJax_Display': {"margin": 4}}
+                },
+                 "fast-preview": {
+                    "disabled": false
+                }
+        });
+</script>
