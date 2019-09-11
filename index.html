@@ -375,10 +375,9 @@ calculant un error d'aproximació: `g*g - a > valor_error`.
 
 ```python
 def hero(a,error):
-    import math
     g = 1.0
-    # fabs vol dir valor absolut d'un real
-    while math.fabs(g*g - a) > error:		
+    # abs vol dir valor absolut d'un real
+    while abs(g*g - a) > error:		
         g = 1/2*(g+a/g)
     return g
 ```
