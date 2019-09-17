@@ -376,7 +376,6 @@ calculant un error d'aproximació: `g*g - a > valor_error`.
 ```python
 def hero(a,error):
     g = 1.0
-    # abs vol dir valor absolut d'un real
     while abs(g*g - a) > error:		
         g = 1/2*(g+a/g)
     return g
@@ -566,17 +565,6 @@ Si un programa té un error que no ha estat detectat:
 
 
 .footnote[.red[*]Pot ser que els errors només es manifestin per alguna combinació específica dels valors d'entrada i per tant no es detectin sense fer moltes proves. Normalment no podem provar totes les possibilitats!]
----
-class: exam
-
-## Possibles preguntes d'exàmen del Tema 1
-
-+ Quines són les dues característiques que defineixen un algorisme?
-+ Quins errors són més difícils de corregir i perquè?
-+ Donat un algorisme simple, determinar si té o no té algun error i de quin tipus és.
-+ Donat un algorisme simple, determinar si generarà una sortida (i quina) a partir d'una entrada determinada.
-+ Donats dos programes diferents, determinar si implementen o no el mateix algorisme.
-+ Donat un problema simple i dos possibles algorismes que el resolen, determinar quin dels dos és millor.
 
 
 
@@ -623,6 +611,8 @@ Cap a l’any 600, a l'Índia, es va inventar el sistema decimal de numeració.
 
 El seu principal avantatge sobre els que es coneixien a Europa, com el romà, és la seva **base posicional** i la **simplicitat de les operacions** (algorismes) aritmètiques.
 
+--
+
 Els sistemes de numeració romans i egipcis no són estrictament posicionals. Per això, és molt complex dissenyar algoritmes d'ús general (per exemple, per a sumar, restar, multiplicar o dividir). 
 
 Un sistema de numeració ve definit doncs per:
@@ -662,14 +652,14 @@ HEXADECIMAL és base 16 i té 16 dígits: `0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F`
 
 El sistema decimal de numeració va trigar molts anys en arribar a Europa.
 
-El medi de transmissió més important va ser un manual, escrit en àrab durant el segle IX a Bagdad, obra de Al Khwarizmi, en el que especificava els procediments per sumar, multiplicar i dividir nombres escrits en base deu.
+El medi de transmissió més important va ser un manual, escrit en àrab durant el segle IX a Bagdad, obra de **Al Khwarizmi**, en el que especificava els procediments per sumar, multiplicar i dividir nombres escrits en base deu.
 
 Els procediments eren precisos, no ambigus, mecànics, eficients i correctes.
 És a dir, eren algorismes (per a ser implementats sobre paper i no amb un ordinador!).
 
 Una de les persones que més van valorar aquesta aportació va ser Leonardo Fibonacci.
 
-<center><img src="images/fib.png" width="200" alt="Segell amb el bust de Leonardo Fibonacci"></center>
+<center><img src="images/fib.png" width="150" alt="Segell amb el bust de Leonardo Fibonacci"></center>
 
 
 ---
@@ -685,17 +675,18 @@ La seqüència es pot definir amb la següent regla:
 
 <center><img src="images/seqfib.png" width="350"></center>
 
-Això encara **no és un algorisme**. A les següents pàgines veurem diferents algorismes per implementar computacionalment aquesta definició.
+Això encara **no és un algorisme**, és només una definició: A les següents pàgines veurem diferents algorismes per implementar computacionalment aquesta definició!
+
 
 ---
 ## Una mica d'història
 
-La seqüència creix molt ràpid i es pot demostrar que el terme `n`-èssim de la seqüència té aproximadament aquest valor: 
+La seqüència creix molt ràpid i es pot demostrar (matemàticament) que el terme `n`-èssim de la seqüència té aproximadament aquest valor: 
 
 $$  F_n \approx 2^{0.694n}  $$
 
 
-Però per calcular **exactament** un terme concret necessitem un algorisme!
+Però per calcular **exactament** un terme concret necessitem una fòrmula o un algorisme!
 
 
 Una primera possibilitat és aquesta (*algorisme recursiu*).red[*]:
@@ -720,43 +711,54 @@ fib1(10)
 
 ## Algorisme recursiu de Fibonacci
 
-<center><img src="images/fib1.png" width="650"></center>
+Els algorismes recursius, per executar-se, creen automàticament còpies d'ells mateixos (amb paràmetres possiblement diferents) creant un arbre. Quan la recursivitat s'acaba, reconstrueixen la solució movent-se cap enrera per l'arbre.
+
+<center><img src="images/fib1.png" width="550"></center>
 
 ---
 
 ## Algorisme recursiu de Fibonacci
 
-Com per a qualsevol algorisme, ens podem fer tres preguntes (**les tres preguntes bàsiques de l'algorísmica**):
+De la mateixa manera que ho fariem per a qualsevol algorisme, ens podem fer tres preguntes (**les tres preguntes bàsiques de l'algorísmica**) sobre l'algorisme que hem escrit:
 
 + És correcte? 
-+ Quant trigarà, en funció de `n`?
++ Quant trigarà? En aquest cas, té sentit preguntar-ho en funció de `n`, la mida del nombre que passem com a paràmetre?
 + Hi ha alguna manera millor de fer-ho?
---
 
+
+---
+
+## Algorisme recursiu de Fibonacci
 
 I les respostes són:
 
-+ En aquest cas és evident que si, atès que segueix exactament la definició!
-+ Es pot demostrar que el nombre de passos computacionals que fa és de l'ordre de `F_n`. Per calcular el terme 200 hauria de fer de l'ordre de `2^138` passos. A l’ordinador més ràpid del món, que pot executar al voltant de 40.000.000.000.000 passos per segon,  necessitaríem més temps que el necessari pel col·lapse del Sol! A la velocitat que els ordinadors augmenten la seva capacitat de càlcul, cada any que passa podríem calcular un nombre de Fibonacci més que l’any anterior!
-+ Sí.
++ **És correcte?**  En aquest cas és evident que sí, atès que segueix exactament la definició!
++ **Quant trigarà?** Es pot demostrar que el nombre de passos computacionals que fa és de l'ordre de `F_n`. Per calcular el terme 200 hauria de fer de l'ordre de `2^138` passos. A l’ordinador més ràpid del món, que pot executar al voltant de 40.000.000.000.000 passos per segon,  necessitaríem més temps que el necessari pel col·lapse del Sol! A la velocitat que els ordinadors augmenten la seva capacitat de càlcul, cada any que passa podríem calcular un nombre de Fibonacci més que l’any anterior!
++ **Hi ha alguna manera millor de fer-ho?** Sí...
 
-Per què és tant lent?
 
 ---
 
 ## Algorisme recursiu de Fibonacci
 
-<center><img src="images/fib2.png" width="550"></center>
+Per trobar una manera millor, només cal adonar-se de per què és tant lent:
 
-Hi ha molts càlculs que es repeteixen! 
-Perquè no guardar-los?
+
+<center><img src="images/fib2.png" width="350"></center>
+
+Hi ha molts càlculs (en aquest cas, crides recursives) que es repeteixen!  
+
+Una solució possible és guardar el resultat de cada crida el primer cop que ho calculem i no tornar a calcular-ho.
 
 
 ---
 
 ## Algorisme de Fibonacci
 
-Anem a fer-ne una versió basada en llistes:
+Anem a fer-ne una versió basada en **llistes**:
+
+> **_NOTA:_**  _Les llistes en Python són **seqüències mutables d’objectes arbitraris**. Les llistes es manipulen amb diferents mètodes: https://docs.python.org/3/tutorial/datastructures.html_ i s'accedeix als seus elements amb els operadors de `slicing`. 
+
 
 ```python
 def fib2(n):
@@ -768,11 +770,13 @@ def fib2(n):
     return ls[n]
 ```
 
-+ És evident que és correcte.
-+ Només executa `(n-1)` vegades la iteració.
 
-Direm que `fib2(n)` és lineal (o polinòmic) respecte `n`. 
++ És correcgte? És evident que és correcte.
++ Quant trigarà? Només executa `(n-1)` vegades la iteració.
+
+Direm que `fib2(n)` és **lineal** (o polinòmic) respecte `n`. 
 Ara podem calcular fins i tot `fib(100.000.000)`.
+
 
 --
 
@@ -798,7 +802,7 @@ fib3(10)
 ## Com hem de comptar els passos computacionals?
 
 
-Considerarem de la mateixa categoria les instruccions simples com emmagatzemar a memòria, *branching*, comparacions, operacions aritmètiques, etc.
+Considerarem de la mateixa categoria les instruccions simples com emmagatzemar a memòria, comparacions, operacions aritmètiques, etc.
 
 ```python
 import math
@@ -829,7 +833,7 @@ Aquesta notació és una convenció per no ser ni massa ni massa poc precisos a 
 
 La regla principal és **comptar el nombre de passos computacionals aproximats en funció de la mida de l'entrada**.
 
-Fem la següent aproximació:  enlloc de dir que té una complexitat de `5 n^3 + 4 n + 3` direm que té una complexitat de `O(n^3)`
+> Nota: Fem la següent aproximació:  enlloc de dir que té una complexitat de `5 x n^3 + 4 x n + 3` direm que té una complexitat de `O(n^3)`
 
 En general utilitzarem aquestes convencions:
 
@@ -876,7 +880,7 @@ Les famílies més importants d’algorismes són les que tenen un ordre:
 
 ## Magnitud dels nombres.
 
-Powers of Ten Video 
+És important familiaritzar-se amb les magnituds dels nombres. Aquest video, "Powers of Ten", us pot ajudar a tenir una idea intuitiva de la magnitud de les potències de 10. 
 
 https://www.youtube.com/watch?time_continue=1&v=0fKBhvDjuy0
 
