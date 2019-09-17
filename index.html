@@ -771,7 +771,7 @@ def fib2(n):
 ```
 
 
-+ És correcgte? És evident que és correcte.
++ És correcte? És evident que és correcte.
 + Quant trigarà? Només executa `(n-1)` vegades la iteració.
 
 Direm que `fib2(n)` és **lineal** (o polinòmic) respecte `n`. 
@@ -796,6 +796,26 @@ def fib3(n):
 fib3(10)
 > 55
 ```
+
+---
+
+## Algorisme de Fibonacci
+
+```python
+def fib3(n):
+    a,b = 0,1
+    for i in range(1,n+1):
+        a,b = b, a+b
+    return a
+
+fib3(10)
+> 55
+```
+
+Amb l'eina Code Skulptor podem visualitzar fàcilment el funcionament de qualsevol algorisme:
+
+http://www.codeskulptor.org/viz/index.html
+
 
 ---
 
@@ -883,6 +903,14 @@ Les famílies més importants d’algorismes són les que tenen un ordre:
 És important familiaritzar-se amb les magnituds dels nombres. Aquest video, "Powers of Ten", us pot ajudar a tenir una idea intuitiva de la magnitud de les potències de 10. 
 
 https://www.youtube.com/watch?time_continue=1&v=0fKBhvDjuy0
+
+---
+
+
+class: center, middle, inverse
+name:tema2
+
+**Aritmètica Bàsica**
 
 ---
 
