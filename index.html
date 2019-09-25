@@ -918,8 +918,8 @@ name:tema2
 
 Quants dígits necessitem per representar un nombre `N` en base `b`?
 
-+ Si tenim `k` dígits en base `b` podem representar els nombres fins a `b^k -1`.
-Per tant, necessitem `log_b (N+1)` dígits per escriure `N` en base `b` (això surt d'aillar `k` a l'equació `b^k -1 = N`).
++ Si tenim `k` dígits en base `b` podem representar els nombres fins a `b^k-1`.
+Per tant, necessitem `log_b (N+1)` dígits per escriure `N` en base `b` (això surt d'aillar `k` a l'equació `b^k-1 = N`).
 
 Veiem un exemple: 
 
@@ -929,34 +929,41 @@ Veiem un exemple:
 
 >	Per altra banda, necessitarem `log_2 (31+1)` dígits per escriure `31` en base `b => 5` dígits
 
-Quan fem un canvi de base la mida del nombre només es veu afectada per un factor multiplicatiu, i per tant considerem que no canvia!
+Quan fem un **canvi de base**, la mida del nombre només es veu afectada lleugerament (per un factor multiplicatiu), i per tant considerem que el canvi de base no afecta a la "mida" del nombre! Tot el que diguem per base 2, serveix per les altres bases.
 
 ---
 name:suma
 
 ## Aritmètica Bàsica: Suma
 
-Hi ha una propietat, que ens serà molt útil, dels nombres decimals:
+> A partir d'ara sempre considerarem que els nombres estan en base 2.
 
-+ La suma de tres nombres d’un sol dígit qualsevol té com a màxim dos dígits. Aquesta regla és compleix per totes les bases `b >= 2`.
+
+Hi ha una propietat dels nombres (que es compleix per totes les bases `b >= 2`) que ens serà molt útil:
+
++ La suma de tres nombres d’un sol dígit qualsevol té com a màxim dos dígits. 
 
 Aquesta regla ens permet definir una regla general per sumar dos nombres en qualsevol base: la que hem après a l’escola!
 
 <center><img src="images/suma.png" width="350" alt="Carry 1 x x 1 1 1  first operand x 1 1 0 1 0 1 (53)  second operand x 1 0 0 0 1 1 (35)  result 1 0 1 1 0 0 0 (88)"></center>
---
+---
 
+## Aritmètica Bàsica: Suma
 
 Però, **quina complexitat té aquest algorisme**?
 
 + Aquesta pregunta la farem sempre en relació a la mida (nombre de bits) dels elements de l'entrada.
-+ Per un nombre petit de bits (64), l’ordinador ho pot fer en un sol pas, però això no és veritat per a nombres molt grans.
++ Suposarem que cada operació simple entre dos bits (`+`,`*`,comparació, etc...) té una complexitat `O(1)`
++ En un ordinador real, cada operació entre nombres de menys de 64 bits té `O(1)`. Això vol dir que divideix per 64 el cost
+que calcularem nosaltres, però això és només un factor multiplicador, que podem despreciar.
 
 
----
-## Aritmètica Bàsica: Suma
+--
 
 
-Suposem que tant `x` com `y` tenen `n` bits. La seva suma `(x+y)` té com a màxim `n+1` bits. La seva complexitat és per tant, `O(n)`.
+Considerem que tant `x` com `y` tenen `n` bits. La seva suma `(x+y)` té com a màxim `n+1` bits. 
+
+**La seva complexitat és  `O(n)`**, perquè fem un nombre de sumes de dos dígits que és proporcional a la mida del nombre.
 
 Es pot fer millor? 
 --
@@ -974,7 +981,7 @@ La multiplicació o producte que ens han ensenyat a l’escola és:
 <center><img src="images/mult.png" width="550" alt="multiplicació segons el mètode tradicional, amb tots els passos, de 1101 per 1011"></center>
 
 
-Tenim `n` multiplicacions de complexitat `n` (un bit per `n` bits) + aproximadament `2n` sumes de complexitat `2n`, que és un total de `(n^2 + 4n^2) = 5n^2` i per tant la **complexitat total de la multiplicació és `O(n^2)`**.
+Tenim `n` multiplicacions de complexitat `n` (un bit per `n` bits) + aproximadament `2n` sumes de complexitat `n`, que és un total de `(n^2 + 2n^2) = 3n^2` i per tant la **complexitat total de la multiplicació és `O(n^2)`**.
 
 ---
 
@@ -983,7 +990,7 @@ Tenim `n` multiplicacions de complexitat `n` (un bit per `n` bits) + aproximadam
 Al Khwarizmi ens va donar un segon algorisme (i que avui encara s’utilitza en uns quants països!)
 
 + Escrivim els nombres un al costat de l’altre.
-+ Repetim aquesta operació “Dividim el primer per dos i l’arrodonim. Doblem el segon  fins que el primer nombre és `1`”.
++ Repetim aquestes operacions: “Dividim el primer per dos i l’arrodonim; Doblem el segon;",  fins que el primer nombre és `1`.
 + Sumem  els nombres de la segona columna que corresponen a totes les files on el nombre de la primera columna és senar i obtenim el resultat.
 
 Exemple: `11 x 13`:
@@ -1010,11 +1017,21 @@ def mult(x,y):
 print(mult(11,13))
 ```
 
-L’algorisme s'acaba després de `n` crides recursives.red[*] i a cada crida fem `O(n)` operacions. Per tant és `O(n^2)`. 
+L’algorisme s'acaba després de `n` crides recursives.red[*] i a cada crida fem `O(n)` operacions (atès que multiplicar un nombre per dos té un cost `O(n)`). Per tant és `O(n^2)`. 
 
 .footnote[.red[*]Si cada vegada que cridem la funció recursivament anem dividint per `2` el paràmetre `x` al cap de `n` crides el paràmetre ja valdrà `0`. Per exemple, si `x=16`, que necessita 5 bits (`n`= 5) per representar-se, llavors arribem a `0` en `5` crides:  `16, 8, 4, 2, 0`].
 
 ---
+
+## Aritmètica Bàsica: Multiplicació
+
+Es pot fer millor?
+
+La resposta és sí! Per`, una mica millor! Però això ho veurem més endavant.
+
+
+---
+
 name: div
 
 ## Aritmètica Bàsica: Divisió
@@ -1043,7 +1060,7 @@ def div(x,y):
     return q,r
 ```
 
-La seva complexitat és `O(n^2)`.
+Amb el que hem vist abans, és fàcil deduïr que **la seva complexitat és `O(n^2)`**.
 
 ---
 class: center, middle, inverse
