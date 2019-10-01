@@ -1157,11 +1157,20 @@ name:potmod
 
 **Divisió**: Aquesta operació no és tant simple (no està definida per tots els nombres) i té una **complexitat `O(n^3)`**. 
 
-**Exponenciació**: Ara imaginem que volem calcular expressions com aquesta amb nombres molt grans (centenars de bits): 
+**Exponenciació**: Ara imaginem que volem calcular expressions com aquesta amb nombres `x`, `y` molt grans (centenars de bits/dígits)(`N` no és un nombre gran): 
 
 $$ x^y \mbox{ mod } N $$
 
-+ El resultat intermig d'aquesta operació pot necessitar molts bits per ser representat, tot i que el resultat final necessita només `n = log(N)` bits. Si els operadors tenen 20 bits, necessitem 10 milions de bits!
+
+---
+
+## Aritmètica Modular
+
++ El resultat intermig d'aquesta operació pot necessitar molts bits/dígits per ser representat, **tot i que el resultat final necessita només `log(N)` bits/dígits** (aquest és un nombre molt petit!). 
+
++ Si els operadors tenen 20 bits, necessitem 10 milions de bits per emmagatzemar un valor intermig!
+
+--
 
 > `>>> (155 ** 245)
 4278248942979368837154163038105593721699158763295276283468486026116
@@ -1171,8 +1180,7 @@ $$ x^y \mbox{ mod } N $$
 1005664223266097322826018487453164194926459159037800946544634252898
 1341951429642759537873516202755230036214044808536307148121446731580
 4333849233319516087345366409004055624880988958445804402097403640767
-6150744628499884906823013796389743035319952468853443861007690429687
-5`
+61507446284998849068230137963897430353199524688534438610076904296875`
 
 
 ---
@@ -1181,15 +1189,19 @@ $$ x^y \mbox{ mod } N $$
 
 Una solució és fer totes les operacions intermèdies mòdul `N`.
 
-O sigui, calcular `x^y mod N` fent `y` multiplicacions successives per `x mòdul N`.
+O sigui, calcular `x^y mod N` fent `y` **multiplicacions successives** per `x mòdul N`.
 
 $$ x \mbox{ mod } N \rightarrow x^2 \mbox{ mod } N \rightarrow x^3 \mbox{ mod } N \rightarrow
-\dots x^N \mbox{ mod } N$$
+\dots x^y \mbox{ mod } N$$
 
-Tots aquests resultats són menors que `N`
-i per tant no necessiten tants bits. Per tant, les multiplicacions són de complexitat `O(n^2)`.
+Les multiplicacions són de complexitat `O(n^2)`. Tots aquests resultats són menors que `N`
+i per tant hem solucionat el problema d'emmagatzemar a memòria nombres molt grans. Però..., quantes multiplicacions hem de fer?
 
-El problema és que si `y` té 500 bits, hem de fer `2^(y-1)` multiplicacions (o sigui, anem a una complexitat d'ordre `2^500`) i l’algorisme és exponencial sobre `n`, la mida de `y`. 
+--
+
+El problema és que si `y` té `n` bits, **hem de fer `2^(n)` multiplicacions** de complexitat `O(n^2)`. Anem a una complexitat exponencial sobre `n`, la mida de `y`:
+
+$$ O(2^n) $$
 
 ---
 
@@ -1197,12 +1209,12 @@ El problema és que si `y` té 500 bits, hem de fer `2^(y-1)` multiplicacions (o
 
 Però una petita modificació pot ser un gran canvi!  
 
-+ Si l'exponent fos `2, x^2 mod N` seria equivalent a una simple multiplicació `(x * x) mod N`, d'ordre `O(n^2)`.
++ Si l'exponent és `2, x^2 mod N` és equivalent a una simple multiplicació `(x * x) mod N`, d'ordre `O(n^2)`.
 
 + Generalitzant, observem que si `y` és una potència de 2, es pot calcular `x` elevat a `y`  elevant al quadrat, mòdul `N`, successivament:
 
 $$ x \mbox{ mod } N \rightarrow x^2 \mbox{ mod } N \rightarrow x^4 \mbox{ mod } N \rightarrow
-\dots x^{2^{\log y}} \mbox{ mod } N$$
+\dots x^{y} \mbox{ mod } N$$
 
 Exemple: 
 
@@ -1214,7 +1226,15 @@ Exemple:
 
 ## Aritmètica Modular
 
-Segons el que hem vist de la multiplicació, cada potència pren un temps proporcional a `O(log^2 N)` (o el que és el mateix `O(n^2)`) i hi ha `m = log_y` multiplicacions: l’algorisme és polinòmic, `O(n^2)`,  respecte la mida de `N` i lineal `O(m)` respecte la mida de `y`. Per tant, si `N` i `y` tenen la mateixa mida, la complexitat de l'exponenciació és `O(n^3)`.
+Quantes multiplicacions hi ha?
+
+> Si `y = 2^n`, llavors hi ha `n` multiplicacions, o el que és el mateix, un nombre de multiplicacions proporcional a la mida de `y`.
+
+Si `N` és un nombre petit, l'algorisme consisteix en fer `n` multiplicacions de cost `O(n^2)`.
+
+Per tant, la complexitat d'aquest algorisme d'exponenciació és `O(n^3)`.
+
+--
 
 El més interessant d'aquest resultat és que es pot generalitzar a valors de `y` que no són potències de dos amb un augment de cost molt reduït:
 
@@ -1266,6 +1286,46 @@ $${\displaystyle O\left(\exp \left(\left({\begin{matrix}{\frac {64}{9}}\end{matr
 
 per factoritzar un nombre de `n` bits.
 
+**Curiositat**: A la pàgina següent teniu un algorisme "ingenu" de factorització.
+
+
+---
+```python
+from math import sqrt
+def primeListSofE(n) :
+    """ Sedàs d'Eratòstenes """
+    maxI = (n-3) // 2
+    maxP = int(sqrt(n))
+    sieve = [True for j in range(maxI+1)]
+    for p in range(3,maxP+1,2) :
+        i = (p-3) // 2
+        if sieve[i] :
+            i2 = (p*p-3) // 2
+            for k in range(i2,maxI+1,p) :
+                sieve[k] = False
+    ret = [2]+[2*j+3 for j in range(len(sieve)) if sieve[j]]
+    return ret
+
+def factor(n) :
+    """ Factorització simple """
+    ret =[]
+    nn = n
+    maxFactor = int(n**0.5)
+    primes = primeListSofE(maxFactor)
+    for p in primes :
+        while nn % p == 0 :
+            nn //= p
+            ret += [p]
+        if nn == 1 :
+            break
+    if nn != 1 :
+        ret += [nn]
+    return ret
+
+factor(135565) >> [5, 19, 1427]
+```
+
+
 ---
 name:euclides
 
@@ -1289,15 +1349,15 @@ Quina complexitat té per nombres grans?
 
 ## Algorisme d'Euclides
 
-La primera cosa que hem de veure és com es van reduint els nombres a mesura que anem calculant.
+La primera cosa que hem de veure és quantes vegades s'executa el `while`, o el que és el mateix, com es van reduint els nombres a mesura que anem calculant.
 
 > Cal fixar-se que a cada iteració els arguments `(a,b)` es converteixen a `(b mod a, a)`: canviem l’ordre i el més gran queda reduït al mòdul del petit.
 
-> Es pot demostrar que això vol dir que**en dos iteracions successives els dos arguments decreixen al menys a la meitat**, és a dir, perden un bit en la seva representació.
+> Es pot demostrar que això vol dir que **en dues iteracions successives els dos arguments decreixen al menys a la meitat**, és a dir, perden un bit en la seva representació.
 --
 
 
-Si inicialment eren enters de `n` bits, en `2n` crides recursives arribarem al final de l’algorisme. Com que cada crida implica una divisió d’ordre quadràtic, `(a mod b)` , el temps total serà `O(n^3)`.
+Si inicialment eren enters de `n` bits, en `2n` iteracions arribarem al final de l’algorisme. Com que cada iteració implica una divisió d’ordre quadràtic, `(a mod b)` , el temps total serà `O(n^3)`.
 
 ---
 name:testprimer
@@ -1308,22 +1368,15 @@ name:testprimer
 
 --
 
-Comprovar si un nombre més o menys gran és primer per la via de la factorització és una tasca a priori dura, perquè hi ha molts factors per provar. Però hi ha alguns fets que ens poden estalviar feina:
+Comprovar si un nombre més o menys gran és primer per la via de la factorització és una tasca dura o impossible, perquè hi ha molts factors per provar. 
 
-> No cal considerar com a factor cap nombre parell excepte el 2. De fet, podem obviar tots els factors que no són primers.
-
-
-> **Podem dir que un nombre és primer si no hem trobat cap candidat a factor menor que arrel quadrada de `N`, atès que `N=K*L`, i per tant és impossible que els dos nombres siguin més grans que arrel de `N`**.
-
-Fins aquí, bé, però no trobarem més maneres d’eliminar més candidats! 
-
-Això podria fer dir que **provar la primeritat d’un nombre és un problema dur**, però això no és veritat: **només és dur si ho intentem pel camí de la factorització**!
+Això podria fer dir que **provar la primeritat d’un nombre és un problema dur o impossible**, però això no és veritat: **només és dur si ho intentem pel camí de la factorització**!
 
 ---
 
 ## Nombres primers
 
-Una de les activitats bàsiques de la informàtica, la criptografia, es basa en el següent fet: **la factorització és dura, però la primeritat és fàcil**.
+Una de les activitats bàsiques de la informàtica, la criptografia, es basa en el següent fet: **la factorització és dura, però testar la primeritat és fàcil**.
 
 O el que és el mateix, no podem factoritzar grans nombres, però podem mirar fàcilment si grans nombres són primers (evidentment, sense buscar els factors!).
 
@@ -1334,6 +1387,8 @@ name:fermat
 ** Teorema petit de Fermat**: 
 
 > Si `p` és primer, llavors per a qualsevol enter `a`, `1 <= a < p`, es compleix que `a^(p-1) % p = 1`.
+
+> Si `41651` és primer, llavors `12^(41651 - 1) % 41651 = 1` 
 
 Això ens suggereix un test directe per comprovar si un nombre és primer. Però cal anar en compte….
 
@@ -1355,14 +1410,14 @@ fermat(41651,10)
 > True
 ```
 
-Aquest algorime va mostrejant nombres entre `1` i `num-1` i si en troba algun que compleix el teorema
-petit de Fermat s'atura i el retorna.
+Aquest algorime va provant els nombres entre `1` i `test_count` i si en troba algun que compleix el teorema
+petit de Fermat s'atura i retorna `False`.
 
 --
 
-Aquest algorisme té dues limitacions:
+Aquest algorisme té dues limitacions per nombres grans: 
 
-+ Només provem una valor `val`. 
++ Només podem provar uns quants valors `val`, no tots!
 + Aquest teorema és **necessari però no suficient**: no diu què passa quan `N` no és primer!
 
 
@@ -1378,7 +1433,7 @@ A més a més hem de veure què passa amb els nombres compostos que no són nomb
 
 **Lema**
 
-> Si `a^(N-1)` no és congruent amb 1 mòdul `N` per algun `a` que sigui nombre compost però no de Carmichael, llavors com a mínim en la meitat dels casos en que `a < N` el teorema petit de Fermat fallarà.
+> Si `N` és un nombre compost però no de Carmichael, llavors com a mínim en la meitat dels casos en que `a < N` el teorema petit de Fermat fallarà.
 
 ---
 
@@ -1454,20 +1509,6 @@ La solució del darrer punt és:
 
 .bold[Per tant, els algorísmes de més alta complexitat en un procés criptogràfic tenen `O(n^3)`]. 
 
----
-class:exam
-### Possibles preguntes d'exàmen relacionades amb el tema 3 
-
-1. Tenim una n=30, té sentit un algorisme d'ordre n^2? i un d'ordre n!? perquè?
-
-2. Suma 12 i 25 amb l'algorisme d'Al Khwarizmi
-
-3. Quin ordre de complexitat tenen les següents operacions de l'aritmètica bàsica? i de l'aritmètica modular?
-	suma, multiplicació, divisió
-
-4. Quina probabilitat hi ha que un nombre de 2 bits sigui primer?
-
-5. Perquè és segur enviar un missatge encriptat? quina dificultat troba qui el vulgui desxifrar?
 
 
 ---
