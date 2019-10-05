@@ -2518,12 +2518,9 @@ def primeListSofE(n, verbose = True) :
         if sieve[i]:
             for k in range(j*j,n+1,j) :
                 sieve[k-2] = False
- 
-    ret = [j for j in range(2,n+1) if sieve[j-2]]
- 
+    ret = [j for j in range(2,n+1) if sieve[j-2]] 
     if verbose :
         print ("Calculated primes to",n,"in",time()-t,"sec.")
- 
     return ret
 	
 	
@@ -2621,11 +2618,12 @@ Això ens suggereix un test directe per comprovar si un nombre és primer. Però
 ## Nombres primers
 
 ```python
+import random
 def fermat(num, test_count):
     if num == 1:
         return False
     for x in range(test_count):
-        val = randint(1, num-1)             # genera nombre aleatori
+        val = random.randint(1, num-1)      # genera nombre aleatori
         if pow(val, num-1, num) != 1:	    # la potència a Python es 
             return False                    # basa en l'algorisme modular
     return True
