@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<!DOCTYPE html>
+
 
     <meta name="keywords" content="remark,remarkjs,markdown,slideshow,presentation">
     <meta name="description" content="A simple, in-browser, markdown-driven slideshow tool.">
@@ -174,19 +176,15 @@ class: center, middle, inverse
 
 + [Presentació de l'assignatura](#tema0)
 + Tema 1: [Què és un algorisme?](#tema1)
-+ Tema 2: 
-	+ [Python I](#tema21)
-	+ [Python II](#tema22)
-	+ [Python III](#tema23)
-+ Tema 3: Algorismes Numèrics
-	+ [Aritmètica Bàsica](#tema3)
++ Tema 2: Algorismes Numèrics
+	+ [Aritmètica Bàsica](#tema2)
 	+ [Aritmètica Modular](#modular)
-+ Tema 4: [Algorismes per Text](#tema4)
-+ Tema 5: [Algorismes i Força Bruta](#tema5)
-+ Tema 6: [Dividir i vèncer](#tema6)
-+ Tema 7: [Algorismes de Cerca](#tema7)
-+ Tema 8: [Hashing i Cerca](#tema8)
-+ Tema 9: Estratègies algorísmiques per resoldre el PVC.
++ Tema 3: [Algorismes per Text](#tema3)
++ Tema 4: [Algorismes i Força Bruta](#tema4)
++ Tema 5: [Dividir i vèncer](#tema5)
++ Tema 6: [Algorismes de Cerca](#tema6)
++ Tema 7: [Hashing](#tema7)
++ Tema 8: Estratègies algorísmiques per resoldre el PVC.
 
 
 ---
@@ -200,78 +198,83 @@ class: center, middle, inverse
 
 ## Què és aquesta assignatura?
 
-Aquesta assignatura està adreçada a donar la formació bàsica als estudiants sobre l’anàlisi i disseny d’algorismes, tant des d’un punt de vista teòric com aplicat. No s’assumeix cap formació prèvia en programació de l’estudiant.
+Aquesta assignatura està adreçada a donar la formació bàsica als estudiants sobre l’**anàlisi i disseny** d’algorismes, tant des d’un punt de vista teòric com aplicat. No s’assumeix cap formació prèvia en programació de l’estudiant.
 
 ##Què s’espera dels estudiants matriculats?
 
 Els estudiants han de participar de forma activa durant les classes magistrals de teoria (**1,5 hores a la setmana**). 
+
 Durant les hores teòrico-pràctiques (o de problemes, **10 sessions de 1,5 hores**)  hauran de dissenyar solucions algorísmiques als problemes plantejats pels professors.
 
-Durant les hores  presencials de pràctiques (** 10 sessions de 1,5 hores**) hauran de programar de forma individual una sèrie d’exercicis pràctics. 
+Durant les hores  presencials de pràctiques (**10 sessions de 1,5 hores**) hauran de programar de forma individual una sèrie d’exercicis pràctics. 
 Les hores no presencials de l’assignatura (4 hores a la setmana) les han de dedicar a l’estudi i a la preparació dels problemes i pràctiques.
 
 ---
 
 ## Programarem?
 
-Tot i que en aquesta assignatura no és estrictament necessari programar, ho farem amb un llenguatge d’alt nivell: Python.
+Tot i que en aquesta assignatura no és estrictament necessari programar, ho farem amb un llenguatge d’alt nivell: **Python**.
 
 ## Com s’organitza l’assignatura?
 
-Usarem una única eina per distribuir la informació i organitzar la feina: el **Campus Virtual** de la UB. 
-
---
-
-### Què hi ha al Campus Virtual?
-
-+ Un link als apunts de teoria.
-+ Conjunt de problemes.
-+ Enunciat de les pràctiques.
-+ Lliurament de les pràctiques.
-+ Avaluacions de les proves i pràctiques.
+Usarem dues eines diferents per distribuir la informació i organitzar la feina: 
++ **GitHub**, per distribuïr el material formatiu. 
+	+ Teoria: https://algorismica2019.github.io/
+	+ Problemes: https://github.com/algorismica2019/problemes
++ **Campus Virtual** de la UB per la recollida d'exercicis, lliurament de proves presencials i qualificacions. 
 
 
+
+---
+
+class: center, middle
+
+
+<center><img src="images/CVUB.png" width="750"></center>
+
+https://campusvirtual.ub.edu/course/view.php?id=17969
 
 ---
 
 ## Com s’avaluarà l’assignatura? (I)
 
-L’assignatura seguirà un esquema d’avaluació continuada, amb dos elements principals: proves presencials i lliurament remot d’exercicis. 
+L’assignatura seguirà un esquema d’avaluació continuada, amb dos elements principals: proves presencials i lliurament d’exercicis. 
 
-+ Lliurament via campus virtual de pràctiques (LP): Els professors proposaran una sèrie de pràctiques que hauran de ser lliurades via el campus virtual per part de l’alumne dins el període assenyalat pel professor. Cada un dels lliuraments serà avaluat pel professor amb una nota que pot anar de 0 (nota mínima) a 10 (nota màxima). En cas de no lliurar les pràctiques dins el període assenyalat, l’alumne obtindrà un 0. La nota final (LP) de la part de lliurament de pràctiques serà la mitja de tots els lliuraments.
-+ Proves presencials (PP): durant el curs, l’alumne realitzarà varies proves escrites (teòrico-pràctiques) davant del professor. Les proves s’avaluaran amb una nota de 0 (nota mínima) a 10 (nota màxima). La nota final (PP) d’aquesta part serà la mitja de totes les proves realitzades (una prova no realitzada = 0).
++ Lliurament via campus virtual de pràctiques (LP): Els professors proposaran una sèrie de pràctiques que hauran de ser lliurades via el campus virtual per part de l’alumne dins el període assenyalat pel professor. 4 d'aquests lliuraments seran avaluats pel professor amb una nota que pot anar de 0 (nota mínima) a 10 (nota màxima). En cas de no haver lliurat les pràctiques dins el període assenyalat, l’alumne obtindrà un 0. La nota final (LP) de la part de lliurament de pràctiques serà la mitja de les 4 pràctiques avaluades.
++ Proves presencials (PP): Es fa un examen parcial (EP) i un examen final (EF). Tots els examens tenen amb una part pràctica (50 % de la qualificació) i una part teòrica (50 % de la qualificació).  
 
-La nota segons l’avaluació continuada (NF) es calcularà de la següent manera:
+Si un alumne no aprova l’examen parcial EP, pot tornar a presentar-se d'aquesta part del curs el dia de l’examen final, obtenint una nota EP2. 
 
-+ Si (LP>4,0 i PP>4,0):  NF = PP \* 0,6 + LP \* 0,4
-+ Sinó, NF = min(4.0, PP \* 0,6 + LP \* 0,4).
 
 ---
 
 ## Com s’avaluarà l’assignatura? (II)
 
-Durant la segona prova presencial (Gener) es donarà l’opció de presentar-se de tota l’assignatura o només de la segona part. Si un alumne opta per tornar a presentar-se a la primera part de l'assignatura, en la nota de proves presencials es tindrà en compte la nota millor dels dos intents.
 
-Tots aquells alumnes que no aprovin la prova presencial de Gener i obtinguin una NF>=3,5 tenen dret a una reavaluació al cap d’un dies de la publicació de NF. La reavaluació serà equivalent a un examen final. En aquests casos, la nota final de l’assignatura serà la nota de la reavaluació.
+La nota d’avaluació continuada és 
+
+`AC = 0,3 * LP + 0,3 * max (EP, EP2) + 0,4 EF`
+
+sempre que `(LP > 4,0) i (max (EP, EP2)+EF > 4,0)`. Altrament la nota d’avaluació continuada és `min (4,0, (max (EP, EP2) + EF + LP) /2)`.  
+
+> Durant la segona prova presencial (Gener) es donarà l’opció de presentar-se de tota l’assignatura o només de la segona part. Si un alumne opta per tornar a presentar-se a la primera part de l'assignatura, en la nota de proves presencials es tindrà en compte la nota millor dels dos intents.
+
+Tots aquells alumnes que no aprovin però obtinguin una `AC>=3,5` tenen dret a una reavaluació al cap d’un dies de la publicació de `AC`. En aquests casos, la nota final de l’assignatura serà la nota de la reavaluació.
 
 ---
 
 ##I el lliurament de problemes...?
 
-No hi ha una activitat pròpia de lliurament de problemes, però l’alumne anirà construint un portafolis de problemes que el professor pot revisar en qualsevol moment.
+No hi ha una activitat pròpia de lliurament de problemes, però la  part pràctica de les proves presencials pot estar basada en aquests problemes.
 
-La part pràctica de les proves presencials estarà basada en aquests problemes.
-
-El campus virtual proporciona informació sobre QUAN s’ha resolt els problemes. Per valorar aquesta activitat el professor tindrà en compte tant el QUÈ com el QUAN.
-
----
+--
 
 ## Calendari de proves
 Tots els exàmens es fan en període no lectiu.
 
-+ La primera prova presencial es farà el 5 de novembre de 15h a 18h. 
-+ La segona prova presencial (examen final) es farà el 18 de gener de 15h a 20h.
-+ La reavalaució es farà el 31 de gener de 15h a 20h.
++ La primera prova presencial es farà el 7 de novembre de 15h a 18h. 
++ La segona prova presencial (examen final) es farà el 20 de gener de 15h a 20h.
++ La reavalaució es farà el 30 de gener de 15h a 20h.
 
 ---
 
@@ -321,6 +324,12 @@ class: summary
 > Definició de la *Wikipedia*: Un algorisme és una seqüència finita, no ambigua i
 explícita, d’instruccions per a resoldre un problema. 
 
+
+
+---
+
+## Què és un algorisme?
+
 La definició d’aquesta assignatura: 
 
 .bold[Un algorisme és qualsevol procediment computacional que pren un (o una sèrie) de dades/valors com a *entrada* i genera alguna dada/valor (o sèrie de dades/valors) com a *sortida*.]
@@ -346,6 +355,8 @@ Problema a resoldre mitjançant un algorisme:
 
 Hi ha diversos algorismes per calcular aquest valor. El que s'explica a l'escola és un d'ells (i no és exactament simple!). 
 
+--
+
 Heró d’Alexandria (10 dC-70 dC) ja en va proposar un altre:
 
 + Comencem amb un nombre qualsevol `g`.
@@ -364,9 +375,8 @@ calculant un error d'aproximació: `g*g - a > valor_error`.
 
 ```python
 def hero(a,error):
-    import math
     g = 1.0
-    while math.fabs(g*g - a) > error:		#fabs vol dir nombre absolut en decimals
+    while abs(g*g - a) > error:		
         g = 1/2*(g+a/g)
     return g
 ```
@@ -377,9 +387,11 @@ Si executem `hero(49,0.0001)`, l'ordinador retorna `7.000000141269659`.
 
 ## Correcció i Eficiència Algorísmica
 
-Un algorisme és **correcte** si podem demostrar que retorna la sortida desitjada per a qualsevol entrada legal (per al problema de l’arrel quadrada, això vol dir nombres positius o 0). 
+Un algorisme és **correcte** si **podem demostrar** que retorna la sortida desitjada per a qualsevol entrada legal (per al problema de l’arrel quadrada, això vol dir nombres positius o 0). 
 
-> Demostrar la *correcció* és fàcil per alguns algorismes, difícil per la majoria i fins i tot impossible per alguns! Aquest aspecte de l'algorísmica no l'abordarem durant aquest curs.
+> Demostrar la *correcció* és fàcil per alguns algorismes, difícil per la majoria i fins i tot impossible per alguns! 
+
+> Aquest aspecte de l'algorísmica no l'abordarem durant aquest curs.
 
 --
 
@@ -472,10 +484,17 @@ La solució III anterior **és correcta** però **no és eficient**.
 
 + No cal demostrar que és correcta: és evident! 
 
-+ El nombre de possibles ordenacions d'un conjunt de `n` elements ve donat pel concepte de factorial: `n! = n x (n-1) x (n-2) x ... x 1`. 
++ El nombre de possibles ordenacions d'un conjunt de `n` elements ve donat pel concepte de **factorial**: `n! = n x (n-1) x (n-2) x ... x 1`. 
 
 + El factorial d'un nombre `n` creix molt ràpidament quan `n` es fa gran. Aquest pot ser un nombre molt gran fins i tot pels ordinadors.
 
+
+|     |     |
+|---  |---  |
+|  $$20! =$$   |  $$2432902008176640000$$   | 
+|  $$25! =$$   |  $$1,551121004 \times 10^{25}$$   | 
+|  $$50! =$$   |  $$3,041409320 \times 10^{64}$$   | 
+|  $$100! =$$   |  $$9,332621544 \times 10^{157}$$   | 
 
 ---
 
@@ -546,1335 +565,20 @@ Si un programa té un error que no ha estat detectat:
 
 
 .footnote[.red[*]Pot ser que els errors només es manifestin per alguna combinació específica dels valors d'entrada i per tant no es detectin sense fer moltes proves. Normalment no podem provar totes les possibilitats!]
----
-class: exam
-
-## Possibles preguntes d'exàmen del Tema 1
-
-+ Quines són les dues característiques que defineixen un algorisme?
-+ Quins errors són més difícils de corregir i perquè?
-+ Donat un algorisme simple, determinar si té o no té algun error i de quin tipus és.
-+ Donat un algorisme simple, determinar si generarà una sortida (i quina) a partir d'una entrada determinada.
-+ Donats dos programes diferents, determinar si implementen o no el mateix algorisme.
-+ Donat un problema simple i dos possibles algorismes que el resolen, determinar quin dels dos és millor.
 
 
 
 ---
 
 class: center, middle, inverse
-name:tema21
+name:tema2
 
-# Tema 2:  **Python**
-
----
-class: summary
-
-### Resum del tema 2 (I)
-	
-+ **Conceptes de programació**: 
-
-  + Instrucció, 
-  + funció, 
-  + paràmetres, 
-  + crida/invocació, 
-  + noms,
-  + expressions, 
-  + literals, 
-  + comentaris, 
-  + variables, 
-  + iteracions definides / bucles, 
-  + biblioteques (libraries) de funcions /  mòduls, 
-  + assignacions:
-      + asssignacions simples, d'entrada, simultànies.
+# Tema 2:  **Algorísmes Numèrics**
 
 ---
 class: summary
 
-### Resum del tema 2 (II)
-	
-+ **Llenguatge Python**: 
-
-  + com organitzar un programa modularment: funcions i blocs de codi 
-  + `def`, 
-  + `print()`, 
-  + `input` i `eval(input)`, 
-  + `for i in range(start,stop,step)`, 
-  + índex, 
-  + operació `**`, 
-  + `abs()`, 
-  + `%`, 
-  + `import`
-
-	
----
-class: summary
-
-### Resum del tema 2 (III)
-	
-+ **Llenguatge Python (2)**: 
-
-  + [cadenes de caràcters o strings](#strings)
-		+ slicing
-		+ concatenar(+) i repetir (*)
-		+ split, join, strip
-		+ islower, isupper, isalpha
-  + [ASCII i UniCode](ASCII)
-		+ ord i char
-  + [àmbit o scope](#scope)
-  + [crida de funcions](#crida)
-  + [operadors relacionals](#relacionals): <, <=, ==, >=, >, !=
-  + [operadors booleans](#booleans): and, or
-  + [estructures de control](#control): 
-		+ if elif else
-		+ while
-	
-  
----
-class: summary
-
-### Resum del tema 2 (IV)
-	
-+ **Llenguatge Python (3)**: 
-
-  + col·leccions de dades, mutables/immutables, homogènies/inhomogènies
-		+ [llistes](#llistes)
-		+ [diccionaris](#diccionaris)
-		+ [tuples](#tuples)
-  + referències
-  + clonatge  
-  
----
-name:funcio
-
-# Python
-
-## Funcions
-
-Un programa en Python pot ser una simple seqüència d'instruccions vàlides, però si volem organitzar el codi de forma òptima podem **crear/definir**  **funcions** (que en aquest cas s’anomena `hola`): 
-
-```python
-def hola():
-    print("Hola!")
-```
-
-Les funcions serveixen per facilitar la **reutilització** del codi i també la seva **organització**. 
-
-Un cop la tenim definida la poden **cridar/invocar**: 
-
-```python
-hola()
-> Hola!
-```
-El símbol `>` indica una resposta de l'ordinador a través de la pantalla.
-
----
-
-## Funcions
-
-
-La definició d'una funció no té cap efecte visible, **no fa res si no la cridem**: 
-
-```python
-def hola():
-    print("Hola!")
->
-```
-
-Però internament, Python l'emmagatzema. 
-
-La funció es podrà cridar dins de la sessió en que s'ha definit. Si canviem de sessió i la volem usar tenim dues opcions:
-
-+ Tornar-la a definir.
-+ Guardar-la en un fitxer al disc de l'ordinador i llegir-la des de Python.
-
----
-## Un programa en Python
-
-
-
-Les funcions poden tenir **paràmetres** (que van entre els parèntesi):
-
-```python
-def hola(persona):
-    print("Hola", persona)
-```
-
-Un paràmetre és un contenidor, que en el moment de la definició no té valor.
-
-Quan es crida la funció els paràmetres han de prendre un valor:
-
-```python
-hola("Jordi")
-> Hola Jordi
-```
-
-.code[Consola Python: [Exec](https://www.python.org/shell/)]
-
----
-
-## Un programa en Python
-
-En aquest programa podem veure diversos elements del llenguatge: 
-+ comentaris, 
-+ variables, 
-+ assignacions, 
-+ iteracions, 
-+ entrada de dades des del teclat, 
-+ crida de la funció, 
-+ etc.
-
-```python
-def main():
-    '''
-    Comportament caòtic
-    '''
-    print("Aquest programa implementa un comportament caòtic")
-    x = input("Entra un nombre entre 0 i 1: ")
-    x = float(x)
-    for i in range(10):
-        x = 3.9 * x * (1-x)
-        print(x)
-
-main()
-```
-
-.code[Consola Python: [Exec](https://www.python.org/shell/)]
-
----
-
-## Un programa en Python
-
-
-Els elements més importants que tenim per a construir un programa Python són:
-
-+ **Noms**. Els fem servir per anomenar les funcions i les variables. 
-  + Tècnicament s’anomenen identificadors.  Han de començar per lletra o `_`  que pot ser seguit per qualsevol seqüència de lletres, dígits o subratllats (no espais!). 
-  + Distingirem entre majúscules i minúscules. 
-  + Hi ha noms reservats (`and`, `for`, `def`, etc.). 
-+ **Expressions**: Són la part de codi que calcula o produeix nous valors de les dades. 
-  + L’expressió més simple s’anomena *literal*, i s’usa per especificar un valor: `3.6`, `"hola"`. 
-  + Les variables són literals.
-  + Podem crear expressions complexes combinant expressions més simples amb operadors: `3.9 + x * (1-x)`
-      + Els operadors matemàtics segueixen les precedències estàndard. Tot i que per tant no sigui necessari l'ús de parèntesi, és **molt** recomanable. 
-
----
-## Un programa en Python
-
-+ **Sortides**. Són les dades o missatges que Python escriu com a producte de l'execució d'un programa. La forma més important de produïr una sortida és la funció `print`, amb els següents arguments:  
-
-    `print(value1, value2,..., sep=' ', end='\n')`
-
-+ **Assignacions**. N'hi ha dos tipus:
-  + Assignacions simples: `x = 3 + x * (1-x)`, per assignar el valor d'una expressió a una variable.
-  + Assignacions d’entrada: `x = input("Entra un valor: ")`, per assignar l'entrada de l'usuari (alfanumèrica) a través del teclat a una variable.
-
-    Si volem introduir algun altre tipus de valor hem de fer servir la funció `eval` (que fins i tot ens permet evaluar expressions): 
-
-```python
-a = eval(input("Entrada: "))
-a
-
-> Entrada: 3+4+5
-> 12
-```
-
----
-
-## Un programa en Python
-
-+ En Python podem fer assignacions simultànies, com per exemple: `sum, diff = x+y, x-y`
-
-  Aquest tipus d’assignació pot ser molt útil, com per exemple per *intercanviar els valors de dues variables*. Si volem intercanviar els valors de dues variables, això no funciona!:
-
-  ```python
-  x = 3
-  y = 4
-  x = y
-  y = x
-  print(x,y)
-
-  > 4 4
-  ```
-  
-  Com ho faríeu?
-
---
-
-  ```python
-  x = 3
-  y = 4
-  x,y = y,x
-  print(x,y)
-
-  > 4 3
-  ```
-  
----
-
-## Un programa en Python
-
-+ **Iteracions** (*loops*) definides. Els *iteradors* ens permeten executar un conjunt d'instruccions un nombre definit de vegades. La instrucció `for` és l'iterador més simple:
-
-  ```python
-  for j in [0,1,2,3]:
-      print(j*j, end=" ")
-
-  > 0 1 4 9
-
-  for i in range(10):
-      print(i, end=" ")
-
-  > 0 1 2 3 4 5 6 7 8 9 
-  
-  ```
-
-L'expressió `[0,1,2,3]` representa una **llista** de nombres. La funció `range` ens permet generar llistes de forma automàtica.
-
----
-
-## Un programa en Python
-
-  Quan treballem amb nombres, la funció `range` pot ser molt útil. 
-  La seva sintàxi és `range(start, stop, step)`.
-
-  ```python
-  list(range(10))
-  > [0,1,2,3,4,5,6,7,8,9]
-
-  list(range(0,10,3))
-  > [0,3,6,9]
-
-  list(range(0,-4,-1))
-  > [0,-1,-2,-3]
-  ```
-
----
-
-## Els nombres i Python
-
-Les dades  que un programa pot manipular i emmagatzemar són de diferents **tipus**. El tipus de la dada determina quins valors pot tenir i quines operacions es poden fer. 
-
-  ```python
-  type(3)
-  > int 
-  type(3.14)
-  > float 
-  x = -32
-  type(x)
-  > int
-  print(3+4, 3+4.0)
-  > 7 7.0
-  print(10.0/3, 10/3)
-  > 3.3333333333335  3.3333333333335
-  ```
-
---
-
-Els operadors bàsics són: `+`, `-`, `*`, `/`, `**`, `%`, `abs()`. `**` indica la potència,  `%` el mòdul,  i `abs()` el valor absolut. 
-
-+ Què dona `3**2`, `10%3`, i `abs(-4)`?
-
----
-
-## Els nombres i Python
-
-Python també ens proporciona funcions matemàtiques dins d’una biblioteca (*module*) especial anomenada `math`. 
-
-Una biblioteca no és res més que un fitxer que conté un conjunt de definicions de funcions. Quan carreguem una biblioteca normalment no s'executa res, només es fan definicions de funcions i potser de variables. 
-
-  ```python
-  import math
-  def main(a,b,c):
-      x = (-b+math.sqrt(b**2-4*a*c))/2*a
-      print(x)
-  ```
-
-Python té centenars de mòduls predefinits que l'usuari pot usar lliurement.
-
----
-
-### Exemple: el factorial d'un nombre.
-
-```python
-def factorial(num):
-	factorial = 1
-	if num < 0:
-	  print("Entra un enter positiu! ")
-	elif num == 0:
-	  print("El factorial de 0 és 1")
-	else:
-	  for i in range(1,num+1):
-	      factorial *= i
-	  print("El factorial de ", num, "és", factorial)
-```
-
----
-
-### Exemple explicat: el factorial d'un nombre.
-
-```python
-def factorial(num): # definim la funció factorial amb un paràmetre
-	factorial = 1
-	if num < 0:	# condicional
-	  print("Entra un enter positiu! ")	 # només s'executa si 
-                                        # es compleix la condició
-	elif num == 0:	# condicional
-	  print("El factorial de 0 és 1") # només s'executa si 
-                                        # es compleix la condició
-	else:	# alternativa als condicionals
-	  for i in range(1,num+1): # 1,2,3...num
-	      factorial *= i # factorial = factorial * i
-	  print("El factorial de ", num, "és", factorial)		
-```
-
----
-
-  ## Python Help
-
-  + [Lloc Web de Python](https://www.python.org/)
-  + [Documentació](https://docs.python.org/3/)
-  
-
----
-class: exam
-
-## Possibles preguntes d'exàmen del Tema 1
-
-+ Donat un programa simple en Python, detectar (sense executar-lo) possibles errors sintàctics i semàntics.
-+ Donat un programa simple en Python, determinar (sense executar-lo), si s'aturarà o té un bucle infinit.
-
-  
----
-
-class: center, middle, inverse
-name:tema22
-
-# **Python (2)**
-
----
-
-## Cadenes de caràcters (*strings*)
-
-Un string és una seqüència de caràcters, que es pot emmagatzemar en variables:
-
-```python
-a = 'Hola'
-b = "Mireia"
-print(a,b)
-> Hola Mireia
-
-type(b)
-> str
-```
-
-Podem entrar *strings* des del teclat:
-
-```python
-nom = input("Quin és el teu nom?")
-```
-
-De fet, tot el que entra pel teclat és una cadena de caràcters. Si volem entrar dades d'un altre tipus ho hem de fer així:
-
-```python
-edat = eval(input("Quina és la teva edat?"))
-
-```
-
-`eval` interpreta el que entrem com una expressió Python i l'avalua.
-
----
-
-## Cadenes de caràcters (*strings*)
-
-
-Per accedir a una cadena de caràcters hem de veure com Python les indexa:
-
-H | e | l | l | o |   | B | o | b 
-- | - | - | - 
-.code[0] | .code[1] | .code[2] | .code[3] | .code[4] | .code[5] | .code[6] | .code[7] | .code[8]
-
-Llavors podem accedir als valors de cada element de la cadena o fins i tot a subcadenes: 
-
-```python
-s = "Hello Bob"
-x = 8
-print(s[0], s[1], s[x-2])
-> H e B
-```
-
-Una operació anomenada *slicing* ens permet accedir a subcadenes de 
-caràcters:
-
-```python
-print(s[0:3], s[6:9], s[:3], s[3:], s[:])
-> Hel Bob Hel lo Bob Hello Bob
-```
----
-
-## Cadenes de caràcters (*strings*)
-
-També podem concatenar (`+`) i repetir (`*`) subcadenes:
-
-```python
-print("Bread" + " & " * 3 + "Breakfast")
-> Bread &  &  & Breakfast
-
-len("Bread" + " & " * 3 + "Breakfast")
-> 23
-```
-
-Exemple:
-
-```python
-def mes():
-    mesos = "GenFebMarAbrMaiJunJulAgoSetOctNovDes"
-    n = eval(input("Quin mes vols?"))
-    pos = (n-1) * 3
-    m = mesos[pos:pos+3]
-    print("L'abreviatura és: ", m)
-```
----
-
-## Cadenes de caràcters (*strings*)
-
-L’ordinador emmagatzema els caràcters de forma numèrica.
-
-Una forma estàndard s’anomena codificació **ASCII** (*American Standard Code for Information Interchange*), però tal i com el nom indica, no considera els caràcters que no s’usen en l’anglès.  Usa 7 bits per caràcter.
-
-Per això hi ha el sistema **UniCode**, que considera els caràcters de totes els llengües. Usa 16 bits per caràcter.  Per compatibilitat, és un superconjunt de l’ASCII.
-
-Python ens dóna funcions per accedir a aquests codis:
-
-```python
-ord('A')
-> 65
-
-ord('a')
-> 97
-
-chr(97)
-> a
-```
----
-
-name:ASCII
-
-class: center
-
-## Taula ASCII
-
-
-<center><img src="images/ascii.png" width="650" alt="codi i caràcter corresponent, buscar a la wikipèdia"></center>
-
----
-
-## Cadenes de caràcters (*strings*)
-
-Amb la funció `split` puc separar una cadena en una llista
-en diferents parts, indicant el caràcter separador:
-
-```python
-cadena = "458.342.120€"
-llista = cadena.split('.')
-> ['456', '342', '120€']
-```
-
-Si no indiquem el separador, per defecte és el caracter blanc. 
-
-```python
-cadena = "El gos i el gat, menjàven plegats"
-llista = cadena.split()
-> ['El', 'gos', 'i', 'el', 'gat,', 'menjàven', 'plegats']
-```
-
----
-
-name:strings
-
-## Cadenes de caràcters (*strings*)
-
-`join`:  Un dels usos més estesos de `join` consisteix en convertir llistes a cadenes de caràcters.
-
-```python
-llista = ['El', 'gos,', 'i', 'el', 'gat,', 'menjàven', 'plegats.']
-cadena=" ".join(llista)  # l'espai farà de separador
-print(cadena)
-> El gos, i el gat, menjàven plegats.
-```
-
-`strip`:  Elimina els caràcters indicats de l'inici i del final de la cadena, o els espais en blanc si no s'indiquen caràcters específics.
-
-```python
-"introducció a Python".strip('nio')
-> 'troducció a Pyth‘
-" introducció   ".strip()
-> 'introducció‘
-```
-
-`islower`, `isupper` i `isalpha`: Verifiquen si la cadena és majúscules, minúscules o tota de lletres respectivament.
-
-`lower` i `upper`: Converteixen la cadena de majúscules a minúscules i de minúscules a majúscules respectivament.
-
-
----
-
-## Funcions
-
-Fins ara hem escrit tots els programes en una única funció.
-
-Per diverses raons (economia a l’escriure, manteniment del software, disseny) i sobretot quan resolem problemes més complexos val la pena fer servir diferents funcions. Cada funció resoldrà una part del problema, serà com un subprograma, o un programa dins del programa.  
-
-Recordem que les funcions no són res més que una seqüència d’instruccions amb un nom. Una funció es pot cridar des de qualsevol lloc del programa pel seu nom.
-
-```python
-def sum(a,b):
-    return a+b
-
-a = 3
-b = a*2
-c = sum(a,b)
-c
-
-> 9
-```
-
----
-name:scope
-
-## Funcions
-
-
-L'àmbit o *scope* és el nom que donem als **llocs d’un programa** en els que *es pot fer referència* a una variable.  
-
-Només es pot fer referència a les variables definides dins d’una funció dins la pròpia funció, són locals, i per això poden tenir el mateix nom que variables externes. 
-
-L’única manera que té una funció per veure les variables d’una altra funció és passar-li com a paràmetre. 
-
-Exemple:
-
-```python
-a = 7
-def assignacio():
-    a = 5
-    print("dins, a val ", a)
-assignacio()
-print("fora, a val ",a)
-```
-
-Què es mostrarà a pantalla?
----
-
-name:crida
-
-## Crida de funcions
-
-Quan Python rep la crida d’una funció, fa quatre coses:
-
-+ El programa que fa la crida se suspèn/congela en el punt de la crida.
-+ Els paràmetres de la funció passen a prendre els valors de la crida.
-+ S’executa el cos de la funció.
-+ Retorna el control al punt de programa posterior a la crida.
-
-```python
-def sum(a,b):
-    return a+b
-
-def dif(a,b):
-    return a-b
-
-def sumdif(a,b):
-    s = sum(a,b)
-    d = dif(a,b)
-    return s,d
-
-a = 3
-b = 3
-print(sumdif(a,b))
-
-> 6 0
-```
-
----
-
-## Crida de funcions
-
-Veiem-ho amb [Code Skulptor](http://www.codeskulptor.org/viz/index.html)
-
-<center><img src="images/CodeSkulptor.png" width="80%" alt="Codi de la funció anterior amb un punt de control a s = sum(a,b) i amb l'execució de la funció sum(a,b) a mitges dins l'entorn de CodeSkulptor"></center>
-
-
-
----
-name:relacionals
-
-## Operadors relacionals 
-
-Els operadors relacionals ens permeten combinar expressions. El seu resultat és un valor *booleà* (`True[1]` o `False[0]`). Podem comparar tot tipus de dades:
-
-```python
-3<4
-> 1
-3*4 < 3+4
-> 0
-"hello" < "Hello"
-> 0
-```
-
-Els operadors són:
-
-```
-<	      # menor que
-<=	     # menor o igual que 
-== 	    # igual que
->= 	    # major o igual que
->  	    # major que
-!=	     # diferent que
-```
-
----
-name:booleans
-
-## Operadors booleans 
-
-Els operadors booleans ens permeten combinar expressions lògiques. El seu resultat és un valor booleà. 
-
-```python
-a = True
-b = False
-c = a and b
-print(c)
-print(a and b or c)
-print(a or (not b) and c)
-```
-
-`and`: és veritat si i només si els dos operands ho són.
-
-`or`: és veritat si al menys un dels dos operands ho és.
-
-L'ordre de precedència és not, and i or.
-
-
-> Quin és el resultat de cada expressió?
-
-
----
-name:control
-
-## Estructures de control
-
-Quan volem canviar el fil del programa en funció de si es 
-compleix una condició o no, farem servir l'estructura `if`:
-
-```python
-if a==0:
-    print("valor neutre")
-elif a < 0:
-    print("valor negatiu")
-elif a == 1:
-    print("valor unitat")
-else: 
-    print("altres valors")
-```
-
-Els `elif` són opcionals. En podem posar tants com vulguem.
-
-`else` també és opcional.
-
----
-
-## Exemple
-
-Càlcul del promig d'una seqüència de nombres:
-
-```python
-def mitja():
-    n = eval(input("Quants nombres tens?"))
-    suma = 0.0
-    for i in range(n):
-        x = eval(input("Entra un nombre: "))
-        suma = suma + x
-    return("La mitja és: ", suma/n)
-
-```
-
-És correcte, però no gaire pràctic. Per què?
-
----
-
-## Estructures de control
-
-Per solucionar el problema anterior podem usar un altre *estructura de bucle*: `while`.
-
-```python
-i = 0
-while i < 10:		#les instruccions s'executen mentre es compleix la condició
-    print(i)
-    i += 1
-```
-
-Llavors podem reescriure el programa anterior com:
-
-```python
-def mitja():
-    suma = 0.0
-    comptador = 0
-    mesnombres = "s"
-    while mesnombres[0] == 's': 
-        x = eval(input("Entra un nombre: "))
-        suma += x
-        comptador += 1
-        mesnombres = input("Hi ha més nombres (si o no)?")
-    return suma/comptador
-```
-
-Però encara podem fer més eficient aquest codi!
-
----
-
-## Estructures de control
-
-```python
-def mitja():
-    suma = 0.0
-    comptador = 0
-    x = eval(input("Entra un nombre (negatiu per acabar): "))
-    while x > 0: 
-        suma += x
-        comptador += 1
-        x = eval(input("Entra un nombre (negatiu per acabar): "))
-    return suma/comptador
-```
---
-
-
-
-```python
-def mitja():
-    suma = 0.0
-    comptador = 0
-    xStr = input("Entra un nombre (<Enter> per acabar): ")
-    while xStr != "":
-        x = eval(xStr) 
-        suma += x
-        comptador += 1
-        xStr = input("Entra un nombre (<Enter> per acabar): ")
-    return suma/comptador
-```
-
----
-
-class: center, middle, inverse
-name: tema23
-
-# **Python (3)**
-
----
-
-## Col·lecions de dades
-
-Exemples de col·leccions:
-
-+ Paraules d’un text.
-+ Estudiants d’un curs.
-+ Dades d’un experiment.
-+ Clients d’un negoci.
-+ Els gràfics que es poden dibuixar en una finestra.
-
-Python ens dona suport per a la manipulació d’aquest tipus de dades.
---
-
-
-Suposem que volem calcular la **mitja** i la **desviació estàndard** d'un conjunt de `n` nombres.
-
-$$ \mu = \frac{1}{n} \sum_{i=1}^n x_i $$
-
-$$ \sigma = \sqrt{\frac{\sum_{i=1}^n (x_i - \mu)^2}{n-1}} $$
-
-Quin problema tenim?
-
----
-name:llistes
-
-## Col·lecions de dades
-
-El que necessitem és emmagatzemar una col·lecció de coses (a priori no sabem quantes) en un “objecte”.
-
-De fet, aquest tipus d’*objecte* ja l’hem fet servir, i es diu llista:
-
-```python
-list(range(10))
-> [0,1,2,3,4,5,6,7,8,9]
-
-a='A B C D'
-a.split()
-> ['A','B','C','D']
-```
---
-
-
-Una llista és una **seqüència ordenada de coses**.
-
-Els elements d'una llista s'indexen de la mateixa manera que una cadena de caràcters. De fet les llistes i els strings són conceptualment molt semblants, i podem aplicar-hi operadors semblants.
-
-La diferència és el que contenen. Les llistes poden contenir  **qualsevol tipus de dades**, incloent “classes” definides pel programador. Les llistes són **mutables**, és a dir, es poden canviar sobre la mateixa estructura (els strings no!).
-
-
----
-
-## Col·lecions de dades
-
-Les llistes en Python són **dinàmiques**, poden créixer i decréixer durant l’execució del programa. Les llistes en Python són **inhomogènies**, poden contenir tipus diferents de dades. En resum, les llistes són **seqüències mutables d’objectes arbitraris**. 
-
-Es creen així:
-
-```python
-a = [1,3,5,7,0]
-b = ['spam', 0, 3.9]
-c = []
-d = [0] * 50
-```
-
-Podem afegir-hi o esborrar coses:
-
-```python
-nums = []
-x = eval(input("Entra un nombre: "))
-while x >= 0:
-    nums.append(x)
-    x = eval(input("Entra un nombre: "))
-
-del nums[1]
-```
-
----
-
-## Col·lecions de dades
-
-Donada una llista `l`:
-
-+ `l.append`: afegeix elements al final.
-+ `l.sort`: ordena els elements.
-+ `l.reverse`: inverteix la llista.
-+ `l.index(x)`: retorna l'índex del primer element igual a `x`.
-+ `l.count(x)`: retorna el nombre de vegades que apareix `x`.
-+ `l.remove(x)`: elimina la primera ocurrència de `x`.
-+ `l.pop(i)`: elimina l'ièssim element de la llista i retorna el seu valor.
-+ `x in l`: retorna una valor booleà en funció de si `x` és a la llista o no.
-
-Suposant que tenim una llista formada per milers de milions d'elements,
-podriem ordenar aquestes operacions en funció del temps que trigarien a 
-executar-se? 
-
----
-
-## Exemple
-
-```python
-def getNumbers():
-    nums = []
-    xStr = eval(input("Entra un nombre (<Enter> per acabar): "))
-    while xStr != "":
-        x = eval(xStr) 
-        nums.append(x)
-        xStr = eval(input("Entra un nombre (<Enter> per acabar): "))
-    return nums
-
-def m(nums):
-    suma = 0.0
-    for num in nums:
-        suma += num
-    return suma/len(nums)
-
-def stdDev(nums, mean):
-    import math
-    sumDev = 0.0
-    for num in nums:
-        dev = mean - num
-        sumDev += dev * dev
-    return math.sqrt(sumDev/len(nums)-1)
-
-data = getNumbers()
-print("Mitja: ", mean(data), " | Desviació: ", stdDev(data, mean(data)))
-```
-
----
-
-## Referències
-
-Cada una de les dades que creem té una referència que podriem entendre com l'adreça de memòria on es pot localitzar. 
-
-Si executem:
-
-```python
-a = "banana"
-b = "banana"
-```
-
-`a` i `b` són dos noms diferents amb el mateix valor, però és la "mateixa" cadena de valors o guardem dues vegades a memòria la mateixa cadena de caràcters?
---
-
-
-Cada objecte té un identificador únic, que podem obtenir amb la funció `id`:
-
-```python
-id(a)
-> 135044008
-
-id(b)
-> 135044008
-```
-
-Per tant, en aquest cas Python ha creat una estructura `banana` i les dues variables en fan referència.
-
----
-
-## Referències
-
-
-Les llistes funcionen diferent (`a` i `b` tenen el mateix valor però no fan referència al mateix objecte):
-
-```python
-a = [1,2,3]
-b = [1,2,3]
-print(id(a),id(b))
-> 238870816, 245363636
-```
-Com que les variables fan referència a objectes, si una variable fa referència a una altra tenim:
-
-```python
-a = [1,2,3]
-b = a
-print(id(a),id(b))
-> 238870856, 238870856
-```
-
-Com que la llista té dos noms, direm que té un **àlies**. Això és perillós per objectes mutables!!! Pels immutables no hi ha problema.
-
----
-
-## Referències
-
-
-El clonatge és una tècnica per la que fem una còpia de l’objecte en si, no de la referència. Pel cas de les llistes ho podem fer així:
-
-```python
-a = [1,2,3]
-b = a[:]
-b[0] = 5
-print(a,b)
-> [1,2,3] [5,2,3]
-```
-
----
-
-## Referències
-
-
-Si passem una llista com a **argument** d’una funció, passem una **referència**, no una còpia. Considerem aquesta funció:
-
-```python
-def head(l):
-    return(l[0])
-
-a = [1,2,3]
-head(a)
-> 1
-a
-> [1,2,3]
-```
-
-
-Considerem ara aquesta altra funció:
-
-```python
-def deleteHead(l):
-    del l[0]
-	return l
-
-a = [1,2,3]
-deleteHead(a)
-> [2,3]
-a
-> [2,3]
-```
-
----
-
-## Referències
-
-Si retornem una llista també retornem una referència:
-
-```python
-def tail(l):
-    return l[1:]
-
-a = [1,2,3]
-rest = tail(a)
-print(rest, a)
-> [2,3] [1,2,3]
-```
-
-Com que la llista s’ha creat amb `:` és una nova llista. Qualsevol modificació de `rest` no té efectes en `a`. 
-
-En canvi en el següent cas:
-
-```python
-numbers = [1,2,3]
-def test(l):
-    l.reverse()
-test(numbers)
-print(numbers)
-> [3,2,1]
-```
----
-
-## Llistes
-
-Una llista imbricada és una llista que apareix com a element d’una altra llista. 
-
-`l = [0,1,3,['a','b']]`
-
-
-Per obtenir un element d’una llista imbricada ho podem fer de dues maneres:
-
-```python
-# amb dos passes...
-li = l[3]
-li[0]
-> 'a'
-# o bé ...
-l[3][0]
-> 'a'
-```
-
-I és que les llistes imbricades es fan servir per representar matrius:
-
-```python
-m = [[1,2,3],[4,5,6],[7,8,9]]
-m[0]
-> [1,2,3]
-
-m[1][1]
->5
-```
----
-name:diccionaris
-
-## Diccionaris
-
-Python ens proporciona un altre tipus de col·lecció molt útil: els **diccionaris**.
-
-La raó de la seva existència és que no sempre serà possible accedir a una dada pel seu índex, sinó per exemple, per algun valor que el defineix (p.e. un empleat pel seu DNI). És a dir, volem accedir a un valor per una **clau**. 
-
-Python crea els diccionaris així:
-
-```python
-passwd = {'bill':'clinton', 'barack':'obama'}
-```
-I ens permet accedir-hi així:
-
-```python
-passwd['bill']
-> clinton
-```
-
-Els diccionaris són mutables:
-
-```python
-passwd['bill'] = 'gates'
-```
-
----
-
-## Exemple: omplir un diccionari des d'un fitxer.
-
-Suposem que tenim una llista d'usuaris i els seus passwords en un 
-fitxer. El format és una línia per usuari formada per dues paraules: el nom 
-d'usuari i el password.
-
-```python
-passwords = {}
-f = open('passwords.txt','r')
-for line in f.readlines():
-    usr, passw = line.split()
-    passwords[usr] = passw
-f.close()
-```
-
----
-
-## Diccionaris
-
-```python
-p = {'a':'A', 'b':'B', 'c':'C', 'd':'D'}
-for i in p.keys():
-    print(i,end=',')
-> a,b,c,d
-
-for i in p.values():
-    print(i,end=',')
-> A,B,C,D
-
-for i in p.items():
-    print(i,end=',')
-> ('a','A'),('b','B'),('c','C'),('d','D')
-
-list(p.values())
-> ['A','B','C','D']
-
-'a' in p
-> True
-```
-
----
-name:tuples
-
-## Tuples
-
-Hi ha una altra classe de col·lecció a Python que és semblant a la llista, però que és immutable: la **tupla**.
-
-`t = 'a','b','c','d'`
-
-o
-
-`t = ('a','b','c','d')`
-
-Si només hi ha un element s'ha d'escriure amb una coma final:
-
-```python
-t = ('a',)
-type(t)
-> tuple
-
-t = ('a')
-type(t)
-> str
-```
-
-Les operacions son les mateixes que per les llistes (tenint en compte que són immutables!)
-
----
-
-## Exemple: Estadística de les paraules d'un document?
-
-```python
-def numW():
-    '''
-    Aquest programa calcula l'estadística de les paraules d'un document
-    '''
-    fname = input("Nom del document")
-    text = open(fname, 'r').read()
-    text = text.lower()
-    for ch in '!"·$%&/()=?¿|@#¢∞¬÷÷“”≠¡{}[]+-,.;:-_><':
-        text.replace(ch,' ')
-    words = text.split()
-    counts = {}
-    for w in words:
-        if w in counts:
-            counts[w] = counts[w] + 1
-        else:
-            counts[w] = 1
-    n = eval(input("Quantes paraules vols analitzar (les més freqüents)?"))
-    lfreq = []
-    for w in counts:
-        lfreq.append((counts[w],w))
-    print(lfreq)
-    lfreq.sort(reverse=True)
-    print(lfreq)
-    for i in range(min(n,len(lfreq))):
-        print(lfreq[i][1], lfreq[i][0])
-```
-
----
-
-class: exam
-
-### Possibles preguntes d'exàmen relacionades amb el tema 2 (I)
-
-1. Converteix a una iteració `while` la següent iteració `for`:
-```python
-		word = 'hola'
-		for a in word:
-			print(a)
-```
-
-2. Quin és el valor de x?
-```python
-		x = 1 == 1 or 1 != 1
-```
-3. Què mostrarà el següent programa:
-```python
-		a = 2
-		if a + 1 > 3:
-			print (a + 3)
-		elif a > 2:
-			print(a + 2)
-		else:
-			print(a + 1)	
-```
-
----
-class: exam
-
-### Possibles preguntes d'exàmen relacionades amb el tema 2 (II)
-
-+ Què es mostrarà per pantalla?
-```python
-		def funA(l):
-			l.append(1)
-			print(l)
-		l=[2,3,4]
-		funA(l)
-		print(l)
-		
-		def funB(w):
-			w=w+'s'
-			print(w)
-		w="gat"
-		funB(w)
-		print(w)
-```
-per què?
-
-
-+ Què sortirà a pantalla?
-```python
-		def funA(x,y,z):
-			return (x + y) &gt; z
-			
-		print(funA(2,3,4))	
-```
-
----
-class: exam
-
-### Possibles preguntes d'exàmen relacionades amb el tema 2 (III)
-
-+ Fes un programa en Python que, donat un enter `N`, calculi totes les combinacions de 4 enters, `A`, `B`, `C`, `D`, que compleixen aquesta equació: `A^2+B^2+C^2+D^2 = N`. Nota: no s'han de considerar les combinacions repetides!
-
-+ Completa aquest programa (substituïnt `____`):
-```python
-define word_lengths(list_of_words):
-        list_of_lengths = []
-        for each ____ in ____:
-                list_of_lengths.append(____)
-        return list_of_lengths
-```
-de manera que ens retorni una llista amb la longitud de les paraules: `
-word_lengths(["red", "green", "blue"]) => [3, 5, 4]`
-
----
-
-class: center, middle, inverse
-name:tema3
-
-# Tema 3:  **Algorísmes Numèrics**
-
----
-class: summary
-
-### Resum del tema 3 
+### Resum del tema 2
 
 + [Sistema numeració](#sistnum)
 	+ base
@@ -1906,6 +610,8 @@ Cap a l’any 600, a l'Índia, es va inventar el sistema decimal de numeració.
 > Un sistema de numeració és un conjunt de símbols i regles de generació que permeten construir tots els nombres vàlids en el sistema. 
 
 El seu principal avantatge sobre els que es coneixien a Europa, com el romà, és la seva **base posicional** i la **simplicitat de les operacions** (algorismes) aritmètiques.
+
+--
 
 Els sistemes de numeració romans i egipcis no són estrictament posicionals. Per això, és molt complex dissenyar algoritmes d'ús general (per exemple, per a sumar, restar, multiplicar o dividir). 
 
@@ -1946,14 +652,14 @@ HEXADECIMAL és base 16 i té 16 dígits: `0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F`
 
 El sistema decimal de numeració va trigar molts anys en arribar a Europa.
 
-El medi de transmissió més important va ser un manual, escrit en àrab durant el segle IX a Bagdad, obra de Al Khwarizmi, en el que especificava els procediments per sumar, multiplicar i dividir nombres escrits en base deu.
+El medi de transmissió més important va ser un manual, escrit en àrab durant el segle IX a Bagdad, obra de **Al Khwarizmi**, en el que especificava els procediments per sumar, multiplicar i dividir nombres escrits en base deu.
 
 Els procediments eren precisos, no ambigus, mecànics, eficients i correctes.
 És a dir, eren algorismes (per a ser implementats sobre paper i no amb un ordinador!).
 
 Una de les persones que més van valorar aquesta aportació va ser Leonardo Fibonacci.
 
-<center><img src="images/fib.png" width="200" alt="Segell amb el bust de Leonardo Fibonacci"></center>
+<center><img src="images/fib.png" width="150" alt="Segell amb el bust de Leonardo Fibonacci"></center>
 
 
 ---
@@ -1969,17 +675,18 @@ La seqüència es pot definir amb la següent regla:
 
 <center><img src="images/seqfib.png" width="350"></center>
 
-Això encara **no és un algorisme**. A les següents pàgines veurem diferents algorismes per implementar computacionalment aquesta definició.
+Això encara **no és un algorisme**, és només una definició: A les següents pàgines veurem diferents algorismes per implementar computacionalment aquesta definició!
+
 
 ---
 ## Una mica d'història
 
-La seqüència creix molt ràpid i es pot demostrar que el terme `n`-èssim de la seqüència té aproximadament aquest valor: 
+La seqüència creix molt ràpid i es pot demostrar (matemàticament) que el terme `n`-èssim de la seqüència té aproximadament aquest valor: 
 
 $$  F_n \approx 2^{0.694n}  $$
 
 
-Però per calcular **exactament** un terme concret necessitem un algorisme!
+Però per calcular **exactament** un terme concret necessitem una fòrmula o un algorisme!
 
 
 Una primera possibilitat és aquesta (*algorisme recursiu*).red[*]:
@@ -2004,43 +711,54 @@ fib1(10)
 
 ## Algorisme recursiu de Fibonacci
 
-<center><img src="images/fib1.png" width="650"></center>
+Els algorismes recursius, per executar-se, creen automàticament còpies d'ells mateixos (amb paràmetres possiblement diferents) creant un arbre. Quan la recursivitat s'acaba, reconstrueixen la solució movent-se cap enrera per l'arbre.
+
+<center><img src="images/fib1.png" width="550"></center>
 
 ---
 
 ## Algorisme recursiu de Fibonacci
 
-Com per a qualsevol algorisme, ens podem fer tres preguntes (**les tres preguntes bàsiques de l'algorísmica**):
+De la mateixa manera que ho fariem per a qualsevol algorisme, ens podem fer tres preguntes (**les tres preguntes bàsiques de l'algorísmica**) sobre l'algorisme que hem escrit:
 
 + És correcte? 
-+ Quant trigarà, en funció de `n`?
++ Quant trigarà? En aquest cas, té sentit preguntar-ho en funció de `n`, la mida del nombre que passem com a paràmetre?
 + Hi ha alguna manera millor de fer-ho?
---
 
+
+---
+
+## Algorisme recursiu de Fibonacci
 
 I les respostes són:
 
-+ En aquest cas és evident que si, atès que segueix exactament la definició!
-+ Es pot demostrar que el nombre de passos computacionals que fa és de l'ordre de `F_n`. Per calcular el terme 200 hauria de fer de l'ordre de `2^138` passos. A l’ordinador més ràpid del món, que pot executar al voltant de 40.000.000.000.000 passos per segon,  necessitaríem més temps que el necessari pel col·lapse del Sol! A la velocitat que els ordinadors augmenten la seva capacitat de càlcul, cada any que passa podríem calcular un nombre de Fibonacci més que l’any anterior!
-+ Sí.
++ **És correcte?**  En aquest cas és evident que sí, atès que segueix exactament la definició!
++ **Quant trigarà?** Es pot demostrar que el nombre de passos computacionals que fa és de l'ordre de `F_n`. Per calcular el terme 200 hauria de fer de l'ordre de `2^138` passos. A l’ordinador més ràpid del món, que pot executar al voltant de 40.000.000.000.000 passos per segon,  necessitaríem més temps que el necessari pel col·lapse del Sol! A la velocitat que els ordinadors augmenten la seva capacitat de càlcul, cada any que passa podríem calcular un nombre de Fibonacci més que l’any anterior!
++ **Hi ha alguna manera millor de fer-ho?** Sí...
 
-Per què és tant lent?
 
 ---
 
 ## Algorisme recursiu de Fibonacci
 
-<center><img src="images/fib2.png" width="550"></center>
+Per trobar una manera millor, només cal adonar-se de per què és tant lent:
 
-Hi ha molts càlculs que es repeteixen! 
-Perquè no guardar-los?
+
+<center><img src="images/fib2.png" width="350"></center>
+
+Hi ha molts càlculs (en aquest cas, crides recursives) que es repeteixen!  
+
+Una solució possible és guardar el resultat de cada crida el primer cop que ho calculem i no tornar a calcular-ho.
 
 
 ---
 
 ## Algorisme de Fibonacci
 
-Anem a fer-ne una versió basada en llistes:
+Anem a fer-ne una versió basada en **llistes**:
+
+> **_NOTA:_**  _Les llistes en Python són **seqüències mutables d’objectes arbitraris**. Les llistes es manipulen amb diferents mètodes: https://docs.python.org/3/tutorial/datastructures.html_ i s'accedeix als seus elements amb els operadors de `slicing`. 
+
 
 ```python
 def fib2(n):
@@ -2052,11 +770,13 @@ def fib2(n):
     return ls[n]
 ```
 
-+ És evident que és correcte.
-+ Només executa `(n-1)` vegades la iteració.
 
-Direm que `fib2(n)` és lineal (o polinòmic) respecte `n`. 
++ És correcte? És evident que és correcte.
++ Quant trigarà? Només executa `(n-1)` vegades la iteració.
+
+Direm que `fib2(n)` és **lineal** (o polinòmic) respecte `n`. 
 Ara podem calcular fins i tot `fib(100.000.000)`.
+
 
 --
 
@@ -2079,10 +799,30 @@ fib3(10)
 
 ---
 
+## Algorisme de Fibonacci
+
+```python
+def fib3(n):
+    a,b = 0,1
+    for i in range(1,n+1):
+        a,b = b, a+b
+    return a
+
+fib3(10)
+> 55
+```
+
+Amb l'eina Code Skulptor podem visualitzar fàcilment el funcionament de qualsevol algorisme:
+
+http://www.codeskulptor.org/viz/index.html
+
+
+---
+
 ## Com hem de comptar els passos computacionals?
 
 
-Considerarem de la mateixa categoria les instruccions simples com emmagatzemar a memòria, *branching*, comparacions, operacions aritmètiques, etc.
+Considerarem de la mateixa categoria les instruccions simples com emmagatzemar a memòria, comparacions, operacions aritmètiques, etc.
 
 ```python
 import math
@@ -2113,7 +853,7 @@ Aquesta notació és una convenció per no ser ni massa ni massa poc precisos a 
 
 La regla principal és **comptar el nombre de passos computacionals aproximats en funció de la mida de l'entrada**.
 
-Fem la següent aproximació:  enlloc de dir que té una complexitat de `5 n^3 + 4 n + 3` direm que té una complexitat de `O(n^3)`
+> Nota: Fem la següent aproximació:  enlloc de dir que té una complexitat de `5 x n^3 + 4 x n + 3` direm que té una complexitat de `O(n^3)`
 
 En general utilitzarem aquestes convencions:
 
@@ -2160,9 +900,17 @@ Les famílies més importants d’algorismes són les que tenen un ordre:
 
 ## Magnitud dels nombres.
 
-Powers of Ten Video 
+És important familiaritzar-se amb les magnituds dels nombres. Aquest video, "Powers of Ten", us pot ajudar a tenir una idea intuitiva de la magnitud de les potències de 10. 
 
 https://www.youtube.com/watch?time_continue=1&v=0fKBhvDjuy0
+
+---
+
+
+class: center, middle, inverse
+name:tema2
+
+**Aritmètica Bàsica**
 
 ---
 
@@ -2170,8 +918,8 @@ https://www.youtube.com/watch?time_continue=1&v=0fKBhvDjuy0
 
 Quants dígits necessitem per representar un nombre `N` en base `b`?
 
-+ Si tenim `k` dígits en base `b` podem representar els nombres fins a `b^k -1`.
-Per tant, necessitem `log_b (N+1)` dígits per escriure `N` en base `b` (això surt d'aillar `k` a l'equació `b^k -1 = N`).
++ Si tenim `k` dígits en base `b` podem representar els nombres fins a `b^k-1`.
+Per tant, necessitem `log_b (N+1)` dígits per escriure `N` en base `b` (això surt d'aillar `k` a l'equació `b^k-1 = N`).
 
 Veiem un exemple: 
 
@@ -2181,34 +929,41 @@ Veiem un exemple:
 
 >	Per altra banda, necessitarem `log_2 (31+1)` dígits per escriure `31` en base `b => 5` dígits
 
-Quan fem un canvi de base la mida del nombre només es veu afectada per un factor multiplicatiu, i per tant considerem que no canvia!
+Quan fem un **canvi de base**, la mida del nombre només es veu afectada lleugerament (per un factor multiplicatiu), i per tant considerem que el canvi de base no afecta a la "mida" del nombre! Tot el que diguem per base 2, serveix per les altres bases.
 
 ---
 name:suma
 
 ## Aritmètica Bàsica: Suma
 
-Hi ha una propietat, que ens serà molt útil, dels nombres decimals:
+> A partir d'ara sempre considerarem que els nombres estan en base 2.
 
-+ La suma de tres nombres d’un sol dígit qualsevol té com a màxim dos dígits. Aquesta regla és compleix per totes les bases `b >= 2`.
+
+Hi ha una propietat dels nombres (que es compleix per totes les bases `b >= 2`) que ens serà molt útil:
+
++ La suma de tres nombres d’un sol dígit qualsevol té com a màxim dos dígits. 
 
 Aquesta regla ens permet definir una regla general per sumar dos nombres en qualsevol base: la que hem après a l’escola!
 
 <center><img src="images/suma.png" width="350" alt="Carry 1 x x 1 1 1  first operand x 1 1 0 1 0 1 (53)  second operand x 1 0 0 0 1 1 (35)  result 1 0 1 1 0 0 0 (88)"></center>
---
+---
 
+## Aritmètica Bàsica: Suma
 
 Però, **quina complexitat té aquest algorisme**?
 
 + Aquesta pregunta la farem sempre en relació a la mida (nombre de bits) dels elements de l'entrada.
-+ Per un nombre petit de bits (64), l’ordinador ho pot fer en un sol pas, però això no és veritat per a nombres molt grans.
++ Suposarem que cada operació simple entre dos bits (`+`,`*`,comparació, etc...) té una complexitat `O(1)`
++ En un ordinador real, cada operació entre nombres de menys de 64 bits té `O(1)`. Això vol dir que divideix per 64 el cost
+que calcularem nosaltres, però això és només un factor multiplicador, que podem despreciar.
 
 
----
-## Aritmètica Bàsica: Suma
+--
 
 
-Suposem que tant `x` com `y` tenen `n` bits. La seva suma `(x+y)` té com a màxim `n+1` bits. La seva complexitat és per tant, `O(n)`.
+Considerem que tant `x` com `y` tenen `n` bits. La seva suma `(x+y)` té com a màxim `n+1` bits. 
+
+**La seva complexitat és  `O(n)`**, perquè fem un nombre de sumes de dos dígits que és proporcional a la mida del nombre.
 
 Es pot fer millor? 
 --
@@ -2226,7 +981,7 @@ La multiplicació o producte que ens han ensenyat a l’escola és:
 <center><img src="images/mult.png" width="550" alt="multiplicació segons el mètode tradicional, amb tots els passos, de 1101 per 1011"></center>
 
 
-Tenim `n` multiplicacions de complexitat `n` (un bit per `n` bits) + aproximadament `2n` sumes de complexitat `2n`, que és un total de `(n^2 + 4n^2) = 5n^2` i per tant la **complexitat total de la multiplicació és `O(n^2)`**.
+Tenim `n` multiplicacions de complexitat `n` (un bit per `n` bits) + aproximadament `2n` sumes de complexitat `n`, que és un total de `(n^2 + 2n^2) = 3n^2` i per tant la **complexitat total de la multiplicació és `O(n^2)`**.
 
 ---
 
@@ -2235,7 +990,7 @@ Tenim `n` multiplicacions de complexitat `n` (un bit per `n` bits) + aproximadam
 Al Khwarizmi ens va donar un segon algorisme (i que avui encara s’utilitza en uns quants països!)
 
 + Escrivim els nombres un al costat de l’altre.
-+ Repetim aquesta operació “Dividim el primer per dos i l’arrodonim. Doblem el segon  fins que el primer nombre és `1`”.
++ Repetim aquestes operacions: “Dividim el primer per dos i l’arrodonim; Doblem el segon;",  fins que el primer nombre és `1`.
 + Sumem  els nombres de la segona columna que corresponen a totes les files on el nombre de la primera columna és senar i obtenim el resultat.
 
 Exemple: `11 x 13`:
@@ -2262,11 +1017,21 @@ def mult(x,y):
 print(mult(11,13))
 ```
 
-L’algorisme s'acaba després de `n` crides recursives.red[*] i a cada crida fem `O(n)` operacions. Per tant és `O(n^2)`. 
+L’algorisme s'acaba després de `n` crides recursives.red[*] i a cada crida fem `O(n)` operacions (atès que multiplicar un nombre per dos té un cost `O(n)`). Per tant és `O(n^2)`. 
 
 .footnote[.red[*]Si cada vegada que cridem la funció recursivament anem dividint per `2` el paràmetre `x` al cap de `n` crides el paràmetre ja valdrà `0`. Per exemple, si `x=16`, que necessita 5 bits (`n`= 5) per representar-se, llavors arribem a `0` en `5` crides:  `16, 8, 4, 2, 0`].
 
 ---
+
+## Aritmètica Bàsica: Multiplicació
+
+Es pot fer millor?
+
+La resposta és sí! Però només, una mica millor! Però això ho veurem més endavant.
+
+
+---
+
 name: div
 
 ## Aritmètica Bàsica: Divisió
@@ -2295,7 +1060,7 @@ def div(x,y):
     return q,r
 ```
 
-La seva complexitat és `O(n^2)`.
+Amb el que hem vist abans, és fàcil deduïr que **la seva complexitat és `O(n^2)`**.
 
 ---
 class: center, middle, inverse
@@ -2392,11 +1157,20 @@ name:potmod
 
 **Divisió**: Aquesta operació no és tant simple (no està definida per tots els nombres) i té una **complexitat `O(n^3)`**. 
 
-**Exponenciació**: Ara imaginem que volem calcular expressions com aquesta amb nombres molt grans (centenars de bits): 
+**Exponenciació**: Ara imaginem que volem calcular expressions com aquesta amb nombres `x`, `y` molt grans (centenars de bits/dígits)(`N` no és un nombre gran): 
 
 $$ x^y \mbox{ mod } N $$
 
-+ El resultat intermig d'aquesta operació pot necessitar molts bits per ser representat, tot i que el resultat final necessita només `n = log(N)` bits. Si els operadors tenen 20 bits, necessitem 10 milions de bits!
+
+---
+
+## Aritmètica Modular
+
++ El resultat intermig d'aquesta operació pot necessitar molts bits/dígits per ser representat, **tot i que el resultat final necessita només `log(N)` bits/dígits** (aquest és un nombre molt petit!). 
+
++ Si els operadors tenen 20 bits, necessitem 10 milions de bits per emmagatzemar un valor intermig!
+
+--
 
 > `>>> (155 ** 245)
 4278248942979368837154163038105593721699158763295276283468486026116
@@ -2406,8 +1180,7 @@ $$ x^y \mbox{ mod } N $$
 1005664223266097322826018487453164194926459159037800946544634252898
 1341951429642759537873516202755230036214044808536307148121446731580
 4333849233319516087345366409004055624880988958445804402097403640767
-6150744628499884906823013796389743035319952468853443861007690429687
-5`
+61507446284998849068230137963897430353199524688534438610076904296875`
 
 
 ---
@@ -2416,15 +1189,19 @@ $$ x^y \mbox{ mod } N $$
 
 Una solució és fer totes les operacions intermèdies mòdul `N`.
 
-O sigui, calcular `x^y mod N` fent `y` multiplicacions successives per `x mòdul N`.
+O sigui, calcular `x^y mod N` fent `y` **multiplicacions successives** per `x mòdul N`.
 
 $$ x \mbox{ mod } N \rightarrow x^2 \mbox{ mod } N \rightarrow x^3 \mbox{ mod } N \rightarrow
-\dots x^N \mbox{ mod } N$$
+\dots x^y \mbox{ mod } N$$
 
-Tots aquests resultats són menors que `N`
-i per tant no necessiten tants bits. Per tant, les multiplicacions són de complexitat `O(n^2)`.
+Les multiplicacions són de complexitat `O(n^2)`. Tots aquests resultats són menors que `N`
+i per tant hem solucionat el problema d'emmagatzemar a memòria nombres molt grans. Però..., quantes multiplicacions hem de fer?
 
-El problema és que si `y` té 500 bits, hem de fer `2^(y-1)` multiplicacions (o sigui, anem a una complexitat d'ordre `2^500`) i l’algorisme és exponencial sobre `n`, la mida de `y`. 
+--
+
+El problema és que si `y` té `n` bits, **hem de fer `2^(n)` multiplicacions** de complexitat `O(n^2)`. Anem a una complexitat exponencial sobre `n`, la mida de `y`:
+
+$$ O(2^n) $$
 
 ---
 
@@ -2432,12 +1209,12 @@ El problema és que si `y` té 500 bits, hem de fer `2^(y-1)` multiplicacions (o
 
 Però una petita modificació pot ser un gran canvi!  
 
-+ Si l'exponent fos `2, x^2 mod N` seria equivalent a una simple multiplicació `(x * x) mod N`, d'ordre `O(n^2)`.
++ Si l'exponent és `2, x^2 mod N` és equivalent a una simple multiplicació `(x * x) mod N`, d'ordre `O(n^2)`.
 
 + Generalitzant, observem que si `y` és una potència de 2, es pot calcular `x` elevat a `y`  elevant al quadrat, mòdul `N`, successivament:
 
 $$ x \mbox{ mod } N \rightarrow x^2 \mbox{ mod } N \rightarrow x^4 \mbox{ mod } N \rightarrow
-\dots x^{2^{\log y}} \mbox{ mod } N$$
+\dots x^{y} \mbox{ mod } N$$
 
 Exemple: 
 
@@ -2449,7 +1226,15 @@ Exemple:
 
 ## Aritmètica Modular
 
-Segons el que hem vist de la multiplicació, cada potència pren un temps proporcional a `O(log^2 N)` (o el que és el mateix `O(n^2)`) i hi ha `m = log_y` multiplicacions: l’algorisme és polinòmic, `O(n^2)`,  respecte la mida de `N` i lineal `O(m)` respecte la mida de `y`. Per tant, si `N` i `y` tenen la mateixa mida, la complexitat de l'exponenciació és `O(n^3)`.
+Quantes multiplicacions hi ha?
+
+> Si `y = 2^n`, llavors hi ha `n` multiplicacions, o el que és el mateix, un nombre de multiplicacions proporcional a la mida de `y`.
+
+Si `N` és un nombre petit, l'algorisme consisteix en fer `n` multiplicacions de cost `O(n^2)`.
+
+Per tant, la complexitat d'aquest algorisme d'exponenciació és `O(n^3)`.
+
+--
 
 El més interessant d'aquest resultat és que es pot generalitzar a valors de `y` que no són potències de dos amb un augment de cost molt reduït:
 
@@ -2501,15 +1286,13 @@ $${\displaystyle O\left(\exp \left(\left({\begin{matrix}{\frac {64}{9}}\end{matr
 
 per factoritzar un nombre de `n` bits.
 
-**Curiositat**:A la pàgina següent teniu un algorisme "ingenu" de factorització.
+**Curiositat**: A la pàgina següent teniu un algorisme "ingenu" de factorització.
+
 
 ---
-name:erastotenes
-
 ```python
 from time import time
 from math import sqrt
- 
 def primeListSofE(n, verbose = True) :
     t = time()
     sieve = [True for j in range(2,n+1)]
@@ -2522,8 +1305,7 @@ def primeListSofE(n, verbose = True) :
     if verbose :
         print ("Calculated primes to",n,"in",time()-t,"sec.")
     return ret
-	
-	
+
 def factor(n) :
     """ Factorització simple """
     ret =[]
@@ -2539,6 +1321,8 @@ def factor(n) :
     if nn != 1 :
         ret += [nn]
     return ret
+
+factor(135565) >> [5, 19, 1427]
 ```
 
 
@@ -2565,15 +1349,15 @@ Quina complexitat té per nombres grans?
 
 ## Algorisme d'Euclides
 
-La primera cosa que hem de veure és com es van reduint els nombres a mesura que anem calculant.
+La primera cosa que hem de veure és quantes vegades s'executa el `while`, o el que és el mateix, com es van reduint els nombres a mesura que anem calculant.
 
 > Cal fixar-se que a cada iteració els arguments `(a,b)` es converteixen a `(b mod a, a)`: canviem l’ordre i el més gran queda reduït al mòdul del petit.
 
-> Es pot demostrar que això vol dir que**en dos iteracions successives els dos arguments decreixen al menys a la meitat**, és a dir, perden un bit en la seva representació.
+> Es pot demostrar que això vol dir que **en dues iteracions successives els dos arguments decreixen al menys a la meitat**, és a dir, perden un bit en la seva representació.
 --
 
 
-Si inicialment eren enters de `n` bits, en `2n` crides recursives arribarem al final de l’algorisme. Com que cada crida implica una divisió d’ordre quadràtic, `(a mod b)` , el temps total serà `O(n^3)`.
+Si inicialment eren enters de `n` bits, en `2n` iteracions arribarem al final de l’algorisme. Com que cada iteració implica una divisió d’ordre quadràtic, `(a mod b)` , el temps total serà `O(n^3)`.
 
 ---
 name:testprimer
@@ -2584,22 +1368,15 @@ name:testprimer
 
 --
 
-Comprovar si un nombre més o menys gran és primer per la via de la factorització és una tasca a priori dura, perquè hi ha molts factors per provar. Però hi ha alguns fets que ens poden estalviar feina:
+Comprovar si un nombre més o menys gran és primer per la via de la factorització és una tasca dura o impossible, perquè hi ha molts factors per provar. 
 
-> No cal considerar com a factor cap nombre parell excepte el 2. De fet, podem obviar tots els factors que no són primers.
-
-
-> **Podem dir que un nombre és primer si no hem trobat cap candidat a factor menor que arrel quadrada de `N`, atès que `N=K*L`, i per tant és impossible que els dos nombres siguin més grans que arrel de `N`**.
-
-Fins aquí, bé, però no trobarem més maneres d’eliminar més candidats! 
-
-Això podria fer dir que **provar la primeritat d’un nombre és un problema dur**, però això no és veritat: **només és dur si ho intentem pel camí de la factorització**!
+Això podria fer dir que **provar la primeritat d’un nombre és un problema dur o impossible**, però això no és veritat: **només és dur si ho intentem pel camí de la factorització**!
 
 ---
 
 ## Nombres primers
 
-Una de les activitats bàsiques de la informàtica, la criptografia, es basa en el següent fet: **la factorització és dura, però la primeritat és fàcil**.
+Una de les activitats bàsiques de la informàtica, la criptografia, es basa en el següent fet: **la factorització és dura, però testar la primeritat és fàcil**.
 
 O el que és el mateix, no podem factoritzar grans nombres, però podem mirar fàcilment si grans nombres són primers (evidentment, sense buscar els factors!).
 
@@ -2611,6 +1388,8 @@ name:fermat
 
 > Si `p` és primer, llavors per a qualsevol enter `a`, `1 <= a < p`, es compleix que `a^(p-1) % p = 1`.
 
+> Si `41651` és primer, llavors `12^(41651 - 1) % 41651 = 1` 
+
 Això ens suggereix un test directe per comprovar si un nombre és primer. Però cal anar en compte….
 
 ---
@@ -2618,12 +1397,11 @@ Això ens suggereix un test directe per comprovar si un nombre és primer. Però
 ## Nombres primers
 
 ```python
-import random
 def fermat(num, test_count):
     if num == 1:
         return False
     for x in range(test_count):
-        val = random.randint(1, num-1)      # genera nombre aleatori
+        val = randint(1, num-1)             # genera nombre aleatori
         if pow(val, num-1, num) != 1:	    # la potència a Python es 
             return False                    # basa en l'algorisme modular
     return True
@@ -2632,14 +1410,14 @@ fermat(41651,10)
 > True
 ```
 
-Aquest algorime va mostrejant nombres entre `1` i `num-1` i si en troba algun que compleix el teorema
-petit de Fermat s'atura i el retorna.
+Aquest algorime va provant els nombres entre `1` i `test_count` i si en troba algun que compleix el teorema
+petit de Fermat s'atura i retorna `False`.
 
 --
 
-Aquest algorisme té dues limitacions:
+Aquest algorisme té dues limitacions per nombres grans: 
 
-+ Només provem una valor `val`. 
++ Només podem provar uns quants valors `val`, no tots!
 + Aquest teorema és **necessari però no suficient**: no diu què passa quan `N` no és primer!
 
 
@@ -2655,7 +1433,7 @@ A més a més hem de veure què passa amb els nombres compostos que no són nomb
 
 **Lema**
 
-> Si `a^(N-1)` no és congruent amb 1 mòdul `N` per algun `a` que sigui nombre compost però no de Carmichael, llavors com a mínim en la meitat dels casos en que `a < N` el teorema petit de Fermat fallarà.
+> Si `N` és un nombre compost però no de Carmichael, llavors com a mínim en la meitat dels casos en que `a < N` el teorema petit de Fermat fallarà.
 
 ---
 
@@ -2731,33 +1509,19 @@ La solució del darrer punt és:
 
 .bold[Per tant, els algorísmes de més alta complexitat en un procés criptogràfic tenen `O(n^3)`]. 
 
----
-class:exam
-### Possibles preguntes d'exàmen relacionades amb el tema 3 
-
-1. Tenim una n=30, té sentit un algorisme d'ordre n^2? i un d'ordre n!? perquè?
-
-2. Suma 12 i 25 amb l'algorisme d'Al Khwarizmi
-
-3. Quin ordre de complexitat tenen les següents operacions de l'aritmètica bàsica? i de l'aritmètica modular?
-	suma, multiplicació, divisió
-
-4. Quina probabilitat hi ha que un nombre de 2 bits sigui primer?
-
-5. Perquè és segur enviar un missatge encriptat? quina dificultat troba qui el vulgui desxifrar?
 
 
 ---
 
 class: center, middle, inverse
-name:tema4
+name:tema3
 
-# Tema 4: **Algorismes per text**
+# Tema 3: **Algorismes per text**
 
 ---
 class: summary
 
-### Resum del tema 4 
+### Resum del tema 3
 
 + Cerca de cadenes
 + Cerca aproximada
@@ -3182,14 +1946,14 @@ GAT TIGRE
 
 
 class: center, middle, inverse
-name:tema5
+name:tema4
 
-# Tema 5: **Algorismes i força bruta**
+# Tema 4: **Algorismes i força bruta**
 
 ---
 class: summary
 
-### Resum del tema 5 
+### Resum del tema 4 
 
 + Ordenar
 	+ [Ordenació per selecció](#sel)
@@ -3514,14 +2278,14 @@ class: exam
 ---
 
 class: center, middle, inverse
-name:tema6
+name:tema5
 
-# Tema 6: **Dividir i vèncer**
+# Tema 5: **Dividir i vèncer**
 
 ---
 class: summary
 
-### Resum del tema 6 
+### Resum del tema 5 
 
 + Recursió
 	+ [Torres de Hanoi](#Hanoi)
@@ -4193,14 +2957,14 @@ class: exam
 ---
 
 class: center, middle, inverse
-name:tema7
+name:tema6
 
-# Tema 7: **Algorismes de Cerca**
+# Tema 6: **Algorismes de Cerca**
 
 ---
 class: summary
 
-### Resum del tema 7 
+### Resum del tema 6 
 
 + Cerca líneal 
 + [Cerca binària](#cercbin)
@@ -4887,14 +3651,14 @@ class: exam
 
 ---
 class: center, middle, inverse
-name:tema8
+name:tema7
 
-# Tema 8: **Hashing i Cerca**
+# Tema 7: **Hashing i Cerca**
 
 ---
 class: summary
 
-### Resum del tema 8 
+### Resum del tema 7 
 
 + Concepte de col·lisió
 + Propietats de les funcions hash
