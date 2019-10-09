@@ -1518,15 +1518,64 @@ name:tema3
 
 # Tema 3: **Algorismes per text**
 
+
 ---
-class: summary
 
-### Resum del tema 3
+## Processament de cadenes de caràcters
 
-+ Cerca de cadenes
-+ Cerca aproximada
-+ Distància d'edició
-	+ Levenshtein
+Tots els llenguatges ens proporcionen una sèrie de funcions per processar *strings* o cadenes de caràcters, però cal ser molt conscient del cost d'aquestes funcions (o dels operadors del llenguatge) quan treballem amb texts molt grans.
+
+Per exemple, suposem que volem fer un programa que comprovi que tots els caràcters d'un *string* són únics, hi apareixen només una vegada:
+
+```python
+def is_unique(input):
+  char_seen = []
+  for char in input:
+    if char in char_seen:
+      return False
+    char_seen.append(char)
+  return True
+```
+
+
+Quina complexitat té aquest algorisme (en funció del nombre de caràcters `n` del text)?
+
+--
+
++ Sabem que no pot ser menor que `O(n)`: al menys cal mirar-los 1 cop!
+
++ El cost de l'operador `in` a la tercera línia és `O(m)` respecte a la mida de `char_seen`. El cost de l'operador `list.append()` és `O(1)`. 
+
+---
+
+## Processament de cadenes de caràcters
+
+
+Per tant, el cost total és `O(n*m)`, o `O(n^2)` en el cas que `n` i `m` siguin semblants.
+
+
+
+De fet, el que fem és:
+
+```python
+def is_unique(n):
+  char_seen = []
+  for char in n:
+    for i in char_seen:
+      if char == i:
+        return False
+    char_seen.append(char)
+  return True
+```
+
+Això té clarament una complexitat `O(n*m)`.
+
+Es pot fer millor?
+
+--
+
+La resposta és positiva, però cal aplicar algorismes de *hashing*, un tema que 
+veurem més endavant.
 
 ---
 
@@ -1596,6 +1645,7 @@ En una primera instància, podríem comparar tot l'string amb cada possible posi
 
 
 ```python
+
 def BFStringMatching(t,p):
     m=len(p)
     n=len(t)
@@ -1617,9 +1667,139 @@ La complexitat de l’algorisme es pot analitzar en tres situacions:
 
 + En d’altres, fem totes les comparacions. Aquest és el **pitjor cas**, i la complexitat, si per tots els moviments féssim això, seria `O(n*m)`.
 
-+ En un cas real, amb llenguatge natural, la **complexitat mitja** d'aquest algorisme s’acosta a `O(n+m)=O(n)`(l'única manera de calcular aquesta complexitat és de forma empírica: fent experiments).
++ En un cas real, amb llenguatge natural, la **complexitat mitja** d'aquest algorisme s’acosta a `O(n+m)=O(n)` (l'única manera de calcular aquesta complexitat és de forma empírica: fent experiments).
+
+--
 
 Hi ha algorismes (com l'algorisme de **Boyer-Moore**) que són lleugerament més òptims que la cerca ingènua, tot i que des del punt de vista de la complexitat són també `O(n)`.
+
+Una de les formes que tenim per reduir aquesta complexitat és pre-processar l’entrada de l’algorisme per optimitzar el seu funcionament.
+
+---
+
+## Cerca de cadenes de caràcters: versió avançada
+
+
+
+Per exemple, l’algorisme de Horspool (1980) (que és una versió millorada de l’algorisme de Boyer-Moore, 1977), que **pre-processa** el patró per analitzar el seu contingut, genera una taula que li doni informació útil a l’hora de fer desplaçaments i durant el recorregut fa els desplaçaments basant-se en aquesta taula.
+
+---
+
+## Cerca de cadenes de caràcters: versió avançada
+
+
+La primera observació és que, després del desplaçament, començar a comparar text i patró **per la dreta** (i no per l'esquerra) ens proporciona avantatge a l’hora de precalcular els desplaçaments!
+
+
+<center><img src="images/horspool.png" width="520"></center>
+
+
+La majoria de vegades, falla el primer caràcter comparat. Si comencem per l'esquerra només saltem una posició. Per la dreta podem fer un salt més gran!
+
+--- 
+
+---
+
+## Algorisme de Horspool
+
+Si tots els caràcters són iguals, hem acabat.
+Sinó, desplaçarem el patró cap a la dreta al màxim, sense risc de perdre una instància seva al text!
+
+Fins on? Això bàsicament  depèn de `c`!
+
+<center><img src="images/horspool2.png" width="520"></center>
+
+---
+
+## Algorisme de Horspool
+
+Quan falla la comparació entre patró i text, ens podem trobar amb varies situacions:
+
++ El caràcter `c` no està present al patró:
+
+<center><img src="images/horspool3.png" width="520"></center>
+
+---
+
+## Algorisme de Horspool
+
++ El caràcter `c` està present al patró i és segur desplaçar fins a la primera aparició del caràcter.
+
+<center><img src="images/horspool4.png" width="520"></center>
+
+
+---
+
+## Algorisme de Horspool
+
+En el cas que `c` no hagi fallat, però falla un altre caràcter més endavant:
+
++ El caràcter `c` no està present a la resta del patró, és segur desplaçar el patró m posicions.
+
+<center><img src="images/horspool5.png" width="520"></center>
+
+
+---
+## Algorisme de Horspool
+
+
+El caràcter c està present a la resta del patró i podem desplaçar fins a la primera aparició del caràcter.
+
+<center><img src="images/horspool6.png" width="520"></center>
+
+
+---
+
+## Algorisme de Horspool
+
+
+És evident que ens estalviem comparacions respecte a l’algorisme basat en força bruta, però també ho és que si hem de fer totes les comprovacions necessàries per saber en quin cas ens trobem en el moment que falla una comparació tampoc hi guanyem res!
+
+El que farem és pre-calcular la taula de desplaçaments.
+
+La taula ens donarà un desplaçament per cada possible lletra de l’alfabet. 
+
+Els desplaçaments es poden pre-calcular, mirant el patró, amb aquesta fórmula:
+
++ Si `c` no està entre els primer `m-1` caràcters del patró, desplaçament = `m`. 
++ En tots els altres casos, desplaçament = distància des de la primera aparició `c` (començant per la dreta) al patró.
+
+
+En el cas de `BAOBAB` tenim:
+
+<center><img src="images/horspool7.png" width="520"></center>
+
+
+---
+## Algorisme de Horspool
+
+```python
+
+def BoyerMooreHorspool(pattern, text):
+    m = len(pattern)
+    n = len(text)
+    if m > n: return -1
+    skip = []
+    for k in range(256): skip.append(m)
+    for k in range(m - 1): skip[ord(pattern[k])] = m - k - 1
+    skip = tuple(skip)
+    k = m - 1
+    while k < n:
+        j = m - 1; i = k
+        while j >= 0 and text[i] == pattern[j]:
+            j -= 1; i -= 1
+        if j == -1: return i + 1
+        k += skip[ord(text[k])]
+    return -1
+``` 
+
+---
+## Algorisme de Horspool
+
+<center><img src="images/horspool8.png" width="420"></center>
+
+La **complexitat** en el pitjor cas és `O(nm)`. En el cas promig, `O(n)`, però tot i estar en la mateixa classe de complexitat, és més eficient que l’algorisme de força bruta.
+
 
 ---
 
@@ -1630,6 +1810,7 @@ La cerca no és l’únic problema interessant:
 + Buscar la subcadena més gran en comú entre dos texts.
 + Cerca aproximada.
 + Altres
+
 --
 
 
@@ -1925,22 +2106,6 @@ El càlcul de la matriu té una complexitat de `O(mn)`, mentre que la cerca del
 `P`: `casa`
 
 Trobem tres respostes a distància 1: `cas`, `cass`, `cassa`
-
----
-class: exam
-
-### Possibles preguntes d'exàmen relacionades amb el tema 4
-
-+ Completa la següent matriu de Levensthein
-
-<center><img src="images/lev1.png" width="250" alt="matriu de Levensthein parcialment completa"></center>
-
-+ Quina distància d'edició tenen les següents paraules?
-
-GAT GOS  
-GAT TIGRE
-
-+ En el pitjor cas i amb força bruta quin és el cost de cercar un patró en un text?
 
 ---
 
