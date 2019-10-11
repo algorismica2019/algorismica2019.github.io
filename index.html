@@ -1538,21 +1538,33 @@ def is_unique(input):
 ```
 
 
-Quina complexitat té aquest algorisme (en funció del nombre de caràcters `n` del text)?
+Quina complexitat té aquest algorisme (en funció del nombre de caràcters `n` del text i del nombre `m` de caràcters possibles)?
 
 --
 
 + Sabem que no pot ser menor que `O(n)`: al menys cal mirar-los 1 cop!
 
-+ El cost de l'operador `in` a la tercera línia és `O(m)` respecte a la mida de `char_seen`. El cost de l'operador `list.append()` és `O(1)`. 
 
 ---
 
 ## Processament de cadenes de caràcters
 
++ El cost de l'operador `list.append()` és `O(1)`. 
 
-Per tant, el cost total és `O(n*m)`, o `O(n^2)` en el cas que `n` i `m` siguin semblants.
++ El cost de l'operador `in` a la tercera línia és lineal respecte a la mida de `char_seen`. Per tant, a la primera iteració costa 1, a la segona 2, etc. Total: (`1 + 2 + 3 + 4 + 5 + 6 +...+m`). I això és una sèrie que podem calcular: 
 
+$$
+\sum_{i = 1}^m i = \frac{m(m+1)}{2} \approx m^2
+$$ 
+
+La tercerca línea té una complexitat `O(m^2)`.
+
+
+Per tant, el cost total de l'algorisme és `O(n*m^2)`, o `O(n^3)` en el cas que `n` i `m` siguin semblants.
+
+---
+
+## Processament de cadenes de caràcters
 
 
 De fet, el que fem és:
@@ -1568,7 +1580,7 @@ def is_unique(n):
   return True
 ```
 
-Això té clarament una complexitat `O(n*m)`.
+Això té clarament una complexitat `O(n*m^2)`.
 
 Es pot fer millor?
 
@@ -1688,7 +1700,7 @@ Per exemple, l’algorisme de Horspool (1980) (que és una versió millorada de 
 ## Cerca de cadenes de caràcters: versió avançada
 
 
-La primera observació és que, després del desplaçament, començar a comparar text i patró **per la dreta** (i no per l'esquerra) ens proporciona avantatge a l’hora de precalcular els desplaçaments!
+La primera observació és que començar a comparar text i patró **per la dreta** (i no per l'esquerra) ens proporciona avantatge a l’hora de fer els desplaçaments!
 
 
 <center><img src="images/horspool.png" width="520"></center>
@@ -1743,7 +1755,7 @@ En el cas que `c` no hagi fallat, però falla un altre caràcter més endavant:
 ## Algorisme de Horspool
 
 
-El caràcter c està present a la resta del patró i podem desplaçar fins a la primera aparició del caràcter.
++ El caràcter `c` està present a la resta del patró i podem desplaçar fins a la primera aparició del caràcter.
 
 <center><img src="images/horspool6.png" width="520"></center>
 
@@ -1755,9 +1767,7 @@ El caràcter c està present a la resta del patró i podem desplaçar fins a la 
 
 És evident que ens estalviem comparacions respecte a l’algorisme basat en força bruta, però també ho és que si hem de fer totes les comprovacions necessàries per saber en quin cas ens trobem en el moment que falla una comparació tampoc hi guanyem res!
 
-El que farem és pre-calcular la taula de desplaçaments.
-
-La taula ens donarà un desplaçament per cada possible lletra de l’alfabet. 
+El que farem és pre-calcular una **taula de desplaçaments**. La taula ens donarà un desplaçament per cada possible lletra de l’alfabet. 
 
 Els desplaçaments es poden pre-calcular, mirant el patró, amb aquesta fórmula:
 
@@ -1798,7 +1808,9 @@ def BoyerMooreHorspool(pattern, text):
 
 <center><img src="images/horspool8.png" width="420"></center>
 
-La **complexitat** en el pitjor cas és `O(nm)`. En el cas promig, `O(n)`, però tot i estar en la mateixa classe de complexitat, és més eficient que l’algorisme de força bruta.
+La **complexitat** en el pitjor cas és `O(nm)`. 
+
+En el cas promig, `O(n)`, però tot i estar en la mateixa classe de complexitat, és més eficient que l’algorisme de força bruta.
 
 
 ---
