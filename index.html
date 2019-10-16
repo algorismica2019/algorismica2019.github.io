@@ -1817,16 +1817,14 @@ En el cas promig, `O(n)`, però tot i estar en la mateixa classe de complexitat,
 
 # Altres problemes
 
-La cerca no és l’únic problema interessant:
-
-+ Buscar la subcadena més gran en comú entre dos texts.
-+ Cerca aproximada.
-+ Altres
+La cerca no és l’únic problema interessant. Buscar la subcadena més gran en comú entre dos texts també ho és. O fer cerca aproximada....
 
 --
 
 
-El problema de la **cerca aproximada** és: donat un patró `P[1..m]` i un text `T[1..n]`, trobar la subcadena de `T` amb la distància d’edició mínima respecte a `P`. La **distància d’edició** és el nombre d’operacions primitives per convertir un string en un altre.
+El problema de la **cerca aproximada** és: donat un patró `P[1..m]` i un text `T[1..n]`, trobar la subcadena de `T` amb la distància d’edició mínima respecte a `P`. 
+
+La **distància d’edició** és el nombre d’operacions primitives per convertir un string en un altre.
 
 
 <center><img src="images/string2.png" width="320" alt="la distància entre barbershop i varvar suposa canviar la e per una a i les dues Bs per Vs"></center>
@@ -1852,7 +1850,7 @@ for j in range(len(a)):
         print (cont,(a[j:i]))
 ```
 
-Els substrings de `hola` són `h`, `o`, `l`, `a`, `ho`, `ol`, `la`, `hol`, `ola` i `hola`
+Els substrings de `hola` són `h`, `ho`, `hol`, `hola`, `o`, `ol`, `ola`, `l`, `la`, `a`. 
 
 Si n és la longitud de la cadena, el nombre de subcadenes és                            
 
@@ -1896,29 +1894,35 @@ Aquest algorisme (també anomenat *distància d’edició*) calcula el nombre m�
 
 Usualment, les operacions d’edició són:
 
-+ inserció (p.e., canviar `cot` per `coat`),
-+ eliminació (p.e., canviar `coat` per `cot `), i
-+ substitució (p.e., canviar `coat` per `cost`).
++ **inserció** (p.e., canviar `cot` per `coat`),
++ **eliminació** (p.e., canviar `coat` per `cot `), i
++ **substitució** (p.e., canviar `coat` per `cost`).
 
-També es podria considerar la transposició: canviar `cost` per `cots`. 
+També es podria considerar la **transposició**: canviar `cost` per `cots`. 
 
 ---
 
 ## Càlcul de la distancia d'edició: Levenshtein
 
-Per fer-ho, va omplint una matriu *d* de manera que la posició `[m,n]` representa la distància d’edició entre el prefix de `m` caràcters d’un patró i el prefix de `n` caràcters d’un text.
+Per fer-ho, va omplint una matriu *d* de manera que la posició `[m,n]` representa la **distància d’edició entre el prefix de `m` caràcters d’un patró i el prefix de `n` caràcters d’un text.**
+
+Exemple:
 
 <center><img src="images/lev2.png" width="650" alt="patró:LEVENSHTEIN i a sota, caràcter per caràcter, text:MEILENSTEIN"></center>
 
-`d[1][1]`, canviar `L` per `M`, val 1 doncs només és una substitució.
+`d[1][1]=1`, canviar `L` per `M`, només és una substitució.
 
-`d[1][3]`, canviar `L` per `MEI`, val 3 perque és una substitució i dues insercions.
+`d[1][3]=3`, canviar `L` per `MEI`, és una substitució i dues insercions.
 
 ---
 
 ## Càlcul de la distancia d'edició: Levenshtein
 
-<center><img src="images/lev3.png" width="650" alt="Es mostra la matriu [[d · t1 t2 t3 t4][· 0 1 2 3 4][p1 1 - - - -][p2 2 - - - -][p3 3 - - - -]] el valor de la primera fila i columna són evidents, però com calculems els valors interiors, com d[2,3]?"
+La matriu té una fila i una columna `0` o `'.'`, que representa la cadena de caràcters buida.
+
+Alguns elements de la matriu tenen un valor molt simple de calcular. Els altres no ho són tant...
+
+<center><img src="images/lev3.png" width="550" alt="Es mostra la matriu [[d · t1 t2 t3 t4][· 0 1 2 3 4][p1 1 - - - -][p2 2 - - - -][p3 3 - - - -]] el valor de la primera fila i columna són evidents, però com calculems els valors interiors, com d[2,3]?"
 ></center>
 
 
@@ -1926,14 +1930,22 @@ Per fer-ho, va omplint una matriu *d* de manera que la posició `[m,n]` represen
 
 ## Càlcul de la distancia d'edició: Levenshtein
 
+Levenshtein va fer el següent raonament: 
 
-Suposem que ja tenim una alineació òptima entre els prefixos `p[0,i-1]` i `t[0,j-1]`.  Què podem fer amb `p[i]` i `t[j]` i com calculem `d[i,j]`? 
++ Suposem que ja tenim una alineació òptima entre els prefixos `p[:i-1]` i `t[:j-1]`.  Per exemple, entre `M` i `LEV`. 
++ Llavors, per calcular `d[i,j]` hem de veure què passa amb `p[i]` i `t[j]`.
 
 <center><img src="images/lev4.png" width="350" alt="p i t es mostren totalment alineats"></center>
 
-Només podem fer tres coses!
+I només podem fer tres coses per aliniar-los!
 
-1) Fem que `p[i]` i `t[j]` facin correspondència. Si `p[i]=t[j]` llavors `d[i,j]=d[i-1,j-1]`. Si no substituim i  `d[i,j]=d[i-1,j-1]+1`.
+---
+
+# Càlcul de la distancia d'edició: Levenshtein
+
+1) Fem correspondència entre `p[i]` i `t[j]`. 
++ Si `p[i]=t[j]` llavors `d[i,j]=d[i-1,j-1]`. 
++ Sinó, substituim la lletra del patró per la del text i en queda que `d[i,j]=d[i-1,j-1]+1`.
 
 <center><img src="images/lev5.png" width="350"></center>
 
@@ -1941,27 +1953,41 @@ Només podem fer tres coses!
 
 ## Càlcul de la distancia d'edició: Levenshtein
 
-2) Decidim que hi ha un forat al patró, i per tant inserim i `d[i,j]=d[i-1,j]+1`
-<center><img src="images/lev6.png" height="150"></center>
-3) Decidim que hi ha un forat al text, i per tant eliminem i  `d[i,j]=d[i,j-1]+1`
-<center><img src="images/lev7.png" height="150"></center>
+2) Decidim que hi ha una lletra perduda al patró i obrim un espai. Obrir un espai és equivalent a dir que no hem avançat en el patró, i això es pot representar dient que `d[i,j]=d[i-1,j]+1` 
+
+
+<center><img src="images/lev6.png" height="250"></center>
+
+---
+
+## Càlcul de la distancia d'edició: Levenshtein
+
+3) Decidim que hi ha una lletra perduda al text i obrim un espai. Obrir un espai és equivalent a dir que no hem avançat en el text, i això es pot representar dient que  `d[i,j]=d[i,j-1]+1` 
+<center><img src="images/lev7.png" height="250"></center>
 ---
 ## Càlcul de la distancia d'edició: Levenshtein
 
+> No hi ha cap altra opció, atès que em escollit treballar només amb aquests operadors d'edició.
 
-Observació:
+El següent punt del raonament de Levenshtein és: si hi ha tres possibilitats, **escollirem la més barata**!
 
-`d[i,j]= min{d[i-1,j] + 1, d[i,j-1] + 1, d[i-1,j-1] + cost}`
+O el que és el mateix:  `d[i,j]= min{d[i-1,j] + 1, d[i,j-1] + 1, d[i-1,j-1] + cost}`
 
-Això és podria resoldre amb una crida recursiva, atès que nosaltres volem `d[m,n]` i coneixem `d[0,:]` i `d[:,0]`, però la crida recursiva té massa cost computacional!
+`cost` és una variable que val `0` si `p[i]` i `t[j]` són iguals i `1` si són diferents.
 
-Podem seguir la mateixa estratègia que vam fer servir per la seqüència de Fibonacci.
+---
+
+## Càlcul de la distancia d'edició: Levenshtein
+
+
+El càlcul dels valors de la matriu `d` es podrien fer de forma recursiva (l'equació que defineix els seus valors és recursiva) a partir dels valors de la primera fila i columna, però la crida recursiva té massa cost computacional per matrius grans!
+
+Ho implementarem de forma no recursiva, seguint la mateixa estratègia que vam fer servir per la seqüència de Fibonacci.
 
 ---
 ## Càlcul de la distancia d'edició: Levenshtein
 
-
-Observació:
+El valors de la matriu `d` es poden calcular de forma seqüencial a partir dels valors de la primera fila i columna:
 
 `d[i,j]= min{d[i-1,j] + 1, d[i,j-1] + 1, d[i-1,j-1] + cost}`
 
@@ -1969,12 +1995,14 @@ Observació:
 
 ---
 ## Càlcul de la distancia d'edició: Levenshtein
-<center><img src="images/lev9.png" height="400"></center>
+<center><img src="images/lev9.png" height="380"></center>
+
+El valor de la darrera posició de la matriu és la distància d'edició entre el patró i el text!
 ---
 
 ## Càlcul de la distancia d'edició: Levenshtein
 
-La matriu es pot omplir seqüencialment:
+La matriu es pot omplir seqüencialment amb aquest algorisme:
 
 ```python
 Per cada caràcter de s (i des de 1 fins n):
@@ -2005,6 +2033,8 @@ Si volem saber les operacions d’edició efectuades, hem de buscar el **camí m
 Pot haver-hi diversos possibles passos de cost mínim:
 
 <center><img src="images/lev11.png" width="500"></center>
+
+Qualsevol d'ells és correcte.
 
 ---
 
@@ -2051,10 +2081,10 @@ def levenshtein_distance(first, second):
         first, second = second, first       # el primer sempre més curt
     if len(second) == 0: 
         return len(first)
-      first_length = len(first) + 1
-      second_length = len(second) + 1
-      distance_matrix = [[0] * second_length for x in range(first_length)]                  # posem la matriu a 0
-      ...
+    first_length = len(first) + 1
+    second_length = len(second) + 1
+    distance_matrix = [[0] * second_length for x in range(first_length)]                  # posem la matriu a 0
+    ...
 ```
 
 `distance_matrix = [[0] * second_length for x in range(first_length)]` és una **comprensió** de Python, que es pot interpretar com:
