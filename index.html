@@ -1560,7 +1560,9 @@ $$
 La tercerca línea té una complexitat `O(m^2)`.
 
 
-Per tant, el cost total de l'algorisme és `O(n*m^2)`, o `O(n^3)` en el cas que `n` i `m` siguin semblants.
+Per tant, el cost total de l'algorisme, en el pitjor dels casos, és `O(m^2)`, o `O(n^2)` en el cas que `n` i `m` siguin semblants.
+
+> El *pitjor dels casos* és aquell on tenim un *string* molt gran format per caràcters no repetits.
 
 ---
 
@@ -1580,7 +1582,7 @@ def is_unique(n):
   return True
 ```
 
-Això té clarament una complexitat `O(n*m^2)`.
+Això té clarament una complexitat `O(m^2)`.
 
 Es pot fer millor?
 
