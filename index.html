@@ -2491,8 +2491,13 @@ class: summary
 		+ merge
 	+ [QuickSort](#quicksort)
 		+ partition
-	+ Multiplicació de matrius ([Strassen](#matrius))
 	+ Càlcul de la [mediana](#mediana)
+
+<!---
++ Multiplicació de matrius ([Strassen](#matrius))
+-->	
+
+
 	
 ---
 
@@ -2717,7 +2722,7 @@ i per tant resulta `O(n^2)`.
 
 ## Algorismes de dividir i vèncer per ordenar: *mergesort* i *quicksort*
 
-A continuació coneixerem dos algorismes que ens ajudaran a ordenar una llista de forma més eficient, concretament amb una complexitat d'`O(n log n)`. 
+A continuació veurem dos algorismes que ens ajudaran a ordenar una llista de forma més eficient, concretament amb una complexitat d'`O(n log n)`. 
 
 Cadascun usa alguna funció auxiliar per preparar (`partition` al *quicksort*) o per recombinar (`merge` al *mergesort*) els subproblemes en que es basa la divisió.
 
@@ -2989,61 +2994,11 @@ En el **cas promig** el nombre de comparacions serà `O(1,38 n log_2 n)`, és a 
 La complexitat se seguiria expressant com a **O(n log n)**.
 
 ---
-name:matrius
-
-## Algorismes de dividir-i-vèncer: multiplicació de matrius
-
-<center><img src="images/matmul.png" width="650" alt="matrui amb una fila i central ressaltada; matriu amb una columna j central ressaltada; matriu amb una cel.la central i,j ressaltada, multiplicació de la matriu = sumatori de x sub ik * y sub kj per k de 1 a n"></center>
-
-És evident que la implementació directa de la multiplicació de matrius és `O(n^3)`: s’han de calcular `n^2` elements, i cada càlcul és `O(n)`.
-
-Fins a 1969 es pensava que no es podia fer d’una altra manera!
 
 
----
-
-## Algorismes de dividir-i-vèncer: multiplicació de matrius
-
-Però el 1969, el Dr. Volker Strassen va trobar una manera més òptima:
-
-Es va basar en que el producte de dues matrius `(n x n)` es pot calcular a partir de la seva descomposició en blocs `(n/2 x n/2)`:
-
-<center><img src="images/matmul2.png" width="550" alt="les matrius quadrades A B C D i E F G H es poden multiplicar com a una nova matriu AE+BG AF+BH CE+DG DF+DH"></center>
-
----
-## Algorismes de dividir-i-vèncer: multiplicació de matrius
-
-
-I que aquesta descomposició es pot expressar recursivament.  
-
-La recurrència consisteix en passar d’una matriu `(n x n)` a 8 matrius `(n/2 x n/2)`, i per tant la seva complexitat és `T(n) = 8 T(n/2) + O(n^2)`. 
-
-Que resulta en una complexitat de `O(n^3)`... No hem guanyat res!
-
---
-
-Però Strassen es va adonar que aquestes operacions es podien agrupar així:
-
-<center><img src="images/matmul3.png" width="550" alt="descomposició de cada terme de la multiplicació en els seus components"></center>
-
----
-
-## Algorismes de dividir-i-vèncer: multiplicació de matrius
-
-
-La complexitat ara és `T(n) = 7 T(n/2) + O(n^2)`, que resulta en una complexitat de `O(n log_2 7)`, que és aproximadament `O(n^(2.81))`.
-
-```python
-1000000**3
->>> 1000000000000000000
-
-1000000**2.81
->>> 72443596007499056
-```
----
 name:mediana
 
-## Algorismes de dividir-i-vèncer: càlcul de la mediana
+## Algorismes de dividir-i-vèncer: càlcul de la **mediana**
 
 La mediana de `[45,1,10,30,25]` és `25`, perquè la **mediana** es defineix com l’element que queda al mig del vector si ordenem els seus elements. Per tant, la seva implementació directa és `O(n log n)`.
 
@@ -3133,22 +3088,7 @@ def kSelect(A,k,length):  # escollim una posició r random( 1 - length(A))
         else :  
 			return pivot
 ```
----
-class: exam
 
-### Possibles preguntes d'exàmen relacionades amb el tema 6
-
-1. Quin cost té l'algorisme `quicksort`? És més ràpid que el `mergesort`?
-2. Calcula les complexitats dels següents algorismes, segons el teorema Màster:
-
-	* `T (n) = 3T (n/2) + n^2`
-	* `T (n) = 4T (n/2) + n^2`
-	* `T (n) = T (n/2) + 2^n`
-	* `T (n) = 2^n T (n/2) + n^n`
-	* `T (n) = 16T (n/4) + n`
-	* `T (n) = 2T (n/2) + n log n`
-
-3. A cada iteració de `partition` quants elements addicionals tenim ordenats?
 
 ---
 
@@ -3821,31 +3761,7 @@ En el nostre problema hem fet `50x150=7.500` avaluacions!
 
 
 ---
-class: exam
 
-### Possibles preguntes d'exàmen relacionades amb el tema 7
-
-1. Quan té sentit aplicar algorismes genètics?
-
-2. Tens aquests dos cromosomes: creua'ls i muta'ls.
-	
-	- 0001110001
-	- 1100110011
-
-3. Tens els següents cromosomes. Quins sobreviuran a la següent generació? perquè?
-
-	- 0001110000
-	- 1100110011
-	- 1000110001
-	- 1101110001
-	- 1111110111
-	- 1000110010
-
-4. Tens una llista ordenada amb 32 números i busques si conté el número 5. Quantes comparacions hauràs de fer com a màxim?
-
-6. Tens una llista no necessàriament ordenada amb 32 números i busques si conté el número 5. Quin cost té en el cas pitjor? surt a compte ordenar-la?
-
----
 class: center, middle, inverse
 name:tema7
 
@@ -3858,8 +3774,6 @@ class: summary
 
 + Concepte de col·lisió
 + Propietats de les funcions hash
-+ SimHash
-	+ Índex de Jaccard  J(A/B) = A &#8745; B / A &#8746;  B 
 		
 ---
 
@@ -4166,449 +4080,16 @@ taula
 4837, 2681, 2870, 2993, 3849, 4778, 2591, 3267, 5397]
 ```
 
----
-## SimHash i cerca per semblança.
-
-Imaginem  que tenim un conjunt d’adreces. Com podem decidir que són repetides?
-
-Cas 1: 
-+ `Burra Hotel, 5 Market Sq, Burra, SA, 5417`
-+ `Camping Country Superstore, 401 Pacific Hwy, Belmont North, NSW, 2280`
-
-Cas 2: 
-+ `One Stop Bakery, 1304 High St Rd, Wantirna, VIC, 3152`
-+ `One Stop Bakery, 1304 High Street Rd, Wantirna South, VIC, 3152`
 
 ---
 
-## SimHash i cerca per semblança.
 
-
-Cas 3: 
-+ `Park Beach Interiors, Showroom Park Beach Plaza Pacific Hwy, Coffs Harbour, NSW, 2450`
-+ `Park Beach Interiors, Showroom Park Beach Plaza Pacific Highway, Coffs Harbour, NSW, 2450`
-+ `Park Beach Interiors, Park Beach Plaza Pacific Hwy, Coffs Harbour, NSW, 2450`
-+ `Park Beach Interiors, 26 Park Beach Plaza, Pacific Hwy, Coffs Harbour, NSW, 2450`
-
----
-## SimHash i cerca per semblança.
-
-
-Cas 4: 
-+ `Weaver Interiors, 955 Pacific Hwy, Pymble, NSW, 207`
-+ `Weaver Interiors, 997 Pacific Hwy, Pymble, NSW, 2073`
-
-Cas 5: 
-+ `Gibbon Hamor Commercial Interiors, 233 Johnston St, Annandale, NSW, 2038`
-+ `Gibbon Hamor Development Planners, 233 Johnston St, Annandale, NSW, 2038`
-
-Necessitem una manera de “comparar” aquestes adreces.
-
----
-## SimHash i cerca per semblança.
-
-Les tècniques de **shingling** són una forma de generar un conjunt que pot ser usat com a representant del text.
-
-Per exemple, podem usar bigrames de paraules: 
-
-+ Els bigrames que representen  `the cat sat on the`  són 
-`(the,cat)`, `(cat,sat)`, `(sat,on)`, `(on,the)`.
-
-Llavors podem aplicar l’**índex de Jaccard** (el quocient entre la cardinalitat de la intersecció de dos conjunt i la cardinalitat de la unió) com a mesura de semblança entre adreces!
-
-Veiem un exemple de com calcular l'índex de Jaccard. Tenim `A = {1,2,3}`, `B = {2,3,4}`, `C = {4,5,6}`. Si anomenem `J(A,B)` a l’índex de Jaccard entre `A` i `B`, llavors, `J(A,B) = 2/4 = 0.5`, perquè A intersecció B = 2, i A unió B = 4; i respectivament `J(A,C) = 0/6 = 0`, i `J(B,C) = 1/5 = 0.2`
-
-A partir d'aquests índexs podem afirmar que els conjunts més semblants són `A` i `B` i els menys semblants són `A` i `C`.
-
----
-## SimHash i cerca per semblança.
-
-`Burra Hotel, 5 Market Sq, Burra, SA, 5417` es pot representar (amb bigrames de lletres) com: `A={" 5", " B", " H", " M", " S", ", ", "17", "41", "5 ", "54", "A,", "Bu", "Ho", "Ma", "SA", "Sq", "a ", "a,", "ar", "el", "et", "ke", "l,", "ot", "q,", "ra", "rk", "rr", "t ", "te", "ur"}`
-
-`Camping Country Superstore, 401 Pacific Hwy, Belmont North, NSW, 2280` es pot representar (amb bigrames de lletres) com: `B={" 2", " 4", " B", " C", " H", " N", " P", " S", ", ", "01", "1 ", "22", "28", "40", "80", "Be", "Ca", "Co", "Hw", "NS", "No", "Pa", "SW", "Su", "W,", "ac", "am", "c ", "ci", "e,", "el", "er", "fi", "g ", "h,", "ic", "if", "in", "lm", "mo", "mp", "ng", "nt", "on", "or", "ou", "pe", "pi", "re", "rs", "rt", "ry", "st", "t ", "th", "to", "tr", "un", "up", "wy", "y ", "y,"}`. 
-
-`J(A,B)= 6/87 = 0.068`
-
----
-## SimHash i cerca per semblança.
-
-Cas 2
-+ `A = One Stop Bakery, 1304 High St Rd, Wantirna, VIC, 3152` 
-+ `B = One Stop Bakery, 1304 High Street Rd, Wantirna South, VIC, 3152`
-+ `J(A,B) = 46/57 = 0.807`
-
-Cas 3
-+ `A = Park Beach Interiors, Showroom Park Beach Plaza Pacific Hwy, Coffs Harbour, NSW, 2450`
-+ `B = Park Beach Interiors, Showroom Park Beach Plaza Pacific Highway, Coffs Harbour, NSW, 2450`
-+ `C= Park Beach Interiors, Park Beach Plaza Pacific Hwy, Coffs Harbour, NSW, 2450`
-+ `D= Park Beach Interiors, 26 Park Beach Plaza, Pacific Hwy, Coffs Harbour, NSW, 2450`
-+ `J(A,B)=0.888, J(A,C)=0.861, J(A,D)=0.808, J(B,C)=0.760, J(B,D)=0.716, J(C,D)=0.932`
-
----
-
-## SimHash i cerca per semblança.
-
-Cas 4: 
-
-+ `A = Weaver Interiors, 955 Pacific Hwy, Pymble, NSW, 2073`
-+ `B = Weaver Interiors, 997 Pacific Hwy, Pymble, NSW, 2073`
-+ `J(A,B)= 43/49 = 0.877`
-
-Cas 5
-
-+ A = `Gibbon Hamor Commercial Interiors, 233 Johnston St, Annandale, NSW, 2038`
-+ B = `Gibbon Hamor Development Planners, 233 Johnston St, Annandale, NSW, 2038`
-+ `J(A,B)= 49/76 = 0.644`
-
----
-## SimHash i cerca per semblança.
-
-Si volem buscar el parell d’adreces més semblants tenim un problema: hem de comparar cada element amb tots els elements i això és `O(n^2)`.
-
-+ 50 adreces són 1,225 comparacions. 
-+ 500 adreces són 124,750 comparacions
-+ 2000 adreces són 1,999,000 comparacions
-+ 1,000,000 adreces són 499,999,500,000 comparacions.
-
-Podem calcular un valor `Sim(A,B)` que “aproximi” `J(A,B)` amb menys complexitat que `O(n^2)`?
-
-Per fer-ho necessitem una funció de hash que assigni codis semblants (en el sentit de la distància de Hamming) a ítems semblants....
-
-```python
-def hamming_distance(s1, s2): 
-  return sum(ch1 != ch2 for ch1, ch2 in zip(s1, s2))
-
-zip('hola','hole')
->>> [('h', 'h'), ('o', 'o'), ('l', 'l'), ('a', 'e')]
-hamming_distance('hola','hole')
->>> 1
-```
-
-
----
-## SimHash i cerca per semblança.
-
-Per fer-ho necessitem una funció de hash que assigni codis semblants (en el sentit de la distància de Hamming) a ítems semblants.
-Aquesta funció s'anomena `SimHash`. 
-
-Comportament del `Hash` clàssic vs `SimHash`:
-
-```python
-p1 = 'the cat sat on the mat'
-p2 = 'the cat sat on a mat' 
-p3 = 'we all scream for ice cream' 
-hash(p1) 
->>> 415542861 
-hash(p2) 
->>> 668720516 
-hash(p3) 
->>> 767429688
-simhash(p1) 
->>> 851459198 
->>> 00110010110000000011110001111110 
-simhash(p2) 
->>> 847263864 
->>> 00110010100000000011100001111000 
-simhash(p3) 
->>> 984968088 
->>> 00111010101101010110101110011000
-``` 
-
----
-## SimHash i cerca per semblança.
-
-L’algorisme `SimHash` genera un codi binari de la manera següent:
-
-+ Escollim una mida de la taula, per exemple 32 bits.
-+ Sigui  `V=[0]*32`.
-+ Representem el text amb els bigrames:
-
-> `'the cat sat on the mat'` =>  
-`{"th", "he", "e ", " c", "ca", "at", "t ", " s", "sa", " o", "on", "n ", " t", " m", "ma"}`
-
-+ Fem el hash de cada característica amb una funció de 32 bits. 
-
-> `Hash(‘th’) = -502157718`
-
-> `Hash(‘he’) = -369049682` ... 
-
-+ Per cada hash, si el bit `i` del hash és 1 llavors sumem 1 a `V[i]`; si el bit `i` del hash és 0 llavors restem 1 de `V[i]`.
-
-+ El bit `i` de simhash és 1 si `V[i] > 0` i 0 en els altres casos.
-
----
-## SimHash i cerca per semblança.
-
-Simhash és útil perquè si la distància de Hamming entre els simhash de dues frases és petit, llavors el coeficient de Jaccard és alt. Però com ho usem pel nostre objectiu (sense fer `O(n^2)` comparacions)?
-
-En el cas que 2 nombres tenen una distància de Hamming petita i la seva diferència està en els bits menys significatius, llavors això vol dir que són dos ítems que estan propers en una llista ordenada (vegeu taula a la següent diapositiva).
-
-
----
-## SimHash i cerca per semblança (taula)
-
-A la taula es mostra un identificador correlatiu per cada cadena de bits (1..8), el simhash corresponent a cada cadena, la cadena pròpiament dita i la distància de hamming de la cadena actual amb l'anterior. Per ex. la cadena 3 té el simhash 2648 i té una distància de hamming de 11 respecte la cadena 2. A la dreta les mateixes cadenes s'ordenen pel simhash.
-
-  <center><img src="images/hash3.png" width="650" alt="s'ordenen els números segons el simhash, els semblants estan consecutius"></center>
-
----
-## SimHash i cerca per semblança.
-
-Per tant, només cal comprovar parelles adjacents de la llista per trobar la parella més semblant!
-
-Això redueix la complexitat de `n*(n-1)/2` comparacions amb `O(n^2)` a `n` càlculs de la funció hash amb `O(n)` + una ordenació `O(n log n)` + `n` distàncies amb `O(n)` = la complexitat total és `O(n log n)`.
-
----
-## SimHash i cerca per semblança (exemple de taula)
-
-A la taula es mostren 2 parelles de cadenes, la (3,6) i la (8,5) amb una distància de Hamming de 1 i de 2 respectivament. Queden juntes ordenades perquè el simhash també és semblant.
-
-  <center><img src="images/hash4.png" width="450" alt="una seqüencia de bits es rota i se li aplica la distància de Hamming, aquesta no s'altera per la rotació"></center>
-
----
-## SimHash i cerca per semblança.
-
-
-Però hi ha una parella semblant que ha deixat apartada: la formada per les cadenes 4 (0000001110100110) i la 2(1100001110100110), que tenen distància  2...
-
-L’ordenació només ha ajuntat els que tenien bits poc significatius semblants...
-
-Però podem aprofitar una propietat de la distància de Hamming: una permutació dels bits dels nombres preserva la distància!
-
-  <center><img src="images/hash5.png" width="450" alt="la distància de Hamming entre dues cadenes 100010,110010 és la mateixa que entre aquestes cadenes rotades, 001010, 001011"></center>
-
-Si permutem mitjançant la rotació dels bits tenim la mateixa distància però els bits més significatius passen a ser els menys significatius.
-
----
-## SimHash i cerca per semblança.
-
-
-Però hi ha una parella semblant que ha deixat apartada, la (4,2), que té distància 2...
-
-Rotem els bits a l’esquerra dues vegades i després ordenem:
-
-
-  <center><img src="images/hash6.png" width="550" alt="la parella (4,2), amb la rotació de bits té un simhash més semblant i queda ben ordenada"></center>
-
----
-## SimHash i cerca per semblança.
-
-
-Per tant, l’algorisme ha de desplaçar els bits `B` vegades (on `B` és la longitud en bits) i fer:
-
-+ Rotar els bits
-+ Ordenar
-+ Calcular la distància de Hamming entre files adjacents.
-
-Com que segurament `B << n` el cost de l’algorisme és més semblant a `O(n log n)` que a `O(n^2)`.
-
----
-class: exam
-
-### Possibles preguntes d'exàmen relacionades amb el tema 8
-
-1. Si tenim un conjunt amb 99 elements i fem un hash. Quants valors diferents haurà de tenir aquest hash. Raona la teva resposta
-
-2. Quines propietats ha de complir una funció hash?
-
-3. Com valoraràs si dues adreces són similars? 
-
----
 class: center, middle, inverse
 
-<center><img src="images/allfolks.gif" width="100%"></center>
 
----
-class: center, middle, inverse
+# **Això és el final!**
 
-# Sumari de tots els temes
-
----
-class: summary
-
-### Resum del tema 1: Què és un algorisme 
-
-+ **Conceptes**: 
-
-  + [Algorisme](#algorisme), 
-  + Input(entrada), 
-  + Output(sortida), 
-  + [Correcció](#correccio), 
-  + [Eficiència](#eficiencia), 
-  + Errors, 
-  + Llenguatge de programació 
-		+ [Primitives (símbols), sintaxi, semàntica estàtica, semàntica](#llenguatge)
-
-
----
-class: summary
-
-### Resum del tema 2: Python (I)
-	
-+ **Conceptes de programació**: 
-
-  + Instrucció, 
-  + variables, 
-  + [funció](#funcio), 
-	+ paràmetres, 
-	+ crida/invocació, 
-  + [noms, expressions, literals](#noms),
-  + assignacions
-    + asssignacions simples, d'entrada, simultànies
-  + comentaris, 
-  + iteracions definides o bucles/loops, 
-  + biblioteques (libraries) de funcions /  mòduls, 
-
----
-class: summary
-
-### Resum del tema 2: Python (II)
-	
-+ **Llenguatge Python (1)**: 
-
-  + com crear funcions i blocs de codi 
-	+ def, 
-  + print(), 
-  + input i eval(input), 
-  + for i in range(star,stop,step), 
-  + índex, 
-  + operacions **, abs(), %, 
-  + import  math, 
-	+ math.sqrt
-	
-
----
-class: summary
-
-### Resum del tema 2: Python (III)
-	
-+ **Llenguatge Python (2)**: 
-
-  + [cadenes de caràcters o strings](#strings)
-		+ slicing
-		+ concatenar(+) i repetir (*)
-		+ split, join, strip
-		+ islower, isupper, isalpha
-  + [ASCII i UniCode](#ASCII)
-		+ ord i char
-  + [àmbit o scope](#scope)
-  + [crida de funcions](#crida)
-  + [operadors relacionals](#relacionals): <, <=, ==, >=, >, !=
-  + [operadors booleans](#booleans): and, or
-  + [estructures de control](#control): 
-		+ if elif else
-		+ while
-	
-  
----
-class: summary
-
-### Resum del tema 2: Python (IV)
-	
-+ **Llenguatge Python (3)**: 
-
-  + col·leccions de dades, mutables/immutables, homogènies/inhomogènies
-		+ [llistes](llistes)
-		+ [diccionaris](diccionaris)
-		+ [tuples](tuples)
-  + referències
-  + clonatge  
-  
----
-class: summary
-
-### Resum del tema 3: Algorismes Numèrics 
-
-+ [Sistema numeració](#sistnum)
-	+ base
-	+ nombre de dígits 
-+ [Seqüència de Fibonacci](#fib)
-+ Notació [Gran O](#granO)
-+ Aritmètica bàsica
-	+ [suma](#suma)
-	+ [multiplicació](#mult)
-		+ versió d'Al Khwarizmi
-	+ [divisió](#div)
-+ Aritmètica Modular		
-	+ [suma](#sumamod)
-	+ [multiplicació](#multmod), versió d'Al Khwarizmi
-	+ divisió
-	+ [potència](#potmod)
-+ [Algorisme d'Euclides](#euclides)
-+ [Test de primeritat](#testprimer)
-	+ [Teorema petit de Fermat](#fermat)
-	+ [Teorema de Lagrange](#lagrange)
-		
----
-
-class: summary
-
-### Resum del tema 4: [Algorismes per Text](#tema4) 
-
-+ Cerca de cadenes
-+ Cerca aproximada
-+ Distància d'edició
-	+ Levensthein
-
----
-class: summary
-
-### Resum del tema 5: [Algorismes i Força Bruta](#tema5) 
-
-+ Ordenar
-	+ [Ordenació per selecció](#sel)
-+ Algorismes intractables: cas fort (NP-hard) i cas dèbil
-	+ Cerca exhaustiva
-		+ [TSP](#TSP)
-		+ [Knapsack](#knapsack)
-
----
-class: summary
-
-### Resum del tema 6: [Dividir i vèncer](#tema6)
-
-+ Recursió
-	+ [Torres de Hanoi](#Hanoi)
-+ [Dividir i vencer](#divvenc)
-	+ [Teorema Màster](#master)
-	+ [MergeSort](#mergesort)
-		+ merge
-	+ [QuickSort](#quicksort)
-		+ partition
-	+ Multiplicació de matrius ([Strassen](#matrius))
-	+ Càlcul de la [mediana](#mediana)
-	
----
-class: summary
-
-### Resum del tema 7: [Algorismes de Cerca](#tema7) 
-
-+ Cerca líneal 
-+ [Cerca binària](#cercbin)
-+ Cerca exhaustiva
-+ Cerca aleatòria
-+ Cerca amb [algorismes genètics](#genetic)
-	+ concepte de generació
-	+ funció d'adaptació
-	+ mutació i creuament
-	+ selecció supervivents
-		+ mètode estàndard
-		+ mètode d'ordenació
-		+ mètode diversitat
-+ Distància de Hamming
-
----
-class: summary
-
-### Resum del tema 8: [Hashing i Cerca](#tema8) 
-
-+ Concepte de col·lisió
-+ Propietats de les funcions hash
-+ SimHash
-	+ Índex de Jaccard  J(A/B) = A &#8745; B / A &#8746;  B 
-
-
-
+Gràcies per la vostra col·laboració!
 
 
 </textarea>
